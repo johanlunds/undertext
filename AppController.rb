@@ -3,7 +3,7 @@
 #  Undertext
 #
 #  Created by Johan Lundström on 2009-01-28.
-#  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
+#  Copyright (c) 2009 Johan Lundström. All rights reserved.
 #
 
 class AppController < OSX::NSWindowController
@@ -11,12 +11,17 @@ class AppController < OSX::NSWindowController
 
   ib_outlet :outline
   
+  def self.appVersion
+    NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
+  end
+  
   def awakeFromNib
-    # @client = Client.new
+    @client = Client.new
+    @client.logIn
   end
   
   def application_openFiles(sender, filenames)
-    NSLog("#{filenames}")
+    # add in outline
   end
   
   # Can choose directory and/or multiple files (movies)
@@ -38,4 +43,9 @@ class AppController < OSX::NSWindowController
   def openPanelDidEnd_returnCode_contextInfo(sender, result, context)
     application_openFiles(nil, sender.filenames) if result == NSOKButton
   end
+  
+  def downloadSelected(sender)
+    # Todo
+  end
+  ib_action :downloadSelected
 end
