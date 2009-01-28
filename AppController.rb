@@ -6,14 +6,36 @@
 #  Copyright (c) 2009 __MyCompanyName__. All rights reserved.
 #
 
-class AppController < OSX::NSObject
-  ib_outlet :table
+class AppController < OSX::NSWindowController
+  include OSX
+
+  ib_outlet :outline
   
   def awakeFromNib
     # @client = Client.new
   end
   
-  def application_openFiles_(sender, filenames)
-    # fill table
+  def application_openFiles(sender, filenames)
+    NSLog("#{filenames}")
+  end
+  
+  # Can choose directory and/or multiple files (movies)
+  def open(sender)
+    open = NSOpenPanel.openPanel
+    open.setAllowsMultipleSelection(true)
+    open.setCanChooseDirectories(true)
+    open.beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
+      nil,
+      nil,
+      ["public.movie"],
+      self.window,
+      self,
+      'openPanelDidEnd:returnCode:contextInfo:',
+      nil
+    )
+  end
+  
+  def openPanelDidEnd_returnCode_contextInfo(sender, result, context)
+    application_openFiles(nil, sender.filenames) if result == NSOKButton
   end
 end
