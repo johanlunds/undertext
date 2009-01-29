@@ -10,6 +10,7 @@ class ResultsDataSource < OSX::NSObject
   include OSX
   
   ib_outlet :outline
+  attr_reader :movies
   
   def init
     super_init
