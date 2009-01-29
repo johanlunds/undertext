@@ -3,7 +3,7 @@
 //  Undertext
 //
 //  Created by Johan Lundstršm on 2009-01-28.
-//  Copyright (c) 2009 Johan Lundstršm. All rights reserved.
+//  Copyright (c) 2009 Johan Lundstršm.
 //
 
 #import <Cocoa/Cocoa.h>
