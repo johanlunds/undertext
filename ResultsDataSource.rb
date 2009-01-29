@@ -6,8 +6,7 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class ResultsDataSource < OSX::NSObject
-  include OSX
+class ResultsDataSource < NSObject
   
   ib_outlet :outline
   attr_reader :movies

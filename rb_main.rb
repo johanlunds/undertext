@@ -2,14 +2,15 @@
 #  rb_main.rb
 #  Undertext
 #
-#  Created by Johan Lundström on 2009-01-28.
-#  Copyright (c) 2009 Johan Lundström.
+#  Created by Johan Lundstr√∂m on 2009-01-28.
+#  Copyright (c) 2009 Johan Lundstr√∂m.
 #
 
 require 'osx/cocoa'
+include OSX
 
 def rb_main_init
-  path = OSX::NSBundle.mainBundle.resourcePath.fileSystemRepresentation
+  path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
   rbfiles = Dir.entries(path).select {|x| /\.rb\z/ =~ x}
   rbfiles -= [ File.basename(__FILE__) ]
   rbfiles.each do |path|
@@ -19,5 +20,5 @@ end
 
 if $0 == __FILE__ then
   rb_main_init
-  OSX.NSApplicationMain(0, nil)
+  NSApplicationMain(0, nil)
 end

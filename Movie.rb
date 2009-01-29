@@ -6,8 +6,7 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class Movie < OSX::NSObject
-  include OSX
+class Movie < NSObject
 
   attr_reader :filename
   attr_accessor :subtitles

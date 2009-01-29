@@ -53,6 +53,12 @@ class Client
     end
     
     def call(method, *args)
-      @client.call(method, *args)
+      # debug
+      NSLog("args:")
+      args.each { |a| NSLog("#{a.class}: #{a.inspect}") }
+      
+      result = @client.call(method, *args)
+      NSLog("result: #{result.inspect}")
+      result
     end
 end
