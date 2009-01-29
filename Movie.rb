@@ -6,14 +6,17 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class Movie
+class Movie < OSX::NSObject
+  include OSX
 
   attr_reader :filename
 
-  def initialize(filename)
+  def initWithFile(filename)
+    init
     @filename = filename
     @hash = nil
-    @subs = [Subtitle.new]
+    @subs = [Subtitle.alloc.init]
+    self
   end
   
   def title
@@ -28,7 +31,7 @@ class Movie
     @hash ||= MovieHasher.compute_hash(@filename)
   end
   
-  def child(index)
+  def childAtIndex(index)
     @subs[index]
   end
   

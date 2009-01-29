@@ -6,20 +6,18 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class Subtitle
-  def initialize
-    # todo
-  end
-
+class Subtitle < OSX::NSObject
+  include OSX
+  
   def title
-    "sub"
+    "Subtitle"
   end
   
   def otherInfo
     ""
   end
   
-  def child(index)
+  def childAtIndex(index)
     nil
   end
   

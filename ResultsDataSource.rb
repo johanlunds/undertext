@@ -18,20 +18,20 @@ class ResultsDataSource < OSX::NSObject
   end
   
   def setFiles(files)
-    @movies = files.map { |file| Movie.new(file) } 
+    @movies = files.map { |file| Movie.alloc.initWithFile(file) }
     @outline.reloadItem_reloadChildren(nil, true) # reload everything
   end
   
   def outlineView_child_ofItem(outline, index, item)
-    !item ? @movies[index] : item.child(index)
+    item.nil? ? @movies[index] : item.childAtIndex(index)
   end
 
   def outlineView_isItemExpandable(outline, item) 
-    !item ? false : item.isExpandable
+    item.isExpandable
   end
 
   def outlineView_numberOfChildrenOfItem(outline, item)
-    !item ? @movies.size : item.childrenCount
+    item.nil? ? @movies.size : item.childrenCount
   end
 
   def outlineView_objectValueForTableColumn_byItem(outline, tableColumn, item)
