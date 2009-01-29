@@ -10,12 +10,13 @@ class Movie < OSX::NSObject
   include OSX
 
   attr_reader :filename
+  attr_accessor :subtitles
 
   def initWithFile(filename)
     init
     @filename = filename
     @hash = nil
-    @subs = [Subtitle.alloc.init]
+    @subtitles = []
     self
   end
   
@@ -32,11 +33,11 @@ class Movie < OSX::NSObject
   end
   
   def childAtIndex(index)
-    @subs[index]
+    @subtitles[index]
   end
   
   def childrenCount
-    @subs.size
+    @subtitles.size
   end
   
   def isExpandable

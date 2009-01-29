@@ -45,6 +45,7 @@ class AppController < OSX::NSWindowController
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
     @outline.dataSource.setFiles(files)
+    search(nil) # populate outline with search results
   end
   
   # Can choose directory and/or multiple files (movies)
@@ -71,4 +72,10 @@ class AppController < OSX::NSWindowController
     # Todo
   end
   ib_action :downloadSelected
+  
+  def search(sender)
+    @client.searchSubtitles(@outline.dataSource.movies)
+    # todo: notification here (observer) or do something with results
+  end
+  ib_action :search
 end
