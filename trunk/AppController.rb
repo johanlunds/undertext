@@ -74,8 +74,7 @@ class AppController < NSWindowController
 
   ib_action :search  
   def search(sender)
-    result = @client.searchSubtitles(@outline.dataSource.movies)
-    # todo: temp. do something with results
-    @outline.dataSource.movies[0].setSubtitles([Subtitle.alloc.init])
+    # todo: show returned count of results
+    @client.searchSubtitles(@outline.dataSource.movies)
   end
 end
