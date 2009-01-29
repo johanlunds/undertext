@@ -6,8 +6,7 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class Subtitle < OSX::NSObject
-  include OSX
+class Subtitle < NSObject
   
   def title
     "Subtitle"

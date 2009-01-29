@@ -6,8 +6,7 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class AppController < OSX::NSWindowController
-  include OSX
+class AppController < NSWindowController
   
   # Used if looking by UTI is too cumbersome
   EXTS = %w(3g2 3gp 3gp2 3gpp 60d ajp asf asx avchd avi bik bix box cam dat divx 
@@ -67,15 +66,15 @@ class AppController < OSX::NSWindowController
   def openPanelDidEnd_returnCode_contextInfo(sender, result, context)
     application_openFiles(nil, sender.filenames) if result == NSOKButton
   end
-  
+
+  ib_action :downloadSelected  
   def downloadSelected(sender)
     # Todo
   end
-  ib_action :downloadSelected
-  
+
+  ib_action :search  
   def search(sender)
-    @client.searchSubtitles(@outline.dataSource.movies)
+    result = @client.searchSubtitles(@outline.dataSource.movies)
     # todo: notification here (observer) or do something with results
   end
-  ib_action :search
 end
