@@ -43,7 +43,7 @@ class Client
     end
   
     result = call('SearchSubtitles', @token, args)
-    result['data']
+    result['data'] || [] # result['data'] == false if no results
   end
   
   private
@@ -53,12 +53,10 @@ class Client
     end
     
     def call(method, *args)
-      # debug
-      NSLog("args:")
-      args.each { |a| NSLog("#{a.class}: #{a.inspect}") }
-      
+      # convert NSObjects to Ruby equivalents before XMLRPC converting
+      args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }      
       result = @client.call(method, *args)
-      NSLog("result: #{result.inspect}")
+      # NSLog("Client#call: #{method}, #{args.inspect}: #{result.inspect}")
       result
     end
 end
