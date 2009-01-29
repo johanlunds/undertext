@@ -14,12 +14,25 @@ class ResultsDataSource < NSObject
   def init
     super_init
     @movies = []
+    # add notification for events fired in this class and Movie
+    NSNotificationCenter.defaultCenter.addObserver_selector_name_object(self, 'reloadResults', 'NewItems', nil)
     self
+  end
+  
+  # todo: is this correct?
+  def dealloc
+    NSNotificationCenter.defaultCenter.removeObserver(self)
+    super_dealloc
   end
   
   def setFiles(files)
     @movies = files.map { |file| Movie.alloc.initWithFile(file) }
-    @outline.reloadItem_reloadChildren(nil, true) # reload everything
+    NSNotificationCenter.defaultCenter.postNotificationName_object_('NewItems', nil)
+  end
+  
+  def reloadResults(notification)
+    sender = notification.object
+    @outline.reloadItem_reloadChildren(sender, true) # reloads everything if item is nil
   end
   
   def outlineView_child_ofItem(outline, index, item)
