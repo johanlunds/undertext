@@ -13,6 +13,7 @@ class Movie
   def initialize(filename)
     @filename = filename
     @hash = nil
+    @subs = [Subtitle.new]
   end
   
   def title
@@ -25,5 +26,17 @@ class Movie
   
   def osdb_hash
     @hash ||= MovieHasher.compute_hash(@filename)
+  end
+  
+  def child(index)
+    @subs[index]
+  end
+  
+  def childrenCount
+    @subs.size
+  end
+  
+  def isExpandable
+    true
   end
 end

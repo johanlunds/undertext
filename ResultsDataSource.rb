@@ -23,23 +23,15 @@ class ResultsDataSource < OSX::NSObject
   end
   
   def outlineView_child_ofItem(outline, index, item)
-    if item.nil?
-      @movies[index]
-    else
-      nil
-    end
+    !item ? @movies[index] : item.child(index)
   end
 
   def outlineView_isItemExpandable(outline, item) 
-    false
+    !item ? false : item.isExpandable
   end
 
   def outlineView_numberOfChildrenOfItem(outline, item)
-    if item.nil?
-      @movies.size
-    else
-      0
-    end
+    !item ? @movies.size : item.childrenCount
   end
 
   def outlineView_objectValueForTableColumn_byItem(outline, tableColumn, item)

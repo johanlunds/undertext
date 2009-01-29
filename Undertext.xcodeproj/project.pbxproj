@@ -13,6 +13,9 @@
 		26A392660F3132F600B36404 /* ResultsDataSource.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A392650F3132F600B36404 /* ResultsDataSource.rb */; };
 		26A3929B0F313A7300B36404 /* Movie.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A3929A0F313A7300B36404 /* Movie.rb */; };
 		26A3929D0F313A9200B36404 /* Subtitle.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A3929C0F313A9200B36404 /* Subtitle.rb */; };
+		26EFE7950F31E8FA00B1B95F /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7920F31E8FA00B1B95F /* LICENSE.txt */; };
+		26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7930F31E8FA00B1B95F /* Rakefile */; };
+		26EFE7970F31E8FA00B1B95F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7940F31E8FA00B1B95F /* README.txt */; };
 		4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = E8F5E25803AEB7C803A81C6F /* rb_main.rb */; };
@@ -30,6 +33,9 @@
 		26A392650F3132F600B36404 /* ResultsDataSource.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsDataSource.rb; sourceTree = "<group>"; };
 		26A3929A0F313A7300B36404 /* Movie.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Movie.rb; sourceTree = "<group>"; };
 		26A3929C0F313A9200B36404 /* Subtitle.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Subtitle.rb; sourceTree = "<group>"; };
+		26EFE7920F31E8FA00B1B95F /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		26EFE7930F31E8FA00B1B95F /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		26EFE7940F31E8FA00B1B95F /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -101,6 +107,9 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				4DDCA7110ACC9A6100E082CE /* Info.plist */,
+				26EFE7930F31E8FA00B1B95F /* Rakefile */,
+				26EFE7940F31E8FA00B1B95F /* README.txt */,
+				26EFE7920F31E8FA00B1B95F /* LICENSE.txt */,
 			);
 			name = Undertext;
 			sourceTree = "<group>";
@@ -195,6 +204,9 @@
 				26A3929B0F313A7300B36404 /* Movie.rb in Resources */,
 				26A3929D0F313A9200B36404 /* Subtitle.rb in Resources */,
 				26579C8B0F315451009AF914 /* MovieHasher.rb in Resources */,
+				26EFE7950F31E8FA00B1B95F /* LICENSE.txt in Resources */,
+				26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */,
+				26EFE7970F31E8FA00B1B95F /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

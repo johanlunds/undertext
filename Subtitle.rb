@@ -7,4 +7,27 @@
 #
 
 class Subtitle
+  def initialize
+    # todo
+  end
+
+  def title
+    "sub"
+  end
+  
+  def otherInfo
+    ""
+  end
+  
+  def child(index)
+    nil
+  end
+  
+  def childrenCount
+    0
+  end
+  
+  def isExpandable
+    false
+  end
 end
