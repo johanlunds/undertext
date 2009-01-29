@@ -22,6 +22,15 @@ class Client
     @token = result['token'].to_s
   end
   
+  # TODO: better check
+  def isLoggedIn
+    !@token.nil?
+  end
+  
+  def serverInfo
+    @client.call('ServerInfo')
+  end
+  
   private
   
     def self.userAgent

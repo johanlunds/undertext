@@ -9,15 +9,26 @@
 class AppController < OSX::NSWindowController
   include OSX
 
-  ib_outlet :outline
+  ib_outlets :outline, :status
   
   def self.appVersion
     NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
   end
   
+  # TODO:
+  # can add clickable link
+  # http://www.cocoadev.com/index.pl?InsertHyperlink
+  # http://www.cocoadev.com/index.pl?ClickableUrlInTextView
+  # http://www.cocoadev.com/index.pl?ParsingHtmlInTextView
+  # @status.setAttributedStringValue(NSAttributedString.alloc.init)
   def awakeFromNib
     @client = Client.new
     @client.logIn
+    
+    if @client.isLoggedIn
+      total = @client.serverInfo['subs_subtitle_files']      
+      @status.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
+    end
   end
   
   def application_openFiles(sender, filenames)
