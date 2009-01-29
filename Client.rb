@@ -17,9 +17,10 @@ class Client
     @token = nil
   end
   
+  # Log in anonymously
   def logIn
-    result = @client.call('LogIn', '', '', '', self.class.userAgent)
-    @token = result['token'].to_s
+    result = call('LogIn', '', '', '', self.class.userAgent)
+    @token = result['token']
   end
   
   # TODO: better check
@@ -28,12 +29,30 @@ class Client
   end
   
   def serverInfo
-    @client.call('ServerInfo')
+    call('ServerInfo')
+  end
+  
+  # TODO: return matched with movie objects, insert into outlineView and create sub objects
+  def searchSubtitles(movies)
+    args = movies.map do |movie|
+      {
+        'sublanguageid' => '', # searches all languages, TODO
+        'moviehash'     => movie.osdb_hash,
+        'moviebytesize' => File.size(movie.filename)
+      }
+    end
+  
+    result = call('SearchSubtitles', @token, args)
+    result['data']
   end
   
   private
   
     def self.userAgent
       "Undertext v#{AppController.appVersion}"
+    end
+    
+    def call(method, *args)
+      @client.call(method, *args)
     end
 end
