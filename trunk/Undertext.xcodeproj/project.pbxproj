@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26579C8B0F315451009AF914 /* MovieHasher.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26579C8A0F315451009AF914 /* MovieHasher.rb */; };
 		269A9D340F30D818005212A5 /* AppController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 269A9D330F30D818005212A5 /* AppController.rb */; };
 		26A391D70F31167F00B36404 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A391D60F31167F00B36404 /* Client.rb */; };
 		26A392660F3132F600B36404 /* ResultsDataSource.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A392650F3132F600B36404 /* ResultsDataSource.rb */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		26579C8A0F315451009AF914 /* MovieHasher.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MovieHasher.rb; sourceTree = "<group>"; };
 		269A9D330F30D818005212A5 /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
 		26A391D60F31167F00B36404 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
 		26A392650F3132F600B36404 /* ResultsDataSource.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsDataSource.rb; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				26579C8A0F315451009AF914 /* MovieHasher.rb */,
 				269A9D330F30D818005212A5 /* AppController.rb */,
 				26A391D60F31167F00B36404 /* Client.rb */,
 				26A392650F3132F600B36404 /* ResultsDataSource.rb */,
@@ -191,6 +194,7 @@
 				26A392660F3132F600B36404 /* ResultsDataSource.rb in Resources */,
 				26A3929B0F313A7300B36404 /* Movie.rb in Resources */,
 				26A3929D0F313A9200B36404 /* Subtitle.rb in Resources */,
+				26579C8B0F315451009AF914 /* MovieHasher.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

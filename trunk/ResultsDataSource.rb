@@ -9,12 +9,25 @@
 class ResultsDataSource < OSX::NSObject
   include OSX
   
+  ib_outlet :outline
+  
+  def init
+    super_init
+    @movies = []
+    self
+  end
+  
   def setFiles(files)
-    @movies = [] # removes existing ones. todo other cleanup...
+    @movies = files.map { |file| Movie.new(file) } 
+    @outline.reloadItem_reloadChildren(nil, true) # reload everything
   end
   
   def outlineView_child_ofItem(outline, index, item)
-    nil
+    if item.nil?
+      @movies[index]
+    else
+      nil
+    end
   end
 
   def outlineView_isItemExpandable(outline, item) 
@@ -22,7 +35,11 @@ class ResultsDataSource < OSX::NSObject
   end
 
   def outlineView_numberOfChildrenOfItem(outline, item)
-    0
+    if item.nil?
+      @movies.size
+    else
+      0
+    end
   end
 
   def outlineView_objectValueForTableColumn_byItem(outline, tableColumn, item)
