@@ -32,7 +32,7 @@ class Client
     call('ServerInfo')
   end
   
-  # TODO: return matched with movie objects, insert into outlineView and create sub objects
+  # Adds subs to movie objects. Returns number of subs found
   def searchSubtitles(movies)
     args = movies.map do |movie|
       {
@@ -43,7 +43,13 @@ class Client
     end
   
     result = call('SearchSubtitles', @token, args)
-    result['data'] || [] # result['data'] == false if no results
+    if result['data'] # false if no results
+      subs = result['data'].map { |subInfo| Subtitle.alloc.initWithInfo(subInfo) }
+      Movie.addSubtitlesToMovies(movies, subs)
+      result['data'].size
+    else
+      0
+    end
   end
   
   private

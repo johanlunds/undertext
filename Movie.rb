@@ -29,7 +29,7 @@ class Movie < NSObject
   end
   
   def otherInfo
-    osdb_hash
+    ""
   end
   
   def osdb_hash
@@ -46,5 +46,12 @@ class Movie < NSObject
   
   def isExpandable
     true
+  end
+  
+  # match subs with movies and then add
+  def self.addSubtitlesToMovies(movies, subs)
+    movies.each do |movie|
+      movie.setSubtitles(subs.find_all { |sub| sub.info["MovieHash"] == movie.osdb_hash })
+    end
   end
 end

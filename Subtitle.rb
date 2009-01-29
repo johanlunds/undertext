@@ -8,12 +8,23 @@
 
 class Subtitle < NSObject
   
-  def title
-    "Subtitle"
+  attr_reader :info
+  
+  # todo: remove movie info (keys starting with "Movie")
+  # todo: when need to filter etc by language, create language class
+  def initWithInfo(info)
+    init
+    @info = info
+    self
   end
   
+  def title
+    @info["SubFileName"]
+  end
+  
+  # todo: show other useful info
   def otherInfo
-    ""
+    @info["LanguageName"]
   end
   
   def childAtIndex(index)
