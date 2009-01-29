@@ -8,8 +8,7 @@
 
 class Movie < NSObject
 
-  attr_reader :filename
-  attr_accessor :subtitles
+  attr_reader :filename, :subtitles
 
   def initWithFile(filename)
     init
@@ -17,6 +16,12 @@ class Movie < NSObject
     @hash = nil
     @subtitles = []
     self
+  end
+  
+  # Notifying observers
+  def setSubtitles(subs)
+    @subtitles = subs
+    NSNotificationCenter.defaultCenter.postNotificationName_object_('NewItems', self)
   end
   
   def title
