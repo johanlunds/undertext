@@ -15,7 +15,7 @@ class AppController < NSWindowController
     nsv nut ogg ogm omf ps qt ram rm rmvb swf ts vfw vid video viv vivo vob vro
     wm wmv wmx wrap wvx wx x264 xvid)
 
-  attr_accessor :addLanguage
+  attr_accessor :addLanguageToFile
   ib_outlets :outline, :status
   
   def self.appVersion
@@ -38,8 +38,8 @@ class AppController < NSWindowController
     end
   end
   
-  def addLanguage
-    @addLanguage == NSOnState
+  def addLanguageToFile
+    @addLanguageToFile == NSOnState
   end
   
   # for folders it searches recursively for movie files

@@ -1,12 +1,12 @@
 #
-#  ResultsDataSource.rb
+#  ResultsController.rb
 #  Undertext
 #
 #  Created by Johan Lundström on 2009-01-29.
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class ResultsDataSource < NSObject
+class ResultsController < NSObject
   
   ib_outlet :outline
   attr_reader :movies
@@ -15,7 +15,7 @@ class ResultsDataSource < NSObject
     super_init
     @movies = []
     # add notification for events fired in this class and Movie
-    NSNotificationCenter.defaultCenter.addObserver_selector_name_object(self, 'reloadResults', 'NewItems', nil)
+    NSNotificationCenter.defaultCenter.addObserver_selector_name_object(self, 'newSubtitles', 'NewSubtitles', nil)
     self
   end
   
@@ -27,12 +27,11 @@ class ResultsDataSource < NSObject
   
   def setFiles(files)
     @movies = files.map { |file| Movie.alloc.initWithFile(file) }
-    NSNotificationCenter.defaultCenter.postNotificationName_object_('NewItems', nil)
+    @outline.reloadData
   end
   
-  def reloadResults(notification)
-    sender = notification.object
-    @outline.reloadItem_reloadChildren(sender, true) # reloads everything if item is nil
+  def newSubtitles(notification)
+    @outline.reloadData
   end
   
   def outlineView_child_ofItem(outline, index, item)
@@ -49,5 +48,15 @@ class ResultsDataSource < NSObject
 
   def outlineView_objectValueForTableColumn_byItem(outline, tableColumn, item)
     item.send(tableColumn.identifier)
+  end
+  
+  def outlineView_willDisplayCell_forTableColumn_item(outline, cell, tableColumn, item)
+    cell.setTitle(item.title) if tableColumn.identifier == "download"
+  end
+  
+  # setting checked state
+  def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
+    item.download = value
+    @outline.reloadData # because other items could have changed values
   end
 end

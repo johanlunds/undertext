@@ -21,7 +21,26 @@ class Movie < NSObject
   # Notifying observers
   def setSubtitles(subs)
     @subtitles = subs
-    NSNotificationCenter.defaultCenter.postNotificationName_object_('NewItems', self)
+    NSNotificationCenter.defaultCenter.postNotificationName_object_('NewSubtitles', self)
+  end
+  
+  def download=(value)
+    @subtitles.each { |sub| sub.download = value }
+  end
+  
+  # checks if some, all or none of movie's subs is going to be downloaded
+  def download
+    download_count = @subtitles.inject(0) do |download_count, sub|
+      (sub.download == NSOnState) ? download_count + 1 : download_count
+    end
+    
+    if download_count == @subtitles.size
+      NSOnState
+    elsif download_count == 0
+      NSOffState
+    else
+      NSMixedState
+    end
   end
   
   def title

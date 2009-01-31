@@ -10,7 +10,7 @@
 		26579C8B0F315451009AF914 /* MovieHasher.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26579C8A0F315451009AF914 /* MovieHasher.rb */; };
 		269A9D340F30D818005212A5 /* AppController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 269A9D330F30D818005212A5 /* AppController.rb */; };
 		26A391D70F31167F00B36404 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A391D60F31167F00B36404 /* Client.rb */; };
-		26A392660F3132F600B36404 /* ResultsDataSource.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A392650F3132F600B36404 /* ResultsDataSource.rb */; };
+		26A392660F3132F600B36404 /* ResultsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A392650F3132F600B36404 /* ResultsController.rb */; };
 		26A3929B0F313A7300B36404 /* Movie.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A3929A0F313A7300B36404 /* Movie.rb */; };
 		26A3929D0F313A9200B36404 /* Subtitle.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A3929C0F313A9200B36404 /* Subtitle.rb */; };
 		26EFE7950F31E8FA00B1B95F /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7920F31E8FA00B1B95F /* LICENSE.txt */; };
@@ -30,7 +30,7 @@
 		26579C8A0F315451009AF914 /* MovieHasher.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MovieHasher.rb; sourceTree = "<group>"; };
 		269A9D330F30D818005212A5 /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
 		26A391D60F31167F00B36404 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
-		26A392650F3132F600B36404 /* ResultsDataSource.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsDataSource.rb; sourceTree = "<group>"; };
+		26A392650F3132F600B36404 /* ResultsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsController.rb; sourceTree = "<group>"; };
 		26A3929A0F313A7300B36404 /* Movie.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Movie.rb; sourceTree = "<group>"; };
 		26A3929C0F313A9200B36404 /* Subtitle.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Subtitle.rb; sourceTree = "<group>"; };
 		26EFE7920F31E8FA00B1B95F /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 				26579C8A0F315451009AF914 /* MovieHasher.rb */,
 				269A9D330F30D818005212A5 /* AppController.rb */,
 				26A391D60F31167F00B36404 /* Client.rb */,
-				26A392650F3132F600B36404 /* ResultsDataSource.rb */,
+				26A392650F3132F600B36404 /* ResultsController.rb */,
 				26A3929A0F313A7300B36404 /* Movie.rb */,
 				26A3929C0F313A9200B36404 /* Subtitle.rb */,
 			);
@@ -200,7 +200,7 @@
 				4DDCA7080ACC9A6100E082CE /* rb_main.rb in Resources */,
 				269A9D340F30D818005212A5 /* AppController.rb in Resources */,
 				26A391D70F31167F00B36404 /* Client.rb in Resources */,
-				26A392660F3132F600B36404 /* ResultsDataSource.rb in Resources */,
+				26A392660F3132F600B36404 /* ResultsController.rb in Resources */,
 				26A3929B0F313A7300B36404 /* Movie.rb in Resources */,
 				26A3929D0F313A9200B36404 /* Subtitle.rb in Resources */,
 				26579C8B0F315451009AF914 /* MovieHasher.rb in Resources */,
