@@ -69,7 +69,7 @@
 				26A3929A0F313A7300B36404 /* Movie.rb */,
 				26A3929C0F313A9200B36404 /* Subtitle.rb */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
