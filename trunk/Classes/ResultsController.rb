@@ -25,7 +25,14 @@ class ResultsController < NSObject
     super_dealloc
   end
   
-  def setFiles(files)
+  # subs to download
+  def downloads
+    @movies.inject([]) do |downloads, movie|
+      downloads += movie.subtitles.find_all { |sub| sub.download? }
+    end
+  end
+  
+  def files=(files)
     @movies = files.map { |file| Movie.alloc.initWithFile(file) }
     @outline.reloadData
   end
