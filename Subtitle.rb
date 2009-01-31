@@ -8,6 +8,7 @@
 
 class Subtitle < NSObject
 
+  attr_accessor :movie
   attr_reader :info, :download
   
   # todo: remove movie info (keys starting with "Movie")
@@ -16,6 +17,7 @@ class Subtitle < NSObject
     init
     @info = info
     @download = NSOffState
+    @movie = nil
     self
   end
   

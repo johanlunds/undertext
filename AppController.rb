@@ -16,7 +16,7 @@ class AppController < NSWindowController
     wm wmv wmx wrap wvx wx x264 xvid)
 
   attr_accessor :addLanguageToFile
-  ib_outlets :outline, :status
+  ib_outlets :outline, :status, :downloadStatus, :selectedCount
   
   def self.appVersion
     NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
@@ -72,9 +72,19 @@ class AppController < NSWindowController
     application_openFiles(nil, sender.filenames) if result == NSOKButton
   end
 
+  # todo: handle if file already exists (suffix with number or ask)
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    # todo
+    return # todo: implement Client#downloadSubtitles and ResultsController#subsToDownload
+    @client.downloadSubtitles(@outline.dataSource.subsToDownload) do |sub, subData|
+      # Calculate filename for subfile
+      filename = sub.movie.filename
+      path = filename.chomp(File.extname(filename))
+      path += ".#{sub.info["SubLanguageID"]}" if self.addLanguageToFile
+      path += ".#{sub.info["SubFormat"]}"
+      # ... and save to file
+      File.open(path, 'w') { |f| f.write(subData) }
+    end
   end
 
   def search

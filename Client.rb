@@ -45,7 +45,11 @@ class Client
     result = call('SearchSubtitles', @token, args)
     if result['data'] # false if no results
       subs = result['data'].map { |subInfo| Subtitle.alloc.initWithInfo(subInfo) }
-      Movie.addSubtitlesToMovies(movies, subs)
+      # match subs with movies and then add
+      movies.each do |movie|
+        movie.subtitles = subs.find_all { |sub| sub.info["MovieHash"] == movie.osdb_hash }
+      end
+      
       result['data'].size
     else
       0
