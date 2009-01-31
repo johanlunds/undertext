@@ -15,6 +15,7 @@ class AppController < NSWindowController
     nsv nut ogg ogm omf ps qt ram rm rmvb swf ts vfw vid video viv vivo vob vro
     wm wmv wmx wrap wvx wx x264 xvid)
 
+  attr_accessor :addLanguage
   ib_outlets :outline, :status
   
   def self.appVersion
@@ -37,6 +38,10 @@ class AppController < NSWindowController
     end
   end
   
+  def addLanguage
+    @addLanguage == NSOnState
+  end
+  
   # for folders it searches recursively for movie files
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
@@ -44,7 +49,7 @@ class AppController < NSWindowController
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
     @outline.dataSource.setFiles(files)
-    search(nil) # populate outline with search results
+    search # populate outline with search results
   end
   
   # Can choose directory and/or multiple files (movies)
@@ -69,11 +74,10 @@ class AppController < NSWindowController
 
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    # Todo
+    # todo
   end
 
-  ib_action :search  
-  def search(sender)
+  def search
     # todo: show returned count of results
     @client.searchSubtitles(@outline.dataSource.movies)
   end
