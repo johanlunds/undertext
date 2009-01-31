@@ -7,7 +7,10 @@
 #
 
 require 'xmlrpc/client'
+require 'zlib'
+require 'stringio'
 
+# Documentation at http://trac.opensubtitles.org/projects/opensubtitles
 class Client
 
   HOST = "http://www.opensubtitles.org/xml-rpc"
@@ -56,6 +59,19 @@ class Client
     end
   end
   
+  # takes a block for doing whatever with downloaded data for each sub
+  def downloadSubtitles(subs)
+    subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
+    result = call('DownloadSubtitles', @token, subIds)
+    
+    result['data'].each do |subInfo|
+      # find existing sub object for download
+      sub = subs.find { |sub| sub.info["IDSubtitleFile"] == subInfo["idsubtitlefile"] }
+      subData = self.class.decode_and_unzip(subInfo["data"])
+      yield sub, subData
+    end
+  end
+  
   private
   
     def self.userAgent
@@ -68,5 +84,9 @@ class Client
       result = @client.call(method, *args)
       # NSLog("Client#call: #{method}, #{args.inspect}: #{result.inspect}")
       result
+    end
+    
+    def self.decode_and_unzip(data)
+      Zlib::GzipReader.new(StringIO.new(XMLRPC::Base64.decode(data))).read
     end
 end

@@ -48,7 +48,7 @@ class AppController < NSWindowController
     folders.each do |folder|
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
-    @outline.dataSource.setFiles(files)
+    @outline.dataSource.files = files
     search # populate outline with search results
   end
   
@@ -73,10 +73,10 @@ class AppController < NSWindowController
   end
 
   # todo: handle if file already exists (suffix with number or ask)
+  # todo: only call client if any subs selected (otherwise RPC call will be false)
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    return # todo: implement Client#downloadSubtitles and ResultsController#subsToDownload
-    @client.downloadSubtitles(@outline.dataSource.subsToDownload) do |sub, subData|
+    @client.downloadSubtitles(@outline.dataSource.downloads) do |sub, subData|
       # Calculate filename for subfile
       filename = sub.movie.filename
       path = filename.chomp(File.extname(filename))
