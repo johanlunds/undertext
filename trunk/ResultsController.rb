@@ -55,6 +55,7 @@ class ResultsController < NSObject
   end
   
   # setting checked state
+  # todo: when calling this method update XX/XX selected" text
   def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
     item.download = value
     @outline.reloadData # because other items could have changed values

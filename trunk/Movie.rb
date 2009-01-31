@@ -19,8 +19,9 @@ class Movie < NSObject
   end
   
   # Notifying observers
-  def setSubtitles(subs)
+  def subtitles=(subs)
     @subtitles = subs
+    subs.each { |sub| sub.movie = self }
     NSNotificationCenter.defaultCenter.postNotificationName_object_('NewSubtitles', self)
   end
   
@@ -65,12 +66,5 @@ class Movie < NSObject
   
   def isExpandable
     true
-  end
-  
-  # match subs with movies and then add
-  def self.addSubtitlesToMovies(movies, subs)
-    movies.each do |movie|
-      movie.setSubtitles(subs.find_all { |sub| sub.info["MovieHash"] == movie.osdb_hash })
-    end
   end
 end
