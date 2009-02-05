@@ -14,14 +14,7 @@ class ResultsController < NSObject
   def init
     super_init
     @movies = []
-    # add notification for events fired in this class and Movie
-    NSNotificationCenter.defaultCenter.addObserver_selector_name_object(self, 'newSubtitles', 'NewSubtitles', nil)
     self
-  end
-  
-  def dealloc
-    NSNotificationCenter.defaultCenter.removeObserver(self)
-    super_dealloc
   end
   
   # subs to download
@@ -33,10 +26,6 @@ class ResultsController < NSObject
   
   def files=(files)
     @movies = files.map { |file| Movie.alloc.initWithFile(file) }
-    @outline.reloadData
-  end
-  
-  def newSubtitles(notification)
     @outline.reloadData
   end
   

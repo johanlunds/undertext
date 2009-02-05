@@ -38,7 +38,7 @@ class AppController < NSObject
     end
   end
   
-  def addLanguageToFile
+  def addLanguageToFile?
     @addLanguageToFile == NSOnState
   end
   
@@ -61,7 +61,7 @@ class AppController < NSObject
       nil,
       nil,
       ["public.movie"],
-      self.window,
+      @window,
       self,
       'openPanelDidEnd:returnCode:contextInfo:',
       nil
@@ -77,18 +77,14 @@ class AppController < NSObject
   ib_action :downloadSelected  
   def downloadSelected(sender)
     @client.downloadSubtitles(@outline.dataSource.downloads) do |sub, subData|
-      # Calculate filename for subfile
-      filename = sub.movie.filename
-      path = filename.chomp(File.extname(filename))
-      path += ".#{sub.info["SubLanguageID"]}" if self.addLanguageToFile
-      path += ".#{sub.info["SubFormat"]}"
-      # ... and save to file
-      File.open(path, 'w') { |f| f.write(subData) }
+      filename = sub.filename(self.addLanguageToFile?)
+      File.open(filename, 'w') { |f| f.write(subData) }
     end
   end
 
   def search
     # todo: show returned count of results
     @client.searchSubtitles(@outline.dataSource.movies)
+    @outline.reloadData
   end
 end

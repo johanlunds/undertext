@@ -22,7 +22,6 @@ class Movie < NSObject
   def subtitles=(subs)
     @subtitles = subs
     subs.each { |sub| sub.movie = self }
-    NSNotificationCenter.defaultCenter.postNotificationName_object_('NewSubtitles', self)
   end
   
   def download=(value)
@@ -30,6 +29,7 @@ class Movie < NSObject
   end
   
   # checks if some, all or none of movie's subs is going to be downloaded
+  # TODO: why has movies without subs a checked state?
   def download
     download_count = @subtitles.inject(0) do |download_count, sub|
       (sub.download == NSOnState) ? download_count + 1 : download_count
