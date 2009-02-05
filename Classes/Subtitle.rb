@@ -21,6 +21,14 @@ class Subtitle < NSObject
     self
   end
   
+  # Calculate filename for sub using movie's filename
+  def filename(add_language)
+    path = @movie.filename.chomp(File.extname(@movie.filename))
+    path += ".#{@info["SubLanguageID"]}" if add_language
+    path += ".#{@info["SubFormat"]}"
+    path
+  end
+  
   def download=(value)
     @download = (value != NSOffState) ? NSOnState : NSOffState
   end

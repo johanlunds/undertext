@@ -16,7 +16,7 @@ class Client
   HOST = "http://www.opensubtitles.org/xml-rpc"
   
   def initialize
-    @client = FakeClient.new2 # XMLRPC::Client.new2(HOST)
+    @client = XMLRPC::Client.new2(HOST)
     @token = nil
   end
   
@@ -109,3 +109,6 @@ class FakeClient
     end
   end
 end
+
+# Uncomment when no internet connection etc
+# XMLRPC::Client = FakeClient
