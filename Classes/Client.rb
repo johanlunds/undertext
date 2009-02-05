@@ -16,7 +16,7 @@ class Client
   HOST = "http://www.opensubtitles.org/xml-rpc"
   
   def initialize
-    @client = XMLRPC::Client.new2(HOST)
+    @client = FakeClient.new2 # XMLRPC::Client.new2(HOST)
     @token = nil
   end
   
@@ -89,4 +89,23 @@ class Client
     def self.decode_and_unzip(data)
       Zlib::GzipReader.new(StringIO.new(XMLRPC::Base64.decode(data))).read
     end
+end
+
+class FakeClient
+  def self.new2(*args)
+    new
+  end
+  
+  def call(method, *args)
+    case method
+    when 'LogIn'
+      { 'token' => 'abc' }
+    when 'ServerInfo'
+      { 'subs_subtitle_files' => '123' }
+    when 'SearchSubtitles', 'DownloadSubtitles'
+      { 'data' => false } # might not work
+    else
+      nil
+    end
+  end
 end

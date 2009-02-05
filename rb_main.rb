@@ -8,6 +8,7 @@
 
 require 'osx/cocoa'
 include OSX
+require_framework 'HMBlkAppKit'
 
 def rb_main_init
   path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation

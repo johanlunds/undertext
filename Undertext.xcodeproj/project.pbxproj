@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		26579C8B0F315451009AF914 /* MovieHasher.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26579C8A0F315451009AF914 /* MovieHasher.rb */; };
+		265E9E9B0F3B3E30009DF7F1 /* InfoWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 265E9E9A0F3B3E30009DF7F1 /* InfoWindowController.rb */; };
+		265E9EDC0F3B42A1009DF7F1 /* HMBlkAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 265E9EDB0F3B42A1009DF7F1 /* HMBlkAppKit.framework */; };
+		265E9EFD0F3B42FB009DF7F1 /* HMBlkAppKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 265E9EDB0F3B42A1009DF7F1 /* HMBlkAppKit.framework */; };
 		269A9D340F30D818005212A5 /* AppController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 269A9D330F30D818005212A5 /* AppController.rb */; };
 		26A391D70F31167F00B36404 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A391D60F31167F00B36404 /* Client.rb */; };
 		26A392660F3132F600B36404 /* ResultsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A392650F3132F600B36404 /* ResultsController.rb */; };
@@ -24,10 +27,25 @@
 		4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		265E9EF40F3B42B8009DF7F1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				265E9EFD0F3B42FB009DF7F1 /* HMBlkAppKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		26579C8A0F315451009AF914 /* MovieHasher.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MovieHasher.rb; sourceTree = "<group>"; };
+		265E9E9A0F3B3E30009DF7F1 /* InfoWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = InfoWindowController.rb; sourceTree = "<group>"; };
+		265E9EDB0F3B42A1009DF7F1 /* HMBlkAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMBlkAppKit.framework; sourceTree = SOURCE_ROOT; };
 		269A9D330F30D818005212A5 /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
 		26A391D60F31167F00B36404 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
 		26A392650F3132F600B36404 /* ResultsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsController.rb; sourceTree = "<group>"; };
@@ -53,6 +71,7 @@
 			files = (
 				4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */,
 				4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */,
+				265E9EDC0F3B42A1009DF7F1 /* HMBlkAppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +87,7 @@
 				26A392650F3132F600B36404 /* ResultsController.rb */,
 				26A3929A0F313A7300B36404 /* Movie.rb */,
 				26A3929C0F313A9200B36404 /* Subtitle.rb */,
+				265E9E9A0F3B3E30009DF7F1 /* InfoWindowController.rb */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -75,6 +95,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				265E9EDB0F3B42A1009DF7F1 /* HMBlkAppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */,
 			);
@@ -162,6 +183,7 @@
 				4DDCA7050ACC9A6100E082CE /* Resources */,
 				4DDCA7090ACC9A6100E082CE /* Sources */,
 				4DDCA70B0ACC9A6100E082CE /* Frameworks */,
+				265E9EF40F3B42B8009DF7F1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -207,6 +229,7 @@
 				26EFE7950F31E8FA00B1B95F /* LICENSE.txt in Resources */,
 				26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */,
 				26EFE7970F31E8FA00B1B95F /* README.txt in Resources */,
+				265E9E9B0F3B3E30009DF7F1 /* InfoWindowController.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +295,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../HMBlkAppKit1.1\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -290,6 +318,11 @@
 				ARCHS = (
 					ppc,
 					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../HMBlkAppKit1.1\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
