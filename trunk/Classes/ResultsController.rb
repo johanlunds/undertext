@@ -19,7 +19,6 @@ class ResultsController < NSObject
     self
   end
   
-  # todo: is this correct?
   def dealloc
     NSNotificationCenter.defaultCenter.removeObserver(self)
     super_dealloc

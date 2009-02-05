@@ -6,7 +6,7 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class AppController < NSWindowController
+class AppController < NSObject
   
   # Used if looking by UTI is too cumbersome
   EXTS = %w(3g2 3gp 3gp2 3gpp 60d ajp asf asx avchd avi bik bix box cam dat divx 
@@ -16,7 +16,7 @@ class AppController < NSWindowController
     wm wmv wmx wrap wvx wx x264 xvid)
 
   attr_accessor :addLanguageToFile
-  ib_outlets :outline, :status, :downloadStatus, :selectedCount
+  ib_outlets :window, :outline, :status, :downloadStatus, :selectedCount
   
   def self.appVersion
     NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
