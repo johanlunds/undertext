@@ -18,10 +18,6 @@ class AppController < NSObject
   attr_accessor :addLanguageToFile
   ib_outlets :window, :outline, :status, :downloadStatus, :selectedCount
   
-  def self.appVersion
-    NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
-  end
-  
   # TODO:
   # can add clickable link
   # http://www.cocoadev.com/index.pl?InsertHyperlink
@@ -36,6 +32,10 @@ class AppController < NSObject
       total = @client.serverInfo['subs_subtitle_files']      
       @status.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
     end
+  end
+  
+  def self.appVersion
+    NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
   end
   
   def addLanguageToFile?
@@ -83,8 +83,9 @@ class AppController < NSObject
   end
 
   def search
-    # todo: show returned count of results
     @client.searchSubtitles(@outline.dataSource.movies)
     @outline.reloadData
+    @outline.dataSource.willChangeValueForKey('subtitleCount') # need to call this before 'did' method
+    @outline.dataSource.didChangeValueForKey('subtitleCount')
   end
 end
