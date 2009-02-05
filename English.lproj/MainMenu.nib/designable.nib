@@ -9,8 +9,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="29"/>
-			<integer value="367"/>
 			<integer value="470"/>
+			<integer value="368"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1335,6 +1335,9 @@
 			<object class="NSCustomObject" id="435798733">
 				<string key="NSClassName">InfoWindowController</string>
 			</object>
+			<object class="NSUserDefaultsController" id="47401391">
+				<bool key="NSSharedInstance">YES</bool>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -1759,6 +1762,47 @@
 						<reference key="destination" ref="845342449"/>
 					</object>
 					<int key="connectionID">482</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue1: selectedCount</string>
+						<reference key="source" ref="444732239"/>
+						<reference key="destination" ref="842794368"/>
+						<object class="NSNibBindingConnector" key="connector" id="29630735">
+							<reference key="NSSource" ref="444732239"/>
+							<reference key="NSDestination" ref="842794368"/>
+							<string key="NSLabel">displayPatternValue1: selectedCount</string>
+							<string key="NSBinding">displayPatternValue1</string>
+							<string key="NSKeyPath">selectedCount</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDisplayPattern</string>
+								<string key="NS.object.0">%{value1}@/%{value2}@ selected</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">499</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue2: subtitleCount</string>
+						<reference key="source" ref="444732239"/>
+						<reference key="destination" ref="842794368"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="444732239"/>
+							<reference key="NSDestination" ref="842794368"/>
+							<string key="NSLabel">displayPatternValue2: subtitleCount</string>
+							<string key="NSBinding">displayPatternValue2</string>
+							<string key="NSKeyPath">subtitleCount</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDisplayPattern</string>
+								<string key="NS.object.0">%{value1}@/%{value2}@ selected</string>
+							</object>
+							<reference key="NSPreviousConnector" ref="29630735"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">502</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2662,6 +2706,11 @@
 						<reference key="object" ref="435798733"/>
 						<reference key="parent" ref="1049"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">483</int>
+						<reference key="object" ref="47401391"/>
+						<reference key="parent" ref="1049"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3157,7 +3206,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">482</int>
+			<int key="maxID">502</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

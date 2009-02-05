@@ -17,10 +17,20 @@ class ResultsController < NSObject
     self
   end
   
+  def selectedCount
+    downloads.size
+  end
+  
+  def subtitleCount
+    @movies.inject(0) do |sub_count, movie|
+      sub_count + movie.subtitles.size
+    end
+  end
+  
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
-      downloads += movie.subtitles.find_all { |sub| sub.download? }
+      downloads + movie.subtitles.find_all { |sub| sub.download? }
     end
   end
   
@@ -50,9 +60,10 @@ class ResultsController < NSObject
   end
   
   # setting checked state
-  # todo: when calling this method update XX/XX selected" text
   def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
     item.download = value
+    willChangeValueForKey('selectedCount') # need to call this before 'did' method
+    didChangeValueForKey('selectedCount')
     @outline.reloadData # because other items could have changed values
   end
 end

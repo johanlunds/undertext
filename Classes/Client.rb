@@ -35,7 +35,7 @@ class Client
     call('ServerInfo')
   end
   
-  # Adds subs to movie objects. Returns number of subs found
+  # Adds subs to movie objects.
   def searchSubtitles(movies)
     args = movies.map do |movie|
       {
@@ -52,10 +52,6 @@ class Client
       movies.each do |movie|
         movie.subtitles = subs.find_all { |sub| sub.info["MovieHash"] == movie.osdb_hash }
       end
-      
-      result['data'].size
-    else
-      0
     end
   end
   
