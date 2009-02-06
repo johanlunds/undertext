@@ -8,7 +8,7 @@
 
 class ResultsController < NSObject
   
-  ib_outlet :outline
+  ib_outlets :outline, :infoController
   attr_reader :movies
   
   def init
@@ -65,5 +65,15 @@ class ResultsController < NSObject
     willChangeValueForKey('selectedCount') # need to call this before 'did' method
     didChangeValueForKey('selectedCount')
     @outline.reloadData # because other items could have changed values
+  end
+  
+  # Update info window with selected sub (or nil)
+  def outlineViewSelectionDidChange(notification)
+    sub = nil
+    if @outline.selectedRow != -1
+      item = @outline.itemAtRow(@outline.selectedRow)
+      sub = item if item.is_a? Subtitle
+    end
+    @infoController.subtitle = sub
   end
 end

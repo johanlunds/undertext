@@ -32,7 +32,7 @@ class Movie < NSObject
   # TODO: why has movies without subs a checked state?
   def download
     download_count = @subtitles.inject(0) do |download_count, sub|
-      (sub.download == NSOnState) ? download_count + 1 : download_count
+      sub.download? ? download_count + 1 : download_count
     end
     
     if download_count == @subtitles.size

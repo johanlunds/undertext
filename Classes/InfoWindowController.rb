@@ -10,6 +10,22 @@ class InfoWindowController < NSWindowController
 
   ib_outlets :table
   
-  def awakeFromNib
+  def init
+    super_init
+    @info = []
+    self
+  end
+  
+  def subtitle=(sub)
+    @info = sub.nil? ? [] : sub.info.to_a.sort
+    @table.reloadData
+  end
+  
+  def numberOfRowsInTableView(table)
+    @info.size
+  end
+  
+  def tableView_objectValueForTableColumn_row(table, tableColumn, row)
+    @info[row].send(tableColumn.identifier)
   end
 end

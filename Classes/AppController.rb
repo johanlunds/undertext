@@ -18,6 +18,12 @@ class AppController < NSObject
   attr_accessor :addLanguageToFile
   ib_outlets :window, :outline, :status, :downloadStatus, :selectedCount
   
+  def init
+    super_init
+    @client = nil
+    self
+  end
+  
   # TODO:
   # can add clickable link
   # http://www.cocoadev.com/index.pl?InsertHyperlink
