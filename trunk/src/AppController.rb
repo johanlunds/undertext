@@ -14,9 +14,11 @@ class AppController < NSObject
     mjp mjpeg mjpg mkv moov mov movhd movie movx mp4 mpe mpeg mpg mpv mpv2 mxf
     nsv nut ogg ogm omf ps qt ram rm rmvb swf ts vfw vid video viv vivo vob vro
     wm wmv wmx wrap wvx wx x264 xvid)
+    
+  ALL_LANGUAGES = "Show all"
 
   attr_accessor :addLanguageToFile
-  ib_outlets :window, :outline, :status, :downloadStatus, :selectedCount
+  ib_outlets :window, :outline, :status, :downloadStatus, :selectedCount, :languages
   
   def init
     super_init
@@ -37,6 +39,8 @@ class AppController < NSObject
     if @client.isLoggedIn
       total = @client.serverInfo['subs_subtitle_files']      
       @status.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
+      languages = [ALL_LANGUAGES] + @client.languages.map { |l| l["LanguageName"] }.sort
+      @languages.addItemsWithTitles(languages)
     end
   end
   

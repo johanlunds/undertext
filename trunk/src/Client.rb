@@ -68,6 +68,12 @@ class Client
     end
   end
   
+  # todo: cache or something
+  def languages
+    result = call('GetSubLanguages')
+    result['data']
+  end
+  
   private
   
     def self.userAgent
