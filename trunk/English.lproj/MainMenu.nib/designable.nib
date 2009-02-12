@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="471"/>
 			<integer value="368"/>
 			<integer value="29"/>
+			<integer value="471"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1713,60 +1713,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">selectedCount</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="444732239"/>
-					</object>
-					<int key="connectionID">458</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">window</string>
 						<reference key="source" ref="435798733"/>
 						<reference key="destination" ref="845342449"/>
 					</object>
 					<int key="connectionID">482</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue1: selectedCount</string>
-						<reference key="source" ref="444732239"/>
-						<reference key="destination" ref="842794368"/>
-						<object class="NSNibBindingConnector" key="connector" id="29630735">
-							<reference key="NSSource" ref="444732239"/>
-							<reference key="NSDestination" ref="842794368"/>
-							<string key="NSLabel">displayPatternValue1: selectedCount</string>
-							<string key="NSBinding">displayPatternValue1</string>
-							<string key="NSKeyPath">selectedCount</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{value1}@/%{value2}@ selected</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">499</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue2: subtitleCount</string>
-						<reference key="source" ref="444732239"/>
-						<reference key="destination" ref="842794368"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="444732239"/>
-							<reference key="NSDestination" ref="842794368"/>
-							<string key="NSLabel">displayPatternValue2: subtitleCount</string>
-							<string key="NSBinding">displayPatternValue2</string>
-							<string key="NSKeyPath">subtitleCount</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{value1}@/%{value2}@ selected</string>
-							</object>
-							<reference key="NSPreviousConnector" ref="29630735"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">502</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1815,6 +1766,14 @@
 						<reference key="destination" ref="226980165"/>
 					</object>
 					<int key="connectionID">508</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">selectedCount</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="444732239"/>
+					</object>
+					<int key="connectionID">509</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3081,8 +3040,8 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{122, 201}, {502, 470}}</string>
-					<string>{{122, 201}, {502, 470}}</string>
+					<string>{{396, 245}, {502, 470}}</string>
+					<string>{{396, 245}, {502, 470}}</string>
 					<reference ref="9"/>
 					<string>{{517, 575}, {480, 270}}</string>
 					<boolean value="YES" id="5"/>
@@ -3189,7 +3148,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">508</int>
+			<int key="maxID">509</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3217,13 +3176,11 @@
 							<string>downloadStatus</string>
 							<string>languages</string>
 							<string>outline</string>
-							<string>selectedCount</string>
 							<string>status</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3257,9 +3214,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>infoController</string>
 							<string>outline</string>
+							<string>selectedCount</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

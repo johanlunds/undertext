@@ -8,7 +8,7 @@
 
 class ResultsController < NSObject
   
-  ib_outlets :outline, :infoController
+  ib_outlets :outline, :infoController, :selectedCount
   attr_reader :movies
   
   def init
@@ -17,22 +17,12 @@ class ResultsController < NSObject
     self
   end
   
-  def selectedCount
-    downloads.size
-  end
-  
-  def subtitleCount
-    @movies.inject(0) do |sub_count, movie|
+  def updateCounts
+    sel_count = downloads.size
+    sub_count = @movies.inject(0) do |sub_count, movie|
       sub_count + movie.subtitles.size
     end
-  end
-  
-  # todo: nicer implementation
-  def updateCounts
-    willChangeValueForKey('subtitleCount') # need to call this before 'did' method
-    didChangeValueForKey('subtitleCount')
-    willChangeValueForKey('selectedCount') # need to call this before 'did' method
-    didChangeValueForKey('selectedCount')
+    @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
   end
   
   # subs to download
