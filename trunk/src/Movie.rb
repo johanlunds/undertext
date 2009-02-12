@@ -8,34 +8,45 @@
 
 class Movie < NSObject
 
-  attr_reader :filename, :subtitles
+  attr_reader :filename
+  attr_writer :sub_language
 
   def initWithFile(filename)
     init
     @filename = filename
     @hash = nil
-    @subtitles = []
+    @all_subtitles = []
+    @sub_language = nil
     self
   end
   
+  # filtered by language
+  def subtitles
+    if @sub_language.nil?
+      @all_subtitles
+    else
+      @all_subtitles.select { |sub| sub.info["LanguageName"] == @sub_language }
+    end
+  end
+  
   def subtitles=(subs)
-    @subtitles = subs
+    @all_subtitles = subs
     subs.each { |sub| sub.movie = self }
   end
   
   def download=(value)
-    @subtitles.each { |sub| sub.download = value }
+    subtitles.each { |sub| sub.download = value }
   end
   
   # checks if some, all or none of movie's subs is going to be downloaded
   def download
-    download_count = @subtitles.inject(0) do |download_count, sub|
+    download_count = subtitles.inject(0) do |download_count, sub|
       sub.download? ? download_count + 1 : download_count
     end
     
     if download_count == 0
       NSOffState
-    elsif download_count == @subtitles.size
+    elsif download_count == subtitles.size
       NSOnState
     else
       NSMixedState
@@ -54,25 +65,15 @@ class Movie < NSObject
     @hash ||= MovieHasher.compute_hash(@filename)
   end
   
-  def childAtIndex(index, language)
-    filtered_subtitles(language)[index]
+  def childAtIndex(index)
+    subtitles[index]
   end
   
-  def childrenCount(language)
-    filtered_subtitles(language).size
+  def childrenCount
+    subtitles.size
   end
   
   def isExpandable
     true
   end
-  
-  private
-  
-    def filtered_subtitles(language)
-      if language.nil?
-        @subtitles
-      else
-        @subtitles.find_all { |sub| sub.info["LanguageName"] == language }
-      end
-    end
 end

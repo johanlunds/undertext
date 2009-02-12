@@ -47,11 +47,11 @@ class Subtitle < NSObject
     @info["LanguageName"]
   end
   
-  def childAtIndex(index, language)
+  def childAtIndex(index)
     nil
   end
   
-  def childrenCount(language)
+  def childrenCount
     0
   end
   
