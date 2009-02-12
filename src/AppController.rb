@@ -18,7 +18,7 @@ class AppController < NSObject
   ALL_LANGUAGES = "Show all"
 
   attr_accessor :addLanguageToFile
-  ib_outlets :window, :outline, :status, :downloadStatus, :selectedCount, :languages
+  ib_outlets :window, :outline, :status, :downloadStatus, :languages
   
   def init
     super_init
