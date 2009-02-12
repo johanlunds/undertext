@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="368"/>
 			<integer value="29"/>
+			<integer value="367"/>
 			<integer value="471"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -988,7 +988,7 @@
 							<reference key="NSSuperview" ref="414427165"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="431943968">
-								<int key="NSCellFlags">-2080244224</int>
+								<int key="NSCellFlags">-1543373312</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Download selected</string>
 								<reference key="NSSupport" ref="207330941"/>
@@ -1774,6 +1774,14 @@
 						<reference key="destination" ref="444732239"/>
 					</object>
 					<int key="connectionID">509</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">downloadSelected</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="209910441"/>
+					</object>
+					<int key="connectionID">510</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3040,8 +3048,8 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{396, 245}, {502, 470}}</string>
-					<string>{{396, 245}, {502, 470}}</string>
+					<string>{{89, 45}, {502, 470}}</string>
+					<string>{{89, 45}, {502, 470}}</string>
 					<reference ref="9"/>
 					<string>{{517, 575}, {480, 270}}</string>
 					<boolean value="YES" id="5"/>
@@ -3148,7 +3156,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">509</int>
+			<int key="maxID">510</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3212,12 +3220,14 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>downloadSelected</string>
 							<string>infoController</string>
 							<string>outline</string>
 							<string>selectedCount</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
