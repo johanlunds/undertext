@@ -8,7 +8,7 @@
 
 class ResultsController < NSObject
   
-  ib_outlets :outline, :infoController, :selectedCount
+  ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
   attr_reader :movies
   
   def init
@@ -22,6 +22,7 @@ class ResultsController < NSObject
     sub_count = @movies.inject(0) do |sub_count, movie|
       sub_count + movie.subtitles.size
     end
+    @downloadSelected.setEnabled(sel_count != 0)
     @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
   end
   
