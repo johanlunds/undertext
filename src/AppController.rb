@@ -39,9 +39,10 @@ class AppController < NSObject
     if @client.isLoggedIn
       total = @client.serverInfo['subs_subtitle_files']      
       @status.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
-      languages = [ALL_LANGUAGES] + @client.languages.map { |l| l["LanguageName"] }.sort
-      @languages.addItemsWithTitles(languages)
     end
+    
+    languages = [ALL_LANGUAGES] + @client.languages.map { |l| l["LanguageName"] }.sort
+    @languages.addItemsWithTitles(languages)
   end
   
   def self.appVersion
@@ -97,5 +98,11 @@ class AppController < NSObject
     @outline.reloadData
     @outline.dataSource.willChangeValueForKey('subtitleCount') # need to call this before 'did' method
     @outline.dataSource.didChangeValueForKey('subtitleCount')
+  end
+  
+  ib_action :languageSelected
+  def languageSelected(sender)
+    language = sender.titleOfSelectedItem == ALL_LANGUAGES ? nil : sender.titleOfSelectedItem
+    @outline.dataSource.language = language
   end
 end

@@ -14,6 +14,7 @@ class ResultsController < NSObject
   def init
     super_init
     @movies = []
+    @language = nil
     self
   end
   
@@ -34,13 +35,19 @@ class ResultsController < NSObject
     end
   end
   
+  # set language and reload outline only showing subs in this language
+  def language=(value)
+    @language = value
+    @outline.reloadData
+  end
+  
   def files=(files)
     @movies = files.map { |file| Movie.alloc.initWithFile(file) }
     @outline.reloadData
   end
   
   def outlineView_child_ofItem(outline, index, item)
-    item.nil? ? @movies[index] : item.childAtIndex(index)
+    item.nil? ? @movies[index] : item.childAtIndex(index, @language)
   end
 
   def outlineView_isItemExpandable(outline, item) 
@@ -48,7 +55,7 @@ class ResultsController < NSObject
   end
 
   def outlineView_numberOfChildrenOfItem(outline, item)
-    item.nil? ? @movies.size : item.childrenCount
+    item.nil? ? @movies.size : item.childrenCount(@language)
   end
 
   def outlineView_objectValueForTableColumn_byItem(outline, tableColumn, item)
