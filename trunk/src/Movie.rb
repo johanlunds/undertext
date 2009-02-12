@@ -18,7 +18,6 @@ class Movie < NSObject
     self
   end
   
-  # Notifying observers
   def subtitles=(subs)
     @subtitles = subs
     subs.each { |sub| sub.movie = self }
@@ -29,16 +28,15 @@ class Movie < NSObject
   end
   
   # checks if some, all or none of movie's subs is going to be downloaded
-  # TODO: why has movies without subs a checked state?
   def download
     download_count = @subtitles.inject(0) do |download_count, sub|
       sub.download? ? download_count + 1 : download_count
     end
     
-    if download_count == @subtitles.size
-      NSOnState
-    elsif download_count == 0
+    if download_count == 0
       NSOffState
+    elsif download_count == @subtitles.size
+      NSOnState
     else
       NSMixedState
     end
