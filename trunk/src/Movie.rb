@@ -56,15 +56,25 @@ class Movie < NSObject
     @hash ||= MovieHasher.compute_hash(@filename)
   end
   
-  def childAtIndex(index)
-    @subtitles[index]
+  def childAtIndex(index, language)
+    filtered_subtitles(language)[index]
   end
   
-  def childrenCount
-    @subtitles.size
+  def childrenCount(language)
+    filtered_subtitles(language).size
   end
   
   def isExpandable
     true
   end
+  
+  private
+  
+    def filtered_subtitles(language)
+      if language.nil?
+        @subtitles
+      else
+        @subtitles.find_all { |sub| sub.info["LanguageName"] == language }
+      end
+    end
 end

@@ -13,6 +13,10 @@ require 'stringio'
 # Documentation at http://trac.opensubtitles.org/projects/opensubtitles
 class Client
 
+  # For any connectivity problems concerning XMLRPC.
+  class ConnectionError < StandardError
+  end
+
   HOST = "http://www.opensubtitles.org/xml-rpc"
   
   def initialize
@@ -72,7 +76,7 @@ class Client
   def languages
     result = call('GetSubLanguages')
     result['data']
-  end
+  end  
   
   private
   
@@ -80,12 +84,16 @@ class Client
       "Undertext v#{AppController.appVersion}"
     end
     
+    # TODO: other to consider are RuntimeError, SystemCallError/Errno,
+    # XMLRPC::FaultException, OSDB's error structure
     def call(method, *args)
       # convert NSObjects to Ruby equivalents before XMLRPC converting
       args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }      
       result = @client.call(method, *args)
       # NSLog("Client#call: #{method}, #{args.inspect}: #{result.inspect}")
       result
+    rescue SocketError, IOError => e
+      raise ConnectionError, e.message
     end
     
     def self.decode_and_unzip(data)

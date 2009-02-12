@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="471"/>
 			<integer value="368"/>
 			<integer value="29"/>
-			<integer value="471"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1173,7 +1173,7 @@
 										<object class="NSTableView" id="872185326">
 											<reference key="NSNextResponder" ref="362801405"/>
 											<int key="NSvFlags">4352</int>
-											<string key="NSFrameSize">{273, 194}</string>
+											<string key="NSFrameSize">{273, 190}</string>
 											<reference key="NSSuperview" ref="362801405"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
@@ -1254,7 +1254,7 @@
 											<bool key="NSAllowsTypeSelect">YES</bool>
 										</object>
 									</object>
-									<string key="NSFrameSize">{273, 194}</string>
+									<string key="NSFrameSize">{273, 190}</string>
 									<reference key="NSSuperview" ref="568729652"/>
 									<reference key="NSNextKeyView" ref="872185326"/>
 									<reference key="NSDocView" ref="872185326"/>
@@ -1282,7 +1282,7 @@
 									<double key="NSPercent">5.714286e-01</double>
 								</object>
 							</object>
-							<string key="NSFrame">{{8, 42}, {273, 194}}</string>
+							<string key="NSFrame">{{8, 42}, {273, 190}}</string>
 							<reference key="NSSuperview" ref="768955503"/>
 							<reference key="NSNextKeyView" ref="362801405"/>
 							<int key="NSsFlags">0</int>
@@ -1807,6 +1807,14 @@
 						<reference key="destination" ref="226980165"/>
 					</object>
 					<int key="connectionID">507</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">languageSelected:</string>
+						<reference key="source" ref="817593554"/>
+						<reference key="destination" ref="226980165"/>
+					</object>
+					<int key="connectionID">508</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3106,8 +3114,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{335, 273}, {289, 256}}</string>
-					<string>{{335, 273}, {289, 256}}</string>
+					<string>{{329, 413}, {289, 256}}</string>
+					<string>{{329, 413}, {289, 256}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<string>{213, 107}</string>
@@ -3181,7 +3189,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">507</int>
+			<int key="maxID">508</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3190,8 +3198,17 @@
 					<string key="className">AppController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">downloadSelected:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>downloadSelected:</string>
+							<string>languageSelected:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
