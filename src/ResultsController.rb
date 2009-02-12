@@ -14,7 +14,6 @@ class ResultsController < NSObject
   def init
     super_init
     @movies = []
-    @language = nil
     self
   end
   
@@ -28,16 +27,25 @@ class ResultsController < NSObject
     end
   end
   
+  # todo: nicer implementation
+  def updateCounts
+    willChangeValueForKey('subtitleCount') # need to call this before 'did' method
+    didChangeValueForKey('subtitleCount')
+    willChangeValueForKey('selectedCount') # need to call this before 'did' method
+    didChangeValueForKey('selectedCount')
+  end
+  
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
-      downloads + movie.subtitles.find_all { |sub| sub.download? }
+      downloads + movie.subtitles.select { |sub| sub.download? }
     end
   end
   
   # set language and reload outline only showing subs in this language
-  def language=(value)
-    @language = value
+  def language=(lang)
+    @movies.each { |movie| movie.sub_language = lang }
+    updateCounts
     @outline.reloadData
   end
   
@@ -47,7 +55,7 @@ class ResultsController < NSObject
   end
   
   def outlineView_child_ofItem(outline, index, item)
-    item.nil? ? @movies[index] : item.childAtIndex(index, @language)
+    item.nil? ? @movies[index] : item.childAtIndex(index)
   end
 
   def outlineView_isItemExpandable(outline, item) 
@@ -55,7 +63,7 @@ class ResultsController < NSObject
   end
 
   def outlineView_numberOfChildrenOfItem(outline, item)
-    item.nil? ? @movies.size : item.childrenCount(@language)
+    item.nil? ? @movies.size : item.childrenCount
   end
 
   def outlineView_objectValueForTableColumn_byItem(outline, tableColumn, item)
@@ -69,8 +77,7 @@ class ResultsController < NSObject
   # setting checked state
   def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
     item.download = value
-    willChangeValueForKey('selectedCount') # need to call this before 'did' method
-    didChangeValueForKey('selectedCount')
+    updateCounts
     @outline.reloadData # because other items could have changed values
   end
   

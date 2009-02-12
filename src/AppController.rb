@@ -96,8 +96,7 @@ class AppController < NSObject
   def search
     @client.searchSubtitles(@outline.dataSource.movies)
     @outline.reloadData
-    @outline.dataSource.willChangeValueForKey('subtitleCount') # need to call this before 'did' method
-    @outline.dataSource.didChangeValueForKey('subtitleCount')
+    @outline.dataSource.updateCounts
   end
   
   ib_action :languageSelected
