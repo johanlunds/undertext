@@ -41,8 +41,17 @@ class AppController < NSObject
       @status.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
     end
     
-    languages = [ALL_LANGUAGES] + @client.languages.map { |l| l["LanguageName"] }.sort
+    languages = @client.languages.map { |l| l["ISO639"] }.sort
     @languages.addItemsWithTitles(languages)
+    @languages.itemArray.each do |menu_item|
+      if menu_item.isSeparatorItem
+        next
+      elsif menu_item.title == ALL_LANGUAGES
+        NSLog("all")
+      else
+        menu_item.setImage(NSImage.imageNamed(menu_item.title + ".gif"))
+      end
+    end
   end
   
   def self.appVersion
