@@ -18,7 +18,7 @@ class AppController < NSObject
   ALL_LANGUAGES = "Show all"
 
   attr_accessor :addLanguageToFile
-  ib_outlets :window, :outline, :status, :downloadStatus, :languages
+  ib_outlets :window, :resController, :status, :downloadStatus, :languages
   
   def init
     super_init
@@ -59,7 +59,7 @@ class AppController < NSObject
     folders.each do |folder|
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
-    @outline.dataSource.files = files
+    @resController.files = files
     search # populate outline with search results
   end
   
@@ -87,21 +87,21 @@ class AppController < NSObject
   # todo: only call client if any subs selected (otherwise RPC call will be false)
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    @client.downloadSubtitles(@outline.dataSource.downloads) do |sub, subData|
+    @client.downloadSubtitles(@resController.downloads) do |sub, subData|
       filename = sub.filename(self.addLanguageToFile?)
       File.open(filename, 'w') { |f| f.write(subData) }
     end
   end
 
   def search
-    @client.searchSubtitles(@outline.dataSource.movies)
-    @outline.reloadData
-    @outline.dataSource.updateCounts
+    @client.searchSubtitles(@resController.movies)
+    @resController.reload
+    @resController.updateCounts
   end
   
   ib_action :languageSelected
   def languageSelected(sender)
     language = sender.titleOfSelectedItem == ALL_LANGUAGES ? nil : sender.titleOfSelectedItem
-    @outline.dataSource.language = language
+    @resController.language = language
   end
 end

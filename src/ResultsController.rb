@@ -17,6 +17,10 @@ class ResultsController < NSObject
     self
   end
   
+  def reload
+    @outline.reloadData
+  end
+  
   def updateCounts
     sel_count = downloads.size
     sub_count = @movies.inject(0) do |sub_count, movie|
