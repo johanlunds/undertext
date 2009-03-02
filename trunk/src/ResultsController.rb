@@ -17,19 +17,6 @@ class ResultsController < NSObject
     self
   end
   
-  def reload
-    @outline.reloadData
-  end
-  
-  def updateCounts
-    sel_count = downloads.size
-    sub_count = @movies.inject(0) do |sub_count, movie|
-      sub_count + movie.subtitles.size
-    end
-    @downloadSelected.setEnabled(sel_count != 0)
-    @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
-  end
-  
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
@@ -40,13 +27,12 @@ class ResultsController < NSObject
   # set language and reload outline only showing subs in this language
   def language=(lang)
     @movies.each { |movie| movie.sub_language = lang }
-    updateCounts
-    @outline.reloadData
+    reload
   end
   
   def files=(files)
     @movies = files.map { |file| Movie.alloc.initWithFile(file) }
-    @outline.reloadData
+    reload
   end
   
   def outlineView_child_ofItem(outline, index, item)
@@ -72,8 +58,7 @@ class ResultsController < NSObject
   # setting checked state
   def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
     item.download = value
-    updateCounts
-    @outline.reloadData # because other items could have changed values
+    reload # because other items could have changed values
   end
   
   # Update info window with selected sub (or nil)
@@ -85,4 +70,20 @@ class ResultsController < NSObject
     end
     @infoController.subtitle = sub
   end
+  
+  def reload
+    @outline.reloadData
+    updateCounts
+  end
+  
+  private
+  
+    def updateCounts
+      sel_count = downloads.size
+      sub_count = @movies.inject(0) do |sub_count, movie|
+        sub_count + movie.subtitles.size
+      end
+      @downloadSelected.setEnabled(sel_count != 0)
+      @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
+    end
 end
