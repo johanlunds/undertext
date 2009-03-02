@@ -96,7 +96,6 @@ class AppController < NSObject
   def search
     @client.searchSubtitles(@resController.movies)
     @resController.reload
-    @resController.updateCounts
   end
   
   ib_action :languageSelected
