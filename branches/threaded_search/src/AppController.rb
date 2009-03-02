@@ -59,8 +59,8 @@ class AppController < NSObject
     folders.each do |folder|
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
-    @resController.files = files
-    search # populate outline with search results
+    
+    search(files)
   end
   
   # Can choose directory and/or multiple files (movies)
@@ -93,9 +93,19 @@ class AppController < NSObject
     end
   end
 
-  def search
-    @client.searchSubtitles(@resController.movies)
-    @resController.reload
+  # runs in thread
+  # todo:
+  #   * disable things temporarily like "open files".
+  #   * does Cocoa (maybe through IB bindings) access @movies
+  #   * methods accessing @movies has to be prevented/disabled. 'language=', 'movies=', 'downloads'
+  #   * datasource methods etc (prefix "outlineView")
+  #   * change @movies to self.movies with mutex seems like most futureproof solution
+  def search(files)
+    Thread.start do
+      movies = files.map { |file| Movie.alloc.initWithFile(file) }
+      @client.searchSubtitles(movies)
+      @resController.movies = movies
+    end
   end
   
   ib_action :languageSelected

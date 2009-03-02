@@ -9,7 +9,6 @@
 class ResultsController < NSObject
   
   ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
-  attr_reader :movies
   
   def init
     super_init
@@ -30,8 +29,8 @@ class ResultsController < NSObject
     reload
   end
   
-  def files=(files)
-    @movies = files.map { |file| Movie.alloc.initWithFile(file) }
+  def movies=(value)
+    @movies = value
     reload
   end
   
