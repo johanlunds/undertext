@@ -114,6 +114,8 @@ class FakeClient
       { 'subs_subtitle_files' => '123' }
     when 'SearchSubtitles', 'DownloadSubtitles'
       { 'data' => false } # might not work
+    when 'GetSubLanguages'
+      { 'data' => [{ 'LanguageName' => 'English' }, { 'LanguageName' => 'Swedish' }] }
     else
       nil
     end
