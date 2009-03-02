@@ -123,4 +123,4 @@ class FakeClient
 end
 
 # Uncomment when no internet connection etc
-# XMLRPC::Client = FakeClient
+XMLRPC::Client = FakeClient

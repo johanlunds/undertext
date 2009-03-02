@@ -17,6 +17,14 @@ class ResultsController < NSObject
     self
   end
   
+  # setup sort descriptors
+  def awakeFromNib
+    sorters = %w(title otherInfo).map do |col|
+      NSSortDescriptor.alloc.initWithKey_ascending_selector(col, true, 'localizedCompare:')
+    end
+    @outline.setSortDescriptors(sorters)
+  end
+  
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
