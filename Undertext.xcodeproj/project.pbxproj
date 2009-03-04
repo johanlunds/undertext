@@ -180,12 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DDCA70E0ACC9A6100E082CE /* Build configuration list for PBXNativeTarget "Undertext" */;
 			buildPhases = (
+				26A193870F42A95C00296674 /* ShellScript */,
 				4DDCA7040ACC9A6100E082CE /* Headers */,
 				4DDCA7050ACC9A6100E082CE /* Resources */,
 				4DDCA7090ACC9A6100E082CE /* Sources */,
 				4DDCA70B0ACC9A6100E082CE /* Frameworks */,
 				265E9EF40F3B42B8009DF7F1 /* CopyFiles */,
-				26A193870F42A95C00296674 /* ShellScript */,
 			);
 			buildRules = (
 			);

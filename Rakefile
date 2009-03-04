@@ -2,10 +2,6 @@ require 'rubygems'
 require 'rake'
 require 'osx/cocoa'
 
-INFO_PLIST = OSX::NSMutableDictionary.dictionaryWithContentsOfFile('Info.plist')
-APP = INFO_PLIST["CFBundleExecutable"]
-APP_VERSION = INFO_PLIST["CFBundleVersion"]
-
 task :default => :package
 
 task :build do
@@ -13,14 +9,22 @@ task :build do
 end
 
 task :package => :build do
-  path = File.expand_path("~/Desktop/#{APP}-#{APP_VERSION}.dmg")
+  info = info_plist
+  app = info["CFBundleExecutable"]
+  version = info["CFBundleVersion"]
+  path = File.expand_path("~/Desktop/#{app}-#{version}.dmg")
   File.delete(path) if File.exists? path
-  sh "hdiutil create -volname '#{APP}' -srcfolder 'build/Release/#{APP}.app' '#{path}'"
+  sh "hdiutil create -volname '#{app}' -srcfolder 'build/Release/#{app}.app' '#{path}'"
 end
 
 task :update_version do
-  new_version = INFO_PLIST["CFBundleShortVersionString"] + "." + `svn info`[/Revision: (\d+)/, 1]
-  INFO_PLIST["CFBundleVersion"] = new_version
-  INFO_PLIST.writeToFile_atomically('Info.plist', true)
+  info = info_plist
+  new_version = info["CFBundleShortVersionString"] + "." + `svn info`[/Revision: (\d+)/, 1]
+  info["CFBundleVersion"] = new_version
+  info.writeToFile_atomically('Info.plist', true)
   puts "New version: #{new_version}"
+end
+
+def info_plist
+  OSX::NSMutableDictionary.dictionaryWithContentsOfFile('Info.plist')
 end
