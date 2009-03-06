@@ -18,7 +18,7 @@ class AppController < NSObject
   ALL_LANGUAGES = "Show all"
 
   attr_accessor :addLanguageToFile
-  ib_outlets :window, :resController, :status, :downloadStatus, :languages
+  ib_outlets :window, :resController, :connStatus, :workingStatus, :languages
   
   def init
     super_init
@@ -33,12 +33,14 @@ class AppController < NSObject
   # http://www.cocoadev.com/index.pl?ParsingHtmlInTextView
   # @status.setAttributedStringValue(NSAttributedString.alloc.init)
   def awakeFromNib
+    # todo: remove if changing to threaded api-calls
+    @workingStatus.setUsesThreadedAnimation(true)
+    
     @client = Client.new
     @client.logIn
-    
     if @client.isLoggedIn
       total = @client.serverInfo['subs_subtitle_files']      
-      @status.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
+      @connStatus.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
     end
     
     languages = [ALL_LANGUAGES] + @client.languages.map { |l| l["LanguageName"] }.sort
@@ -87,15 +89,19 @@ class AppController < NSObject
   # todo: only call client if any subs selected (otherwise RPC call will be false)
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-      filename = sub.filename(self.addLanguageToFile?)
-      File.open(filename, 'w') { |f| f.write(subData) }
+    do_work do
+      @client.downloadSubtitles(@resController.downloads) do |sub, subData|
+        filename = sub.filename(self.addLanguageToFile?)
+        File.open(filename, 'w') { |f| f.write(subData) }
+      end
     end
   end
 
   def search
-    @client.searchSubtitles(@resController.movies)
-    @resController.reload
+    do_work do
+      @client.searchSubtitles(@resController.movies)
+      @resController.reload
+    end
   end
   
   ib_action :languageSelected
@@ -103,4 +109,13 @@ class AppController < NSObject
     language = sender.titleOfSelectedItem == ALL_LANGUAGES ? nil : sender.titleOfSelectedItem
     @resController.language = language
   end
+  
+  private
+  
+    # do "the work" in a supplied block
+    def do_work
+      @workingStatus.startAnimation(self)
+      yield
+      @workingStatus.stopAnimation(self)
+    end
 end
