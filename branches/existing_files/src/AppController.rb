@@ -90,8 +90,8 @@ class AppController < NSObject
   ib_action :downloadSelected  
   def downloadSelected(sender)
     do_work do
-      @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-        filename = sub.filename(self.addLanguageToFile?)
+      @client.downloadSubtitles(@resController.downloads) do |sub, subData, index|
+        filename = sub.filename(self.addLanguageToFile?, index)
         File.open(filename, 'w') { |f| f.write(subData) }
       end
     end

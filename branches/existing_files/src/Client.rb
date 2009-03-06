@@ -60,15 +60,16 @@ class Client
   end
   
   # takes a block for doing whatever with downloaded data for each sub
+  # todo: handle result['data'] == false. what does it mean?
   def downloadSubtitles(subs)
     subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
     result = call('DownloadSubtitles', @token, subIds)
     
-    result['data'].each do |subInfo|
+    result['data'].each_with_index do |subInfo, index|
       # find existing sub object for download
       sub = subs.find { |sub| sub.info["IDSubtitleFile"] == subInfo["idsubtitlefile"] }
       subData = self.class.decode_and_unzip(subInfo["data"])
-      yield sub, subData
+      yield sub, subData, index
     end
   end
   
