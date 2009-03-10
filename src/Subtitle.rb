@@ -46,6 +46,10 @@ class Subtitle < NSObject
     @language.name
   end
   
+  def downloadCount
+    @info["SubDownloadsCnt"].to_i
+  end
+  
   def childAtIndex(index)
     nil
   end
