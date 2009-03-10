@@ -25,7 +25,7 @@ class Movie < NSObject
     if @sub_language.nil?
       @all_subtitles
     else
-      @all_subtitles.select { |sub| sub.info["LanguageName"] == @sub_language }
+      @all_subtitles.select { |sub| sub.language == @sub_language }
     end
   end
   

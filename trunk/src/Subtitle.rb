@@ -9,22 +9,22 @@
 class Subtitle < NSObject
 
   attr_accessor :movie
-  attr_reader :info, :download
+  attr_reader :info, :download, :language
   
   # todo: remove movie info (keys starting with "Movie")
-  # todo: when need to filter etc by language, create language class
   def initWithInfo(info)
     init
     @info = info
     @download = NSOffState
     @movie = nil
+    @language = Language.new(info)
     self
   end
   
   # Calculate filename for sub using movie's filename
   def filename(add_language)
     path = @movie.filename.chomp(File.extname(@movie.filename))
-    path += ".#{@info["SubLanguageID"]}" if add_language
+    path += ".#{@language.iso6392}" if add_language
     path += ".#{@info["SubFormat"]}"
     path
   end
@@ -42,9 +42,8 @@ class Subtitle < NSObject
     @info["SubFileName"]
   end
   
-  # todo: show other useful info
   def otherInfo
-    @info["LanguageName"]
+    @language.name
   end
   
   def childAtIndex(index)
