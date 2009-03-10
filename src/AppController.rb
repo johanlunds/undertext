@@ -35,16 +35,8 @@ class AppController < NSObject
   def awakeFromNib
     # todo: remove if changing to threaded api-calls
     @workingStatus.setUsesThreadedAnimation(true)
-    
-    @client = Client.new
-    @client.logIn
-    if @client.isLoggedIn
-      total = @client.serverInfo['subs_subtitle_files']      
-      @connStatus.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
-    end
-    
-    languages = [ALL_LANGUAGES] + @client.languages.map { |l| l["LanguageName"] }.sort
-    @languages.addItemsWithTitles(languages)
+    setup_client_and_log_in!
+    add_languages!
   end
   
   def self.appVersion
@@ -106,8 +98,11 @@ class AppController < NSObject
   
   ib_action :languageSelected
   def languageSelected(sender)
-    language = sender.titleOfSelectedItem == ALL_LANGUAGES ? nil : sender.titleOfSelectedItem
-    @resController.language = language
+    @resController.language = if sender.selectedItem.title == ALL_LANGUAGES
+      nil
+    else
+      sender.selectedItem.representedObject
+    end
   end
   
   private
@@ -117,5 +112,23 @@ class AppController < NSObject
       @workingStatus.startAnimation(self)
       yield
       @workingStatus.stopAnimation(self)
+    end
+    
+    def setup_client_and_log_in!
+      @client = Client.new
+      @client.logIn
+      if @client.isLoggedIn
+        total = @client.serverInfo['subs_subtitle_files']      
+        @connStatus.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
+      end
+    end
+    
+    def add_languages!
+      @client.languages.sort.each do |lang|
+        item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(lang.name, nil, "")
+        item.setRepresentedObject(lang)
+        item.setImage(NSImage.imageNamed(lang.iso6391 + ".png"))
+        @languages.menu.addItem(item)
+      end
     end
 end

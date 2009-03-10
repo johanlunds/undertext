@@ -43,7 +43,7 @@ class Client
   def searchSubtitles(movies)
     args = movies.map do |movie|
       {
-        'sublanguageid' => '', # searches all languages, TODO
+        'sublanguageid' => '', # searches all languages
         'moviehash'     => movie.osdb_hash,
         'moviebytesize' => File.size(movie.filename)
       }
@@ -75,7 +75,7 @@ class Client
   # todo: cache or something
   def languages
     result = call('GetSubLanguages')
-    result['data']
+    result['data'].map { |langInfo| Language.new(langInfo) }
   end  
   
   private
@@ -115,7 +115,7 @@ class FakeClient
     when 'SearchSubtitles', 'DownloadSubtitles'
       { 'data' => false } # might not work
     when 'GetSubLanguages'
-      { 'data' => [{ 'LanguageName' => 'English' }, { 'LanguageName' => 'Swedish' }] }
+      { 'data' => [{ 'LanguageName' => 'English', 'ISO639' => 'en', 'SubLanguageID' => 'eng' }, { 'LanguageName' => 'Swedish', 'ISO639' => 'sv', 'SubLanguageID' => 'swe' }] }
     else
       nil
     end
