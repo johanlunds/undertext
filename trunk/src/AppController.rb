@@ -127,7 +127,7 @@ class AppController < NSObject
       @client.languages.sort.each do |lang|
         item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(lang.name, nil, "")
         item.setRepresentedObject(lang)
-        item.setImage(NSImage.imageNamed(lang.iso6391 + ".png"))
+        item.setImage(NSImage.imageNamed(lang.iso6391 + ".png")) # todo: "unknown" image if no existing file
         @languages.menu.addItem(item)
       end
     end
