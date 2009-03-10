@@ -61,6 +61,10 @@ class Movie < NSObject
     ""
   end
   
+  def downloadCount
+    ""
+  end
+  
   def osdb_hash
     @hash ||= MovieHasher.compute_hash(@filename)
   end
