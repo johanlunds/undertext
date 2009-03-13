@@ -2,6 +2,9 @@ require 'rubygems'
 require 'rake'
 require 'osx/cocoa'
 
+# TODO: release- or dist-task.
+# More info: http://allancraig.net/blog/?p=65 and http://www.entropy.ch/blog/Developer/2008/09/22/Sparkle-Appcast-Automation-in-Xcode.html
+
 task :default => :package
 
 task :build do
