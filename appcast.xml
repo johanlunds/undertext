@@ -5,6 +5,12 @@
     <link>http://undertext.googlecode.com/svn/appcast.xml</link>
     <description>Most recent changes with links to updates.</description>
     <language>en</language>
+    <item>
+      <title>Version 1.0</title>
+      <sparkle:releaseNotesLink>http://undertext.googlecode.com/svn/release_notes.html</sparkle:releaseNotesLink>
+      <pubDate>Fri, 13 Mar 2009 10:42:34 +0100</pubDate>
+      <enclosure url="http://undertext.googlecode.com/files/Undertext-1.0.dmg" sparkle:version="1.0.69" sparkle:shortVersionString="1.0" length="817609" type="application/octet-stream" sparkle:dsaSignature="MCsCFD7nM5gt/i8TBv1vKeSZYsU0Yc9RAhMpYKPmoacmJ8JiEkhWFbau1tJl" />
+    </item>
     <!--
     <item>
       <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
