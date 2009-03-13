@@ -2,9 +2,11 @@ require 'rubygems'
 require 'rake'
 require 'osx/cocoa'
 
-PRIVATE_KEY_FILE = "dsa_priv.pem"
 INFO = OSX::NSMutableDictionary.dictionaryWithContentsOfFile('Info.plist')
-PKG_PATH = File.expand_path("~/Desktop/#{INFO["CFBundleExecutable"]}-%s.dmg") # interpolate version
+
+def pkg_path
+  File.expand_path("~/Desktop/#{INFO["CFBundleExecutable"]}-#{INFO["CFBundleVersion"]}.dmg")
+end
 
 task :default => :release
 
@@ -20,14 +22,12 @@ end
 
 task :package => [:update_version, :build] do
   app_name = INFO["CFBundleExecutable"]
-  pkg_path = PKG_PATH % INFO["CFBundleVersion"]
   File.delete(pkg_path) if File.exists?(pkg_path)
   sh "hdiutil create -volname '#{app_name}' -srcfolder 'build/Release/#{app_name}.app' '#{pkg_path}'"
 end
 
 task :release => :package do
-  pkg_path = PKG_PATH % INFO["CFBundleVersion"]
-  sig = `ruby bin/sign_update.rb #{pkg_path} #{PRIVATE_KEY_FILE}`
+  sig = `ruby bin/sign_update.rb #{pkg_path} dsa_priv.pem`
   
   puts
   puts "Todo list"
