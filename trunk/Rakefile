@@ -35,7 +35,8 @@ task :release => :package do
   puts "1. upload packaged app"
   puts "2. update release notes"
   puts "3. add item to appcast"
-  puts "4. commit release notes and appcast. Done!"
+  puts "4. commit release notes and appcast"
+  puts "5. tag current release in SVN. Done!"
   puts
   puts "Appcast item info"
   puts "=========="
