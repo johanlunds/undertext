@@ -9,11 +9,12 @@
 class ResultsController < NSObject
   
   ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
-  attr_reader :movies
+  attr_reader :movies, :language
   
   def init
     super_init
     @movies = []
+    @language = nil
     self
   end
   
@@ -24,14 +25,14 @@ class ResultsController < NSObject
     end
   end
   
-  # set language and reload outline only showing subs in this language
-  def language=(lang)
-    @movies.each { |movie| movie.sub_language = lang }
+  # nil if show all subs
+  def language=(value)
+    @language = value
     reload
   end
   
   def files=(files)
-    @movies = files.map { |file| Movie.alloc.initWithFile(file) }
+    @movies = files.map { |file| Movie.alloc.initWithFile(file, self) }
     reload
   end
   

@@ -9,23 +9,22 @@
 class Movie < NSObject
 
   attr_reader :filename
-  attr_writer :sub_language
 
-  def initWithFile(filename)
+  def initWithFile(filename, resController)
     init
     @filename = filename
     @hash = nil
     @all_subtitles = []
-    @sub_language = nil
+    @resController = resController
     self
   end
   
   # filtered by language
   def subtitles
-    if @sub_language.nil?
+    if @resController.language.nil?
       @all_subtitles
     else
-      @all_subtitles.select { |sub| sub.language == @sub_language }
+      @all_subtitles.select { |sub| sub.language == @resController.language }
     end
   end
   
