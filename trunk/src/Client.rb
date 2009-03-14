@@ -84,16 +84,24 @@ class Client
       "Undertext v#{AppController.appVersion}"
     end
     
-    # TODO: other to consider are RuntimeError, SystemCallError/Errno,
-    # XMLRPC::FaultException, OSDB's error structure
+    # TODO: consider adding SystemCallError/Errno to list of exceptions
     def call(method, *args)
       # convert NSObjects to Ruby equivalents before XMLRPC converting
       args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }      
       result = @client.call(method, *args)
       # NSLog("Client#call: #{method}, #{args.inspect}: #{result.inspect}")
+      self.class.check_result_status!(result)
       result
-    rescue SocketError, IOError => e
+    rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException => e
+      # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
       raise ConnectionError, e.message
+    end
+    
+    # raises if status is in result and not in range 200-299
+    def self.check_result_status!(result)
+      if result['status'] && !(200..299).include?(result['status'].to_i)
+        raise ConnectionError, "OSDB result status: #{result['status']}"
+      end
     end
     
     def self.decode_and_unzip(data)
