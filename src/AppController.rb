@@ -16,6 +16,7 @@ class AppController < NSObject
     wm wmv wmx wrap wvx wx x264 xvid)
     
   ALL_LANGUAGES = "Show all"
+  NO_FLAG_IMAGE = "unknown.png"
 
   attr_accessor :addLanguageToFile
   ib_outlets :window, :resController, :connStatus, :workingStatus, :languages
@@ -127,7 +128,8 @@ class AppController < NSObject
       @client.languages.sort.each do |lang|
         item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(lang.name, nil, "")
         item.setRepresentedObject(lang)
-        item.setImage(NSImage.imageNamed(lang.iso6391 + ".png")) # todo: "unknown" image if no existing file
+        image = NSImage.imageNamed(lang.iso6391 + ".png") || NSImage.imageNamed(NO_FLAG_IMAGE)
+        item.setImage(image)
         @languages.menu.addItem(item)
       end
     end

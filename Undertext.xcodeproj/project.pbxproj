@@ -72,6 +72,7 @@
 		26A3929D0F313A9200B36404 /* Subtitle.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26A3929C0F313A9200B36404 /* Subtitle.rb */; };
 		26A998A60F660E2B00CCC01D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 26A998A50F660E2B00CCC01D /* Credits.rtf */; };
 		26B725560F3BE6DA003F79BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B725550F3BE6DA003F79BC /* main.m */; };
+		26EC9EF50F6B3DFC0045F973 /* unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 26EC9EF40F6B3DFC0045F973 /* unknown.png */; };
 		26EFE7950F31E8FA00B1B95F /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7920F31E8FA00B1B95F /* LICENSE.txt */; };
 		26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7930F31E8FA00B1B95F /* Rakefile */; };
 		26EFE7970F31E8FA00B1B95F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7940F31E8FA00B1B95F /* README.txt */; };
@@ -171,6 +172,7 @@
 		26A3929C0F313A9200B36404 /* Subtitle.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Subtitle.rb; sourceTree = "<group>"; };
 		26A998A50F660E2B00CCC01D /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		26B725550F3BE6DA003F79BC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
+		26EC9EF40F6B3DFC0045F973 /* unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unknown.png; sourceTree = "<group>"; };
 		26EFE7920F31E8FA00B1B95F /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		26EFE7930F31E8FA00B1B95F /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		26EFE7940F31E8FA00B1B95F /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		2680CD5E0F6617A400274EFD /* flags */ = {
 			isa = PBXGroup;
 			children = (
+				26EC9EF40F6B3DFC0045F973 /* unknown.png */,
 				2680CD5F0F6617A400274EFD /* ar.png */,
 				2680CD600F6617A400274EFD /* ay.png */,
 				2680CD610F6617A400274EFD /* bg.png */,
@@ -468,6 +471,7 @@
 				2680CDC20F6617A400274EFD /* zh.png in Resources */,
 				2680CDC90F6619CE00274EFD /* Language.rb in Resources */,
 				26346C340F6A1C0C00CCAF71 /* dsa_pub.pem in Resources */,
+				26EC9EF50F6B3DFC0045F973 /* unknown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
