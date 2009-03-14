@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="368"/>
 			<integer value="470"/>
 			<integer value="56"/>
+			<integer value="368"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1857,14 +1857,6 @@
 					<int key="connectionID">507</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">languageSelected:</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="226980165"/>
-					</object>
-					<int key="connectionID">508</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">selectedCount</string>
 						<reference key="source" ref="842794368"/>
@@ -1911,6 +1903,14 @@
 						<reference key="destination" ref="574699749"/>
 					</object>
 					<int key="connectionID">522</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">languageSelected:</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="226980165"/>
+					</object>
+					<int key="connectionID">523</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3231,8 +3231,8 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{14, 129}, {610, 490}}</string>
-					<string>{{14, 129}, {610, 490}}</string>
+					<string>{{120, -144}, {610, 490}}</string>
+					<string>{{120, -144}, {610, 490}}</string>
 					<reference ref="9"/>
 					<string>{{517, 575}, {480, 270}}</string>
 					<boolean value="YES" id="5"/>
@@ -3346,7 +3346,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">522</int>
+			<int key="maxID">523</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3355,17 +3355,8 @@
 					<string key="className">AppController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>downloadSelected:</string>
-							<string>languageSelected:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">downloadSelected:</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3406,6 +3397,10 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ResultsController</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">languageSelected:</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">

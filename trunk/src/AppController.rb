@@ -14,8 +14,7 @@ class AppController < NSObject
     mjp mjpeg mjpg mkv moov mov movhd movie movx mp4 mpe mpeg mpg mpv mpv2 mxf
     nsv nut ogg ogm omf ps qt ram rm rmvb swf ts vfw vid video viv vivo vob vro
     wm wmv wmx wrap wvx wx x264 xvid)
-    
-  ALL_LANGUAGES = "Show all"
+  
   NO_FLAG_IMAGE = "unknown.png"
 
   attr_accessor :addLanguageToFile
@@ -94,15 +93,6 @@ class AppController < NSObject
     do_work do
       @client.searchSubtitles(@resController.movies)
       @resController.reload
-    end
-  end
-  
-  ib_action :languageSelected
-  def languageSelected(sender)
-    @resController.language = if sender.selectedItem.title == ALL_LANGUAGES
-      nil
-    else
-      sender.selectedItem.representedObject
     end
   end
   
