@@ -89,7 +89,6 @@ class AppController < NSObject
     end
   end
 
-  # todo: no filtering by language with new search results
   def search
     do_work do
       @client.searchSubtitles(@resController.movies)

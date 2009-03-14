@@ -11,7 +11,6 @@ class Subtitle < NSObject
   attr_accessor :movie
   attr_reader :info, :download, :language
   
-  # todo: remove movie info (keys starting with "Movie")
   def initWithInfo(info)
     init
     @info = info
