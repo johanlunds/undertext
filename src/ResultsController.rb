@@ -8,6 +8,8 @@
 
 class ResultsController < NSObject
   
+  ALL_LANGUAGES = "Show all"
+  
   ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
   attr_reader :movies, :language
   
@@ -18,17 +20,21 @@ class ResultsController < NSObject
     self
   end
   
+  ib_action :languageSelected
+  def languageSelected(sender)
+    @language = if sender.selectedItem.title == ALL_LANGUAGES
+      nil
+    else
+      sender.selectedItem.representedObject
+    end
+    reload
+  end
+  
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
       downloads + movie.subtitles.select { |sub| sub.download? }
     end
-  end
-  
-  # nil if show all subs
-  def language=(value)
-    @language = value
-    reload
   end
   
   def files=(files)
