@@ -8,26 +8,31 @@ def pkg_path
   File.expand_path("~/Desktop/#{INFO["CFBundleExecutable"]}-#{INFO["CFBundleVersion"]}.dmg")
 end
 
+desc "Release by default"
 task :default => :release
 
+desc "Build project in Xcode"
 task :build do
   sh "xcodebuild -configuration Release build"
 end
 
+desc "Update Info.plist with current SVN revision"
 task :update_version do
   new_version = INFO["CFBundleVersion"] = INFO["CFBundleShortVersionString"] + "." + `svn info`[/Revision: (\d+)/, 1]
   INFO.writeToFile_atomically('Info.plist', true)
   puts "New version: #{new_version}"
 end
 
+desc "Build and package app as DMG"
 task :package => [:update_version, :build] do
   app_name = INFO["CFBundleExecutable"]
   File.delete(pkg_path) if File.exists?(pkg_path)
   sh "hdiutil create -volname '#{app_name}' -srcfolder 'build/Release/#{app_name}.app' '#{pkg_path}'"
 end
 
+desc "Build, package and generate info for appcast"
 task :release => :package do
-  sig = `ruby bin/sign_update.rb #{pkg_path} dsa_priv.pem`
+  sig = `ruby bin/sign_update.rb #{pkg_path} res/dsa_priv.pem`
   
   puts
   puts "Todo list"
