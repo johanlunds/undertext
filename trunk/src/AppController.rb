@@ -15,6 +15,12 @@ class AppController < NSObject
     nsv nut ogg ogm omf ps qt ram rm rmvb swf ts vfw vid video viv vivo vob vro
     wm wmv wmx wrap wvx wx x264 xvid)
   
+  URLS = [
+    'http://www.opensubtitles.org',
+    'http://www.opensubtitles.org/upload',
+    'http://code.google.com/p/undertext'
+  ]
+  
   NO_FLAG_IMAGE = "unknown.png"
 
   attr_accessor :addLanguageToFile
@@ -53,7 +59,7 @@ class AppController < NSObject
     folders.each do |folder|
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
-    @resController.files = files
+    @resController.files = files # todo: keep already existing results in outline
     search # populate outline with search results
   end
   
@@ -94,6 +100,12 @@ class AppController < NSObject
       @client.searchSubtitles(@resController.movies)
       @resController.reload
     end
+  end
+  
+  # menu items opening websites use this
+  ib_action :openURL
+  def openURL(sender)
+    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(URLS[sender.tag]))
   end
   
   private
