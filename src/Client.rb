@@ -92,7 +92,7 @@ class Client
       # NSLog("Client#call: #{method}, #{args.inspect}: #{result.inspect}")
       self.class.check_result_status!(result)
       result
-    rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException => e
+    rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException, Timeout::Error => e
       # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
       raise ConnectionError, e.message
     end
