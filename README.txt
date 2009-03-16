@@ -3,14 +3,14 @@
 Application for downloading subtitles for your movies and tv episodes using
 OpenSubtitles.org.
 
+The searching is done by calculating a hash for every movie file and then looking
+in OpenSubtitles.org's database for matching subtitles. This way you find matching
+subtitles quickly and can be sure they'll be correctly sync'ed with the video.
+
 Undertext is made for Mac OS X using it's Cocoa so it integrates very well with
 the system. Undertext is very simple and intuitive to use and install. Compared
 to using the browser this is a very quick and comfortable way to get your
 subtitles.
-
-The searching is done by calculating a hash for every movie file and then looking
-in OpenSubtitles.org's database for matching subtitles. This way you find matching
-subtitles quickly and can be sure they'll be correctly sync'ed with the video.
 
 *Homepage:* http://code.google.com/p/undertext. There you can find downloads, get
 the source code, submit bugs, suggest new features and get more information.
