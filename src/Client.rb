@@ -30,11 +30,6 @@ class Client
     @token = result['token']
   end
   
-  # TODO: better check
-  def isLoggedIn
-    !@token.nil?
-  end
-  
   def serverInfo
     call('ServerInfo')
   end
@@ -94,13 +89,13 @@ class Client
       result
     rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException, Timeout::Error => e
       # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
-      raise ConnectionError, e.message
+      raise ConnectionError, "#{e.message} (#{e.class})"
     end
     
     # raises if status is in result and not in range 200-299
     def self.check_result_status!(result)
       if result['status'] && !(200..299).include?(result['status'].to_i)
-        raise ConnectionError, "OSDB result status: #{result['status']}"
+        raise ConnectionError, "Result's status was '#{result['status']}'"
       end
     end
     

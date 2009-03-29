@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="470"/>
 			<integer value="106"/>
-			<integer value="367"/>
+			<integer value="470"/>
+			<integer value="368"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -894,7 +894,7 @@
 								<int key="NSCellFlags2">1346504704</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="26"/>
-								<string key="NSPlaceholderString">Not logged in.</string>
+								<string key="NSPlaceholderString">Not connected to server.</string>
 								<reference key="NSControlView" ref="551971030"/>
 								<bool key="NSDrawsBackground">YES</bool>
 								<object class="NSColor" key="NSBackgroundColor" id="981475599">
@@ -2633,8 +2633,8 @@
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{14, 175}, {610, 490}}</string>
-					<string>{{14, 175}, {610, 490}}</string>
+					<string>{{13, 189}, {610, 490}}</string>
+					<string>{{13, 189}, {610, 490}}</string>
 					<reference ref="9"/>
 					<string>{{517, 575}, {480, 270}}</string>
 					<boolean value="YES" id="5"/>
