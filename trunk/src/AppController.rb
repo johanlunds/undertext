@@ -24,29 +24,17 @@ class AppController < NSObject
   
   def init
     super_init
-    @client = nil
+    @client = Client.new
     self
   end
   
-  # TODO:
-  # can add clickable link
-  # http://www.cocoadev.com/index.pl?InsertHyperlink
-  # http://www.cocoadev.com/index.pl?ClickableUrlInTextView
-  # http://www.cocoadev.com/index.pl?ParsingHtmlInTextView
-  # @status.setAttributedStringValue(NSAttributedString.alloc.init)
   def awakeFromNib
-    # todo: remove if changing to threaded api-calls
-    @workingStatus.setUsesThreadedAnimation(true)
-    setup_client_and_log_in!
-    add_languages!
+    @workingStatus.setUsesThreadedAnimation(true) # todo: remove if changing to threaded api-calls
+    connect_to_server!
   end
   
   def self.appVersion
     NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
-  end
-  
-  def addLanguageToFile?
-    @addLanguageToFile == NSOnState
   end
   
   # for folders it searches recursively for movie files
@@ -106,29 +94,43 @@ class AppController < NSObject
   
   private
   
-    # do "the work" in a supplied block
-    def do_work
-      @workingStatus.startAnimation(self)
-      yield
-      @workingStatus.stopAnimation(self)
-    end
-    
-    def setup_client_and_log_in!
-      @client = Client.new
+    # logs in, adds languages and displays current connection status.
+    # TODO: 
+    # - if connect fails, then let user reconnect (call this method again)
+    #   and disable (or something) relevant parts of the UI.
+    # - Fix handling of logged in/out state (tokens among other things).
+    # - if changing to threaded api calls put those in "do_work"-block
+    # - adjust error dialog's message when adding ability to reconnect
+    def connect_to_server!
       @client.logIn
-      if @client.isLoggedIn
-        total = @client.serverInfo['subs_subtitle_files']      
-        @connStatus.setStringValue("Logged in to OpenSubtitles.org (#{total} subtitles).")
-      end
+      add_languages(@client.languages)
+      total = @client.serverInfo['subs_subtitle_files']
+      @connStatus.setStringValue("Connected to OpenSubtitles.org (#{total} subtitles).")
+      @connStatus.setTextColor(NSColor.blackColor)
+    rescue Client::ConnectionError => e
+      NSRunAlertPanel("Error connecting to server", "Problem connecting to OpenSubtitles.org's server. The error message was:\n#{e.message}", nil, nil, nil)
+      @connStatus.setStringValue("Error connecting to server.")
+      @connStatus.setTextColor(NSColor.redColor)
     end
-    
-    def add_languages!
-      @client.languages.sort.each do |lang|
+
+    def add_languages(languages)
+      languages.sort.each do |lang|
         item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(lang.name, nil, "")
         item.setRepresentedObject(lang)
         image = NSImage.imageNamed(lang.iso6391 + ".png") || NSImage.imageNamed(NO_FLAG_IMAGE)
         item.setImage(image)
         @languages.menu.addItem(item)
       end
+    end
+    
+    def addLanguageToFile?
+      @addLanguageToFile == NSOnState
+    end
+  
+    # do "the work" in a supplied block
+    def do_work
+      @workingStatus.startAnimation(self)
+      yield
+      @workingStatus.stopAnimation(self)
     end
 end
