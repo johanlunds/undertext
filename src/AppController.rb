@@ -17,6 +17,8 @@ class AppController < NSObject
     'http://code.google.com/p/undertext'
   ]
   
+  NON_LANGUAGE_ITEMS = 2
+  
   NO_FLAG_IMAGE = "unknown.png"
 
   attr_accessor :addLanguageToFile
@@ -30,11 +32,38 @@ class AppController < NSObject
   
   def awakeFromNib
     @workingStatus.setUsesThreadedAnimation(true) # todo: remove if changing to threaded api-calls
-    connect_to_server!
+    connectToServer(nil)
   end
   
   def self.appVersion
     NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
+  end
+  
+  # Automatically called. Returns boolean for menu item's enabled state.
+  def validateMenuItem(item)
+    case item.action
+    when 'connectToServer:'
+      @client.loggedOut
+    else
+      true
+    end
+  end
+  
+  # logs in, adds languages and displays current connection status.
+  # todo: if changing to threaded api calls put those in "do_work"-block
+  # todo: call "search"
+  ib_action :connectToServer
+  def connectToServer(sender)
+    status("Connecting...")
+    @client.logIn
+    add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
+    total = @client.serverInfo['subs_subtitle_files']
+    status("Connected to OpenSubtitles.org (#{total} subtitles)")
+  rescue Client::ConnectionError => e
+    error_status(
+      "Error connecting to server",
+      "There was a problem when connecting to OpenSubtitles.org's server. You can try to reconnect in the application menu.\nError message: #{e.message}"
+    )
   end
   
   # for folders it searches recursively for movie files
@@ -53,13 +82,8 @@ class AppController < NSObject
     open.setAllowsMultipleSelection(true)
     open.setCanChooseDirectories(true)
     open.beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
-      nil,
-      nil,
-      ["public.movie"],
-      @window,
-      self,
-      'openPanelDidEnd:returnCode:contextInfo:',
-      nil
+      nil, nil, ["public.movie"], @window, self,
+      'openPanelDidEnd:returnCode:contextInfo:', nil
     )
   end
   
@@ -93,25 +117,6 @@ class AppController < NSObject
   end
   
   private
-  
-    # logs in, adds languages and displays current connection status.
-    # TODO: 
-    # - if connect fails, then let user reconnect (call this method again)
-    #   and disable (or something) relevant parts of the UI.
-    # - Fix handling of logged in/out state (tokens among other things).
-    # - if changing to threaded api calls put those in "do_work"-block
-    # - adjust error dialog's message when adding ability to reconnect
-    def connect_to_server!
-      @client.logIn
-      add_languages(@client.languages)
-      total = @client.serverInfo['subs_subtitle_files']
-      @connStatus.setStringValue("Connected to OpenSubtitles.org (#{total} subtitles).")
-      @connStatus.setTextColor(NSColor.blackColor)
-    rescue Client::ConnectionError => e
-      NSRunAlertPanel("Error connecting to server", "Problem connecting to OpenSubtitles.org's server. The error message was:\n#{e.message}", nil, nil, nil)
-      @connStatus.setStringValue("Error connecting to server.")
-      @connStatus.setTextColor(NSColor.redColor)
-    end
 
     def add_languages(languages)
       languages.sort.each do |lang|
@@ -121,6 +126,7 @@ class AppController < NSObject
         item.setImage(image)
         @languages.menu.addItem(item)
       end
+      @languages.setEnabled(true)
     end
     
     def addLanguageToFile?
@@ -132,5 +138,16 @@ class AppController < NSObject
       @workingStatus.startAnimation(self)
       yield
       @workingStatus.stopAnimation(self)
+    end
+    
+    def status(msg)
+      @connStatus.setStringValue(msg)
+      @connStatus.setTextColor(NSColor.blackColor)
+    end
+    
+    def error_status(msg, longer_msg)
+      @connStatus.setStringValue(msg)
+      @connStatus.setTextColor(NSColor.redColor)
+      NSRunAlertPanel(msg, longer_msg, nil, nil, nil)
     end
 end

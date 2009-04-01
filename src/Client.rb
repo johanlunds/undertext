@@ -30,6 +30,10 @@ class Client
     @token = result['token']
   end
   
+  def loggedOut
+    @token.nil?
+  end
+  
   def serverInfo
     call('ServerInfo')
   end
@@ -79,24 +83,30 @@ class Client
       "Undertext v#{AppController.appVersion}"
     end
     
-    # TODO: consider adding SystemCallError/Errno to list of exceptions
+    # Calls method and raises if errors. Sets state to logged out if any errors.
+    # Todo: Check logged in/out state for some methods.
     def call(method, *args)
       # convert NSObjects to Ruby equivalents before XMLRPC converting
-      args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }      
-      result = @client.call(method, *args)
-      # NSLog("Client#call: #{method}, #{args.inspect}: #{result.inspect}")
-      self.class.check_result_status!(result)
-      result
-    rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException, Timeout::Error => e
-      # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
-      raise ConnectionError, "#{e.message} (#{e.class})"
-    end
-    
-    # raises if status is in result and not in range 200-299
-    def self.check_result_status!(result)
-      if result['status'] && !(200..299).include?(result['status'].to_i)
+      args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }
+      
+      begin
+        result = @client.call(method, *args)
+      rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException, Timeout::Error => e
+        # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
+        @token = nil
+        raise ConnectionError, "#{e.message} (#{e.class})"
+      end
+      
+      if self.class.result_error?(result)
+        @token = nil
         raise ConnectionError, "Result's status was '#{result['status']}'"
       end
+      
+      result
+    end
+    
+    def self.result_error?(result)
+      result['status'] && !(200..299).include?(result['status'].to_i)
     end
     
     def self.decode_and_unzip(data)
