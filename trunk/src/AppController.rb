@@ -64,13 +64,15 @@ class AppController < NSObject
   
   # for folders it searches recursively for movie files
   # todo: this won't execute if connection error at startup
+  # todo: refactor adding of files/movies to outline
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
     folders.each do |folder|
       files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
     end
-    @resController.files = files # todo: keep already existing results in outline
-    search # populate outline with search results
+    movies = files.map { |file| Movie.alloc.initWithFile(file, @resController) }
+    @resController.add_movies(movies)
+    search(movies) # populate outline with search results
   end
   
   # Can choose directory and/or multiple files (movies)
@@ -89,7 +91,6 @@ class AppController < NSObject
   end
 
   # todo: handle if file already exists (suffix with number or ask)
-  # todo: only call client if any subs selected (otherwise RPC call will be false)
   ib_action :downloadSelected  
   def downloadSelected(sender)
     do_work do
@@ -102,9 +103,9 @@ class AppController < NSObject
     error_status("Error when downloading", "Please check your internet connection and/or www.opensubtitles.org before trying again.\nError message: #{e.message}")
   end
 
-  def search
+  def search(movies)
     do_work do
-      @client.searchSubtitles(@resController.movies)
+      @client.searchSubtitles(movies)
       @resController.reload
     end
   rescue Client::ConnectionError => e
@@ -135,6 +136,7 @@ class AppController < NSObject
     end
   
     # do "the work" in a supplied block
+    # todo: if exception in yield animation will keep going
     def do_work
       @workingStatus.startAnimation(self)
       yield
