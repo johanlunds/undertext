@@ -37,8 +37,8 @@ class ResultsController < NSObject
     end
   end
   
-  def files=(files)
-    @movies = files.map { |file| Movie.alloc.initWithFile(file, self) }
+  def add_movies(movies)
+    @movies += movies
     reload
   end
   

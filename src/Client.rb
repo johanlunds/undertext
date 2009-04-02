@@ -60,6 +60,7 @@ class Client
   end
   
   # takes a block for doing whatever with downloaded data for each sub
+  # if "subs" is empty the XMLRPC result will have status = 408
   def downloadSubtitles(subs)
     logIn if loggedOut
     subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
