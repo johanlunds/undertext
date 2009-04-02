@@ -18,7 +18,6 @@ class AppController < NSObject
   ]
   
   NON_LANGUAGE_ITEMS = 2
-  
   NO_FLAG_IMAGE = "unknown.png"
 
   attr_accessor :addLanguageToFile
@@ -30,7 +29,7 @@ class AppController < NSObject
     self
   end
   
-  def awakeFromNib
+  def applicationWillFinishLaunching(notification)
     @workingStatus.setUsesThreadedAnimation(true) # todo: remove if changing to threaded api-calls
     connectToServer(nil)
   end
@@ -60,13 +59,11 @@ class AppController < NSObject
     total = @client.serverInfo['subs_subtitle_files']
     status("Connected to OpenSubtitles.org (#{total} subtitles)")
   rescue Client::ConnectionError => e
-    error_status(
-      "Error connecting to server",
-      "There was a problem when connecting to OpenSubtitles.org's server. You can try to reconnect in the application menu.\nError message: #{e.message}"
-    )
+    error_status("Error when connecting to server", "Please check your internet connection and/or www.opensubtitles.org before trying to reconnect.\nError message: #{e.message}")
   end
   
   # for folders it searches recursively for movie files
+  # todo: this won't execute if connection error at startup
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
     folders.each do |folder|
@@ -101,6 +98,8 @@ class AppController < NSObject
         File.open(filename, 'w') { |f| f.write(subData) }
       end
     end
+  rescue Client::ConnectionError => e
+    error_status("Error when downloading", "Please check your internet connection and/or www.opensubtitles.org before trying again.\nError message: #{e.message}")
   end
 
   def search
@@ -108,6 +107,8 @@ class AppController < NSObject
       @client.searchSubtitles(@resController.movies)
       @resController.reload
     end
+  rescue Client::ConnectionError => e
+    error_status("Error when searching", "Please check your internet connection and/or www.opensubtitles.org. A search will be automatically done next time you reconnect.\nError message: #{e.message}")
   end
   
   # menu items opening websites use this

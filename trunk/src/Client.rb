@@ -40,6 +40,7 @@ class Client
   
   # Adds subs to movie objects.
   def searchSubtitles(movies)
+    logIn if loggedOut
     args = movies.map do |movie|
       {
         'sublanguageid' => '', # searches all languages
@@ -60,6 +61,7 @@ class Client
   
   # takes a block for doing whatever with downloaded data for each sub
   def downloadSubtitles(subs)
+    logIn if loggedOut
     subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
     result = call('DownloadSubtitles', @token, subIds)
     
@@ -71,7 +73,6 @@ class Client
     end
   end
   
-  # todo: cache or something
   def languages
     result = call('GetSubLanguages')
     result['data'].map { |langInfo| Language.new(langInfo) }
@@ -84,7 +85,6 @@ class Client
     end
     
     # Calls method and raises if errors. Sets state to logged out if any errors.
-    # Todo: Check logged in/out state for some methods.
     def call(method, *args)
       # convert NSObjects to Ruby equivalents before XMLRPC converting
       args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }
