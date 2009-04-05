@@ -16,7 +16,7 @@ class Subtitle < NSObject
     @info = info
     @download = NSOffState
     @movie = nil
-    @language = Language.new(info)
+    @language = Language.alloc.initWithInfo(info)
     self
   end
   

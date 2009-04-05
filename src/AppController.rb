@@ -18,7 +18,6 @@ class AppController < NSObject
   ]
   
   NON_LANGUAGE_ITEMS = 2
-  NO_FLAG_IMAGE = "unknown.png"
 
   attr_accessor :addLanguageToFile
   ib_outlets :window, :resController, :connStatus, :workingStatus, :languages
@@ -124,8 +123,7 @@ class AppController < NSObject
       languages.sort.each do |lang|
         item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(lang.name, nil, "")
         item.setRepresentedObject(lang)
-        image = NSImage.imageNamed(lang.iso6391 + ".png") || NSImage.imageNamed(NO_FLAG_IMAGE)
-        item.setImage(image)
+        item.setImage(lang.image)
         @languages.menu.addItem(item)
       end
       @languages.setEnabled(true)
