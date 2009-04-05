@@ -76,7 +76,7 @@ class Client
   
   def languages
     result = call('GetSubLanguages')
-    result['data'].map { |langInfo| Language.new(langInfo) }
+    result['data'].map { |langInfo| Language.alloc.initWithInfo(langInfo) }
   end  
   
   private
