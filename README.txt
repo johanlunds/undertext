@@ -22,7 +22,8 @@ Credits.rtf for more acknowledgements.
 
  * Mac OS X (I use Leopard, haven't tried on Tiger and earlier versions)
  * RubyCocoa (already installed in new OS X versions)
- * For developing: Xcode (I use version 3)
+ * For developing: Xcode (I use version 3) and BWToolkit, a plugin for Interface
+   Builder which can be found at www.brandonwalkin.com/bwtoolkit.
 
 == Installation and Usage ==
 

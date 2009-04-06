@@ -126,7 +126,9 @@ class FakeClient
       { 'token' => 'abc' }
     when 'ServerInfo'
       { 'subs_subtitle_files' => '123' }
-    when 'SearchSubtitles', 'DownloadSubtitles'
+    when 'SearchSubtitles' # might stop working
+      { 'data' => [{'LanguageName' => 'English', 'ISO639' => 'en', 'SubLanguageID' => 'eng', 'MovieHash' => args[1][0]['moviehash'], 'SubFormat' => 'srt', 'SubFileName' => 'hej.srt', 'SubDownloadsCnt' => '100', 'IDSubtitleFile' => '1'}] }
+    when 'DownloadSubtitles'
       { 'data' => false } # might not work
     when 'GetSubLanguages'
       { 'data' => [{ 'LanguageName' => 'English', 'ISO639' => 'en', 'SubLanguageID' => 'eng' }, { 'LanguageName' => 'Swedish', 'ISO639' => 'sv', 'SubLanguageID' => 'swe' }] }
