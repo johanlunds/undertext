@@ -105,7 +105,7 @@ class AppController < NSObject
   def search(movies)
     do_work do
       @client.searchSubtitles(movies)
-      @resController.reload
+      @resController.reloadData
     end
   rescue Client::ConnectionError => e
     error_status("Error when searching", "Please check your internet connection and/or www.opensubtitles.org. A search will be automatically done next time you reconnect.\nError message: #{e.message}")

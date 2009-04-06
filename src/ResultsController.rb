@@ -15,7 +15,7 @@ class ResultsController < NSObject
   
   def init
     super_init
-    @movies = []
+    @movies = [].to_ns # need to be NSArray, see "outlineView_sortDescriptorsDidChange"
     @language = nil
     self
   end
@@ -27,7 +27,7 @@ class ResultsController < NSObject
     else
       sender.selectedItem.representedObject
     end
-    reload
+    reloadData
   end
   
   # subs to download
@@ -39,7 +39,7 @@ class ResultsController < NSObject
   
   def add_movies(movies)
     @movies += movies
-    reload
+    reloadData
   end
   
   def outlineView_child_ofItem(outline, index, item)
@@ -65,7 +65,7 @@ class ResultsController < NSObject
   # setting checked state
   def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
     item.download = value
-    reload # because other items could have changed values
+    reloadData # because other items could have changed values
   end
   
   # Update info window with selected sub (or nil)
@@ -78,7 +78,12 @@ class ResultsController < NSObject
     @infoController.subtitle = sub
   end
   
-  def reload
+  def outlineView_sortDescriptorsDidChange(outline, oldDescriptors)
+    reloadData
+  end
+  
+  def reloadData
+    sortData
     @outline.reloadData
     updateCounts
   end
@@ -92,5 +97,11 @@ class ResultsController < NSObject
       end
       @downloadSelected.setEnabled(sel_count != 0)
       @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
+    end
+    
+    # arrays need to be NSArray (because they have method "sortUsingDescriptors")
+    def sortData
+      @movies.each { |movie| movie.all_subtitles.sortUsingDescriptors(@outline.sortDescriptors) }
+      @movies.sortUsingDescriptors(@outline.sortDescriptors)
     end
 end
