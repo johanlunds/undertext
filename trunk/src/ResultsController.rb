@@ -15,7 +15,7 @@ class ResultsController < NSObject
   
   def init
     super_init
-    @movies = [].to_ns # need to be NSArray, see "outlineView_sortDescriptorsDidChange"
+    @movies = [].to_ns # need to be NSArray, see "sortData"
     @language = nil
     self
   end
