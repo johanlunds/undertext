@@ -14,7 +14,7 @@ class Movie < NSObject
     init
     @filename = filename
     @hash = nil
-    # need to be NSArray, see "ResultsController#outlineView_sortDescriptorsDidChange"
+    # need to be NSArray, see "ResultsController#sortData"
     @all_subtitles = [].to_ns
     @resController = resController
     self
