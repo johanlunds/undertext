@@ -8,13 +8,14 @@
 
 class Movie < NSObject
 
-  attr_reader :filename
+  attr_reader :filename, :all_subtitles
 
   def initWithFile(filename, resController)
     init
     @filename = filename
     @hash = nil
-    @all_subtitles = []
+    # need to be NSArray, see "ResultsController#outlineView_sortDescriptorsDidChange"
+    @all_subtitles = [].to_ns
     @resController = resController
     self
   end
@@ -29,7 +30,7 @@ class Movie < NSObject
   end
   
   def subtitles=(subs)
-    @all_subtitles = subs
+    @all_subtitles = subs.to_ns
     subs.each { |sub| sub.movie = self }
   end
   
