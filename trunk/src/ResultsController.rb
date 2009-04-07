@@ -42,10 +42,25 @@ class ResultsController < NSObject
     checkSelected(sender)
   end
   
+  ib_action :openFile
+  def openFile(sender)
+    path = @outline.itemAtRow(@outline.selectedRow).filename
+    NSWorkspace.sharedWorkspace.openFile(path)
+  end
+  
+  ib_action :revealFile
+  def revealFile(sender)
+    path = @outline.itemAtRow(@outline.selectedRow).filename
+    NSWorkspace.sharedWorkspace.selectFile_inFileViewerRootedAtPath(path, nil)
+  end
+  
   def validateMenuItem(item)
     case item.action
     when 'checkSelected:', 'onlyCheckSelected:'
       @outline.numberOfSelectedRows > 0
+    when 'openFile:', 'revealFile:'
+      @outline.numberOfSelectedRows > 0 &&
+        File.exists?(@outline.itemAtRow(@outline.selectedRow).filename)
     else
       true
     end
