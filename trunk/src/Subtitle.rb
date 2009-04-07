@@ -8,13 +8,13 @@
 
 class Subtitle < NSObject
 
-  attr_accessor :movie
-  attr_reader :info, :download, :language
+  attr_accessor :movie, :download
+  attr_reader :info, :language
   
   def initWithInfo(info)
     init
     @info = info
-    @download = NSOffState
+    @download = false
     @movie = nil
     @language = Language.alloc.initWithInfo(info)
     self
@@ -28,13 +28,8 @@ class Subtitle < NSObject
     path
   end
   
-  def download=(value)
-    @download = (value != NSOffState) ? NSOnState : NSOffState
-  end
-  
-  # boolean value instead of internal NSOnState/NSOffState
-  def download?
-    @download == NSOnState
+  def downloadState
+    @download ? NSOnState : NSOffState
   end
   
   def title
