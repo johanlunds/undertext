@@ -3,7 +3,7 @@
 Application for downloading subtitles for your movies and tv episodes using
 OpenSubtitles.org.
 
-The searching is done by calculating a hash for every movie file and then looking
+The searching is done by calculating a hash value for every movie file and then looking
 in OpenSubtitles.org's database for matching subtitles. This way you find matching
 subtitles quickly and can be sure they'll be correctly sync'ed with the video.
 
@@ -28,8 +28,8 @@ Credits.rtf for more acknowledgements.
 == Installation and Usage ==
 
 Download the latest version from the homepage, or build from source using 
-Xcode or by running `rake package` (only works with a SVN working copy) in the
-terminal. Open the dmg-file and copy the bundled `.app` into your
+Xcode or by running `rake package` in the terminal (only works with a SVN
+working copy). Open the dmg-file and copy the bundled `.app` into your
 Applications-folder.
 
 Launch Undertext.app with movie files or/and folders and it'll search for subtitles.
