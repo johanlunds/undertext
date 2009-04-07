@@ -8,7 +8,7 @@
 
 class ResultsController < NSObject
   
-  ALL_LANGUAGES = "Show all"
+  CHECK_TAG = 1
   
   ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
   attr_reader :movies, :language
@@ -22,18 +22,39 @@ class ResultsController < NSObject
   
   ib_action :languageSelected
   def languageSelected(sender)
-    @language = if sender.selectedItem.title == ALL_LANGUAGES
-      nil
-    else
-      sender.selectedItem.representedObject
+    @language = sender.selectedItem.representedObject
+    reloadData
+  end
+  
+  # both for check and uncheck
+  ib_action :checkSelected
+  def checkSelected(sender)
+    value = (sender.tag == CHECK_TAG)
+    @outline.selectedRowIndexes.to_a.each do |row|
+      @outline.itemAtRow(row).download = value
     end
     reloadData
+  end
+  
+  ib_action :onlyCheckSelected
+  def onlyCheckSelected(sender)
+    @movies.each { |movie| movie.download = false }
+    checkSelected(sender)
+  end
+  
+  def validateMenuItem(item)
+    case item.action
+    when 'checkSelected:', 'onlyCheckSelected:'
+      @outline.numberOfSelectedRows > 0
+    else
+      true
+    end
   end
   
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
-      downloads + movie.subtitles.select { |sub| sub.download? }
+      downloads + movie.subtitles.select { |sub| sub.download }
     end
   end
   
@@ -59,23 +80,19 @@ class ResultsController < NSObject
   end
   
   def outlineView_willDisplayCell_forTableColumn_item(outline, cell, tableColumn, item)
-    cell.setTitle(item.title) if tableColumn.identifier == "download"
+    cell.setTitle(item.title) if tableColumn.identifier == "downloadState"
   end
   
-  # setting checked state
+  # setting checked state. movies does it for each of it's subtitles
   def outlineView_setObjectValue_forTableColumn_byItem(outline, value, tableColumn, item)
-    item.download = value
-    reloadData # because other items could have changed values
+    item.download = (value != NSOffState)
+    reloadData
   end
   
-  # Update info window with selected sub (or nil)
+  # Update info window with selected item (or nil)
   def outlineViewSelectionDidChange(notification)
-    sub = nil
-    if @outline.selectedRow != -1
-      item = @outline.itemAtRow(@outline.selectedRow)
-      sub = item if item.is_a? Subtitle
-    end
-    @infoController.subtitle = sub
+    item = @outline.itemAtRow(@outline.selectedRow)
+    @infoController.subtitle = item.is_a?(Subtitle) ? item : nil
   end
   
   def outlineView_sortDescriptorsDidChange(outline, oldDescriptors)

@@ -19,8 +19,7 @@ class AppController < NSObject
   
   NON_LANGUAGE_ITEMS = 2
 
-  attr_accessor :addLanguageToFile
-  ib_outlets :window, :resController, :connStatus, :workingStatus, :languages
+  ib_outlets :window, :resController, :connStatus, :workingStatus, :languages, :addLanguage
   
   def init
     super_init
@@ -94,7 +93,7 @@ class AppController < NSObject
   def downloadSelected(sender)
     do_work do
       @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-        filename = sub.filename(self.addLanguageToFile?)
+        filename = sub.filename(@addLanguage.state == NSOnState)
         File.open(filename, 'w') { |f| f.write(subData) }
       end
     end
@@ -127,10 +126,6 @@ class AppController < NSObject
         @languages.menu.addItem(item)
       end
       @languages.setEnabled(true)
-    end
-    
-    def addLanguageToFile?
-      @addLanguageToFile == NSOnState
     end
   
     # do "the work" in a supplied block
