@@ -32,7 +32,7 @@ end
 
 desc "Build, package and generate info for appcast"
 task :release => :package do
-  sig = `ruby bin/sign_update.rb #{pkg_path} res/dsa_priv.pem`
+  sig = `openssl dgst -sha1 -binary < '#{pkg_path}' | openssl dgst -dss1 -sign dsa_priv.pem | openssl enc -base64`
   
   puts
   puts "Todo list"
