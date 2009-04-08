@@ -111,8 +111,7 @@ class ResultsController < NSObject
   
   # Update info window with selected item (or nil)
   def outlineViewSelectionDidChange(notification)
-    item = @outline.itemAtRow(@outline.selectedRow)
-    @infoController.subtitle = item.is_a?(Subtitle) ? item : nil
+    @infoController.item = @outline.itemAtRow(@outline.selectedRow)
   end
   
   def outlineView_sortDescriptorsDidChange(outline, oldDescriptors)

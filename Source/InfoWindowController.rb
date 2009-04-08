@@ -16,8 +16,8 @@ class InfoWindowController < NSWindowController
     self
   end
   
-  def subtitle=(sub)
-    @info = sub.nil? ? [] : sub.info.to_a.sort
+  def item=(item)
+    @info = item.nil? ? [] : item.info.to_a.sort
     @table.reloadData
   end
   

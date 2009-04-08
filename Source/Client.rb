@@ -77,7 +77,17 @@ class Client
   def languages
     result = call('GetSubLanguages')
     result['data'].map { |langInfo| Language.alloc.initWithInfo(langInfo) }
-  end  
+  end
+  
+  def movieDetails(movies)
+    logIn if loggedOut
+    movieHashes = movies.map { |movie| movie.osdb_hash }
+    result = call('CheckMovieHash', @token, movieHashes)
+    
+    movies.each do |movie|
+      movie.info = result['data'][movie.osdb_hash] unless result['data'][movie.osdb_hash].empty?
+    end
+  end
   
   private
   
