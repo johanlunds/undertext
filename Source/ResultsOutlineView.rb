@@ -10,10 +10,14 @@ class ResultsOutlineView < NSOutlineView
 
   ib_outlets :movieMenu
   
-  # todo: fix selection
+  # outline has separate menus for movies and subtitles.
+  # provides more natural selection behaviour: selects row under mouse pointer
+  # because the menu shown will be for that kind of item.
   def menuForEvent(event)
-    item = itemAtRow(rowAtPoint(convertPoint_fromView(event.locationInWindow, nil)))
-    if item.is_a? Movie
+    row = rowAtPoint(convertPoint_fromView(event.locationInWindow, nil))
+    selectRowIndexes_byExtendingSelection(NSIndexSet.indexSetWithIndex(row), isRowSelected(row)) if row >= 0
+    
+    if itemAtRow(row).is_a? Movie
       @movieMenu
     else
       menu
