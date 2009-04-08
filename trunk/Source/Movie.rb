@@ -8,12 +8,14 @@
 
 class Movie < NSObject
 
+  attr_accessor :info
   attr_reader :filename, :all_subtitles
 
   def initWithFile(filename, resController)
     init
     @filename = filename
     @hash = nil
+    @info = {}
     # need to be NSArray, see "ResultsController#sortData"
     @all_subtitles = [].to_ns
     @resController = resController

@@ -8,11 +8,11 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="548"/>
-			<integer value="567"/>
 			<integer value="373"/>
-			<integer value="534"/>
+			<integer value="548"/>
 			<integer value="29"/>
+			<integer value="567"/>
+			<integer value="534"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1222,7 +1222,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{893, 378}, {289, 264}}</string>
 				<int key="NSWTFlags">-1535639552</int>
-				<string key="NSWindowTitle">Subtitle Info</string>
+				<string key="NSWindowTitle">Info</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -3232,13 +3232,11 @@
 							<string>languageSelected:</string>
 							<string>onlyCheckSelected:</string>
 							<string>openFile:</string>
-							<string>openIMDB:</string>
 							<string>openURL:</string>
 							<string>revealFile:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

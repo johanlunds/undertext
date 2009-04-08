@@ -104,6 +104,7 @@ class AppController < NSObject
   def search(movies)
     do_work do
       @client.searchSubtitles(movies)
+      @client.movieDetails(movies)
       @resController.reloadData
     end
   rescue Client::ConnectionError => e
