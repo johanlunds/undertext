@@ -59,6 +59,10 @@ class Movie < NSObject
     "http://www.opensubtitles.org/search/moviebytesize-#{File.size(@filename)}/moviehash-#{osdb_hash}"
   end
   
+  def imdb_url
+    "http://www.imdb.com/title/tt#{@info["MovieImdbID"]}" if @info["MovieImdbID"]
+  end
+  
   def title
     File.basename(@filename)
   end
