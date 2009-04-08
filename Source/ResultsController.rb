@@ -54,13 +54,18 @@ class ResultsController < NSObject
     NSWorkspace.sharedWorkspace.selectFile_inFileViewerRootedAtPath(path, nil)
   end
   
+  ib_action :openURL
+  def openURL(sender)
+    url = @outline.itemAtRow(@outline.selectedRow).url
+    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
+  end
+  
   def validateMenuItem(item)
+    return false if @outline.numberOfSelectedRows <= 0
+    
     case item.action
-    when 'checkSelected:', 'onlyCheckSelected:'
-      @outline.numberOfSelectedRows > 0
     when 'openFile:', 'revealFile:'
-      @outline.numberOfSelectedRows > 0 &&
-        File.exists?(@outline.itemAtRow(@outline.selectedRow).filename)
+      File.exists?(@outline.itemAtRow(@outline.selectedRow).filename)
     else
       true
     end
