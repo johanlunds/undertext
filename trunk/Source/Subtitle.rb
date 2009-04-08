@@ -33,6 +33,10 @@ class Subtitle < NSObject
     @download ? NSOnState : NSOffState
   end
   
+  def url
+    "http://www.opensubtitles.org/subtitles/#{@info["IDSubtitle"]}"
+  end
+  
   def title
     @info["SubFileName"]
   end

@@ -53,6 +53,10 @@ class Movie < NSObject
     end
   end
   
+  def url
+    "http://www.opensubtitles.org/search/moviebytesize-#{File.size(@filename)}/moviehash-#{osdb_hash}"
+  end
+  
   def title
     File.basename(@filename)
   end
