@@ -60,12 +60,20 @@ class ResultsController < NSObject
     NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
   end
   
+  ib_action :openIMDB
+  def openIMDB(sender)
+    url = @outline.itemAtRow(@outline.selectedRow).imdb_url
+    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
+  end
+  
   def validateMenuItem(item)
     return false if @outline.numberOfSelectedRows <= 0
     
     case item.action
     when 'openFile:', 'revealFile:'
       File.exists?(@outline.itemAtRow(@outline.selectedRow).filename)
+    when 'openIMDB:'
+      !@outline.itemAtRow(@outline.selectedRow).imdb_url.nil?
     else
       true
     end
