@@ -8,11 +8,11 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="29"/>
-			<integer value="567"/>
-			<integer value="373"/>
-			<integer value="548"/>
 			<integer value="534"/>
+			<integer value="567"/>
+			<integer value="29"/>
+			<integer value="368"/>
+			<integer value="548"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -830,7 +830,8 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">1.700000e+01</double>
-											<int key="NSTvFlags">-624918528</int>
+											<int key="NSTvFlags">-608141312</int>
+											<string key="NSAutosaveName">resultsOutline</string>
 											<int key="NSColumnAutoresizingStyle">1</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1069,6 +1070,7 @@
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMinSize">{451, 306}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSFrameAutosaveName">mainWindow</string>
 			</object>
 			<object class="NSCustomObject" id="817593554">
 				<string key="NSClassName">AppController</string>
@@ -1323,7 +1325,8 @@
 											<reference key="NSBackgroundColor" ref="441006955"/>
 											<reference key="NSGridColor" ref="243394601"/>
 											<double key="NSRowHeight">1.500000e+01</double>
-											<int key="NSTvFlags">-692060160</int>
+											<int key="NSTvFlags">-675282944</int>
+											<string key="NSAutosaveName">infoTable</string>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1377,6 +1380,7 @@
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMinSize">{213, 126}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSFrameAutosaveName">infoWindow</string>
 			</object>
 			<object class="NSCustomObject" id="435798733">
 				<string key="NSClassName">InfoWindowController</string>
