@@ -19,7 +19,7 @@ class AppController < NSObject
   
   NON_LANGUAGE_ITEMS = 2
 
-  ib_outlets :window, :resController, :connStatus, :workingStatus, :languages, :addLanguage
+  ib_outlets :mainWindow, :resController, :infoController, :connStatus, :workingStatus, :languages, :addLanguage
   
   def init
     super_init
@@ -27,9 +27,23 @@ class AppController < NSObject
     self
   end
   
-  def applicationWillFinishLaunching(notification)
+  def awakeFromNib
     @workingStatus.setUsesThreadedAnimation(true) # todo: remove if changing to threaded api-calls
+    @mainWindow.makeKeyAndOrderFront(nil)
+    @mainWindow.setExcludedFromWindowsMenu(true)
+  end
+  
+  def applicationWillFinishLaunching(notification)
     connectToServer(nil)
+  end
+  
+  def applicationShouldHandleReopen_hasVisibleWindows(app, visibleWindows)
+    @mainWindow.makeKeyAndOrderFront(nil) unless visibleWindows
+    false # means NSApplication won't try to make a new untitled document
+  end
+  
+  def applicationWillTerminate(notification)
+    # todo: save user defaults
   end
   
   def self.appVersion
@@ -41,6 +55,9 @@ class AppController < NSObject
     case item.action
     when 'connectToServer:'
       @client.loggedOut
+    when 'toggleInfoWindow:'
+      item.setTitle(@infoController.window.isVisible ? "Hide Info" : "Show Info")
+      true
     else
       true
     end
@@ -58,6 +75,20 @@ class AppController < NSObject
     status("Connected to OpenSubtitles.org (#{total} subtitles)")
   rescue Client::ConnectionError => e
     error_status("Error when connecting to server", "Please check your internet connection and/or www.opensubtitles.org before trying to reconnect.\nError message: #{e.message}")
+  end
+  
+  ib_action :showMainWindow
+  def showMainWindow(sender)
+    @mainWindow.makeKeyAndOrderFront(nil)
+  end
+  
+  ib_action :toggleInfoWindow
+  def toggleInfoWindow(sender)
+    if @infoController.window.isVisible
+      @infoController.close
+    else
+      @infoController.showWindow(nil)
+    end
   end
   
   # for folders it searches recursively for movie files
@@ -79,7 +110,7 @@ class AppController < NSObject
     open.setAllowsMultipleSelection(true)
     open.setCanChooseDirectories(true)
     open.beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
-      nil, nil, ["public.movie"], @window, self,
+      nil, nil, ["public.movie"], @mainWindow, self,
       'openPanelDidEnd:returnCode:contextInfo:', nil
     )
   end
