@@ -8,11 +8,11 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="534"/>
-			<integer value="567"/>
-			<integer value="29"/>
 			<integer value="368"/>
+			<integer value="567"/>
 			<integer value="548"/>
+			<integer value="534"/>
+			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1040,6 +1040,7 @@
 											<reference key="NSTarget" ref="155138283"/>
 										</object>
 									</object>
+									<bool key="NSNoAutoenable">YES</bool>
 								</object>
 								<int key="NSPreferredEdge">1</int>
 								<bool key="NSUsesItemFromMenu">YES</bool>
