@@ -10,12 +10,8 @@ class AppController < NSObject
   
   # Used if looking by UTI is too cumbersome
   EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
-  
-  URLS = [
-    'http://www.opensubtitles.org',
-    'http://www.opensubtitles.org/upload',
-    'http://code.google.com/p/undertext'
-  ]
+  URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
+  FILES = ['License.rtf', 'Acknowledgements.rtf']
   
   NON_LANGUAGE_ITEMS = 2
 
@@ -146,6 +142,12 @@ class AppController < NSObject
   ib_action :openURL
   def openURL(sender)
     NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(URLS[sender.tag]))
+  end
+  
+  # Show license and acknowledgements
+  ib_action :openFile
+  def openFile(sender)
+    NSWorkspace.sharedWorkspace.openFile(NSBundle.mainBundle.resourcePath + "/" + FILES[sender.tag])
   end
   
   private
