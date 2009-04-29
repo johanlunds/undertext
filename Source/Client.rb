@@ -30,17 +30,13 @@ class Client
     @token = result['token']
   end
   
-  def loggedOut
-    @token.nil?
-  end
-  
   def serverInfo
     call('ServerInfo')
   end
   
   # Adds subs to movie objects.
   def searchSubtitles(movies)
-    logIn if loggedOut
+    logIn if @token.nil?
     args = movies.map do |movie|
       {
         'sublanguageid' => '', # searches all languages
@@ -62,7 +58,7 @@ class Client
   # takes a block for doing whatever with downloaded data for each sub
   # if "subs" is empty the XMLRPC result will have status = 408
   def downloadSubtitles(subs)
-    logIn if loggedOut
+    logIn if @token.nil?
     subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
     result = call('DownloadSubtitles', @token, subIds)
     
@@ -80,7 +76,7 @@ class Client
   end
   
   def movieDetails(movies)
-    logIn if loggedOut
+    logIn if @token.nil?
     movieHashes = movies.map { |movie| movie.osdb_hash }
     result = call('CheckMovieHash', @token, movieHashes)
     

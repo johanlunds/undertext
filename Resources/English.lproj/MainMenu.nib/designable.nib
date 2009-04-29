@@ -9,10 +9,10 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="368"/>
-			<integer value="567"/>
-			<integer value="29"/>
+			<integer value="81"/>
 			<integer value="600"/>
 			<integer value="548"/>
+			<integer value="567"/>
 			<integer value="535"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -267,7 +267,7 @@
 								</object>
 								<object class="NSMenuItem" id="1046948685">
 									<reference key="NSMenu" ref="720053764"/>
-									<string key="NSTitle">Connect to Server</string>
+									<string key="NSTitle">Reconnect to Server</string>
 									<string key="NSKeyEquiv">r</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -3812,7 +3812,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{104, 633}, {201, 93}}</string>
+					<string>{{104, 633}, {215, 93}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{323, 672}, {199, 203}}</string>
