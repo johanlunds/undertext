@@ -12,14 +12,16 @@ class AppController < NSObject
   EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgements.rtf']
-  
+  DEFAULTS = { 'authEnabled' => false, 'username' => '' }
   NON_LANGUAGE_ITEMS = 2
 
-  ib_outlets :mainWindow, :resController, :infoController, :connStatus, :workingStatus, :languages, :addLanguage
+  ib_outlets :resController, :infoController, :prefController
+  ib_outlets :mainWindow, :connStatus, :workingStatus, :languages, :addLanguage
   
   def init
     super_init
     @client = Client.new
+    NSUserDefaults.standardUserDefaults.registerDefaults(DEFAULTS)
     self
   end
   
@@ -42,10 +44,6 @@ class AppController < NSObject
     # todo: save user defaults
   end
   
-  def self.appVersion
-    NSBundle.mainBundle.infoDictionary["CFBundleVersion"]
-  end
-  
   # Automatically called. Returns boolean for menu item's enabled state.
   def validateMenuItem(item)
     case item.action
@@ -62,10 +60,12 @@ class AppController < NSObject
   # logs in, adds languages and displays current connection status.
   # todo: if changing to threaded api calls put those in "do_work"-block
   # todo: call "search"
+  # todo: logout before logging in?
   ib_action :connectToServer
   def connectToServer(sender)
     status("Connecting...")
-    @client.logIn
+    username, password = @prefController.authentication
+    @client.logIn(username, password)
     add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
     total = @client.serverInfo['subs_subtitle_files']
     status("Connected to OpenSubtitles.org (#{total} subtitles)")

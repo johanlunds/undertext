@@ -24,9 +24,9 @@ class Client
     @token = nil
   end
   
-  # Log in anonymously
-  def logIn
-    result = call('LogIn', '', '', '', self.class.userAgent)
+  # send empty username and password for anonymous login
+  def logIn(username, password)
+    result = call('LogIn', username, password, '', self.class.userAgent)
     @token = result['token']
   end
   
@@ -92,7 +92,7 @@ class Client
   private
   
     def self.userAgent
-      "Undertext v#{AppController.appVersion}"
+      "Undertext v#{NSBundle.mainBundle.infoDictionary["CFBundleVersion"]}"
     end
     
     # Calls method and raises if errors. Sets state to logged out if any errors.
@@ -149,4 +149,4 @@ class FakeClient
 end
 
 # Uncomment when no internet connection etc
-XMLRPC::Client = FakeClient
+# XMLRPC::Client = FakeClient
