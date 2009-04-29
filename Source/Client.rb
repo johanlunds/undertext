@@ -36,7 +36,7 @@ class Client
   
   # Adds subs to movie objects.
   def searchSubtitles(movies)
-    logIn if @token.nil?
+    loginNeeded!
     args = movies.map do |movie|
       {
         'sublanguageid' => '', # searches all languages
@@ -58,7 +58,7 @@ class Client
   # takes a block for doing whatever with downloaded data for each sub
   # if "subs" is empty the XMLRPC result will have status = 408
   def downloadSubtitles(subs)
-    logIn if @token.nil?
+    loginNeeded!
     subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
     result = call('DownloadSubtitles', @token, subIds)
     
@@ -70,13 +70,8 @@ class Client
     end
   end
   
-  def languages
-    result = call('GetSubLanguages')
-    result['data'].map { |langInfo| Language.alloc.initWithInfo(langInfo) }
-  end
-  
   def movieDetails(movies)
-    logIn if @token.nil?
+    loginNeeded!
     movieHashes = movies.map { |movie| movie.osdb_hash }
     result = call('CheckMovieHash', @token, movieHashes)
     
@@ -85,7 +80,16 @@ class Client
     end
   end
   
+  def languages
+    result = call('GetSubLanguages')
+    result['data'].map { |langInfo| Language.alloc.initWithInfo(langInfo) }
+  end
+  
   private
+  
+    def loginNeeded!
+      logIn if @token.nil?
+    end
   
     def self.userAgent
       "Undertext v#{NSBundle.mainBundle.infoDictionary["CFBundleVersion"]}"
