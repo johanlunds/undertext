@@ -47,8 +47,6 @@ class AppController < NSObject
   # Automatically called. Returns boolean for menu item's enabled state.
   def validateMenuItem(item)
     case item.action
-    when 'connectToServer:'
-      @client.loggedOut
     when 'toggleInfoWindow:'
       item.setTitle(@infoController.window.isVisible ? "Hide Info" : "Show Info")
       true
