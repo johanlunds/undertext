@@ -102,15 +102,16 @@ class Client
       
       begin
         result = @client.call(method, *args)
-      rescue SocketError, IOError, RuntimeError, XMLRPC::FaultException, Timeout::Error => e
+      rescue SocketError, IOError, RuntimeError, SystemCallError, XMLRPC::FaultException, Timeout::Error => e
         # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
+        # and SystemCallError = Errno::*
         @token = nil
         raise ConnectionError, "#{e.message} (#{e.class})"
       end
       
       if self.class.result_error?(result)
         @token = nil
-        raise ConnectionError, "Result's status was '#{result['status']}'"
+        raise ConnectionError, "Result status was '#{result['status']}'"
       end
       
       result
