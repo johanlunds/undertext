@@ -19,14 +19,16 @@ class Client
 
   HOST = "http://www.opensubtitles.org/xml-rpc"
   
-  def initialize
-    @client = XMLRPC::Client.new2(HOST)
+  # empty username and password becomes anonymous login
+  def initialize(username, password)
+    @client = XMLRPC::Client.new_from_uri(HOST)
     @token = nil
+    @username = username
+    @password = password
   end
   
-  # send empty username and password for anonymous login
-  def logIn(username, password)
-    result = call('LogIn', username, password, '', self.class.userAgent)
+  def logIn
+    result = call('LogIn', @username, @password, '', self.class.userAgent)
     @token = result['token']
   end
   
