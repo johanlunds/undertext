@@ -30,9 +30,7 @@ class ResultsController < NSObject
   ib_action :checkSelected
   def checkSelected(sender)
     value = (sender.tag == CHECK_TAG)
-    @outline.selectedRowIndexes.to_a.each do |row|
-      @outline.itemAtRow(row).download = value
-    end
+    @outline.selectedItems.each { |item| item.download = value }
     reloadData
   end
   
@@ -44,25 +42,25 @@ class ResultsController < NSObject
   
   ib_action :openFile
   def openFile(sender)
-    path = @outline.itemAtRow(@outline.selectedRow).filename
+    path = @outline.selectedItem.filename
     NSWorkspace.sharedWorkspace.openFile(path)
   end
   
   ib_action :revealFile
   def revealFile(sender)
-    path = @outline.itemAtRow(@outline.selectedRow).filename
+    path = @outline.selectedItem.filename
     NSWorkspace.sharedWorkspace.selectFile_inFileViewerRootedAtPath(path, nil)
   end
   
   ib_action :openURL
   def openURL(sender)
-    url = @outline.itemAtRow(@outline.selectedRow).url
+    url = @outline.selectedItem.url
     NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
   end
   
   ib_action :openIMDB
   def openIMDB(sender)
-    url = @outline.itemAtRow(@outline.selectedRow).imdb_url
+    url = @outline.selectedItem.imdb_url
     NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
   end
   
@@ -71,9 +69,9 @@ class ResultsController < NSObject
     
     case item.action
     when 'openFile:', 'revealFile:'
-      File.exists?(@outline.itemAtRow(@outline.selectedRow).filename)
+      File.exists?(@outline.selectedItem.filename)
     when 'openIMDB:'
-      !@outline.itemAtRow(@outline.selectedRow).imdb_url.nil?
+      !@outline.selectedItem.imdb_url.nil?
     else
       true
     end
@@ -119,7 +117,7 @@ class ResultsController < NSObject
   
   # Update info window with selected item (or nil)
   def outlineViewSelectionDidChange(notification)
-    @infoController.item = @outline.itemAtRow(@outline.selectedRow)
+    @infoController.item = @outline.selectedItem
   end
   
   def outlineView_sortDescriptorsDidChange(outline, oldDescriptors)
