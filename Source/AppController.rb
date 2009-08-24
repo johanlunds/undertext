@@ -20,7 +20,7 @@ class AppController < NSObject
   
   def init
     super_init
-    @client = Client.new
+    @client = nil
     NSUserDefaults.standardUserDefaults.registerDefaults(DEFAULTS)
     self
   end
@@ -32,7 +32,7 @@ class AppController < NSObject
   end
   
   def applicationWillFinishLaunching(notification)
-    connectToServer(nil)
+    reconnect(nil)
   end
   
   def applicationShouldHandleReopen_hasVisibleWindows(app, visibleWindows)
@@ -59,11 +59,12 @@ class AppController < NSObject
   # todo: if changing to threaded api calls put those in "do_work"-block
   # todo: call "search"
   # todo: logout before logging in?
-  ib_action :connectToServer
-  def connectToServer(sender)
+  ib_action :reconnect
+  def reconnect(sender)
     status("Connecting...")
     username, password = @prefController.authentication
-    @client.logIn(username, password)
+    @client = Client.new(username, password)
+    @client.logIn
     add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
     total = @client.serverInfo['subs_subtitle_files']
     status("Connected to OpenSubtitles.org (#{total} subtitles)")
