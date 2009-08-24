@@ -161,11 +161,13 @@ class AppController < NSObject
     end
   
     # do "the work" in a supplied block
-    # todo: if exception in yield animation will keep going
     def do_work
+      @workingStatus.setHidden(false)
       @workingStatus.startAnimation(self)
       yield
+    ensure
       @workingStatus.stopAnimation(self)
+      @workingStatus.setHidden(true)
     end
     
     def status(msg)
