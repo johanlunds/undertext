@@ -23,4 +23,12 @@ class ResultsOutlineView < NSOutlineView
       menu
     end
   end
+  
+  def selectedItem
+    itemAtRow(selectedRow)
+  end
+  
+  def selectedItems
+    selectedRowIndexes.to_a.map { |row| itemAtRow(row) }
+  end
 end
