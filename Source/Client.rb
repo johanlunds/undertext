@@ -98,6 +98,8 @@ class Client
     end
     
     # Calls method and raises if errors. Sets state to logged out if any errors.
+    # TODO: for some exceptions (seems to be EOF) @client.call will raise "broken pipe" for 
+    # subsequent calls, ie. the underlying IO-object seems to be broken
     def call(method, *args)
       # convert NSObjects to Ruby equivalents before XMLRPC converting
       args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }
