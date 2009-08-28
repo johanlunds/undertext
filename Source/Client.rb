@@ -129,29 +129,3 @@ class Client
       Zlib::GzipReader.new(StringIO.new(XMLRPC::Base64.decode(data))).read
     end
 end
-
-class FakeClient
-  def self.new2(*args)
-    new
-  end
-  
-  def call(method, *args)
-    case method
-    when 'LogIn'
-      { 'token' => 'abc' }
-    when 'ServerInfo'
-      { 'subs_subtitle_files' => '123' }
-    when 'SearchSubtitles' # might stop working
-      { 'data' => [{'LanguageName' => 'English', 'ISO639' => 'en', 'SubLanguageID' => 'eng', 'MovieHash' => args[1][0]['moviehash'], 'SubFormat' => 'srt', 'SubFileName' => 'hej.srt', 'SubDownloadsCnt' => '100', 'IDSubtitleFile' => '1'}] }
-    when 'DownloadSubtitles'
-      { 'data' => false } # might not work
-    when 'GetSubLanguages'
-      { 'data' => [{ 'LanguageName' => 'English', 'ISO639' => 'en', 'SubLanguageID' => 'eng' }, { 'LanguageName' => 'Swedish', 'ISO639' => 'sv', 'SubLanguageID' => 'swe' }] }
-    else
-      nil
-    end
-  end
-end
-
-# Uncomment when no internet connection etc
-# XMLRPC::Client = FakeClient

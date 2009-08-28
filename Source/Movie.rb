@@ -8,6 +8,8 @@
 
 class Movie < NSObject
 
+  CHUNK_SIZE = 64 * 1024 # 64 kbytes, used in compute_hash
+
   attr_accessor :info
   attr_reader :filename, :all_subtitles
 
@@ -76,7 +78,7 @@ class Movie < NSObject
   end
   
   def osdb_hash
-    @hash ||= MovieHasher.compute_hash(@filename)
+    @hash ||= compute_hash
   end
   
   def childAtIndex(index)
@@ -90,4 +92,29 @@ class Movie < NSObject
   def isExpandable
     true
   end
+  
+  private
+
+    def compute_hash
+      filesize = File.size(@filename)
+      hash = filesize
+
+      # Read 64 kbytes, divide up into 64 bits and add each
+      # to hash. Do for beginning and end of file.
+      File.open(@filename, 'rb') do |f|    
+        # Q = unsigned long long = 64 bit
+        f.read(CHUNK_SIZE).unpack("Q*").each do |n|
+          hash = hash + n & 0xffffffffffffffff # to remain as 64 bit number
+        end
+
+        f.seek([0, filesize - CHUNK_SIZE].max, IO::SEEK_SET)
+
+        # And again for the end of the file
+        f.read(CHUNK_SIZE).unpack("Q*").each do |n|
+          hash = hash + n & 0xffffffffffffffff
+        end
+      end
+      
+      "%016x" % hash
+    end
 end
