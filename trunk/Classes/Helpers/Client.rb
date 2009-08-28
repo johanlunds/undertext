@@ -6,7 +6,6 @@
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-require 'xmlrpc/client'
 require 'zlib'
 require 'stringio'
 
@@ -21,10 +20,9 @@ class Client
   
   # empty username and password becomes anonymous login
   def initialize(username, password)
-    @client = XMLRPC::Client.new_from_uri(HOST)
-    @token = nil
     @username = username
     @password = password
+    @token = nil
   end
   
   def logIn
@@ -67,7 +65,7 @@ class Client
     result['data'].each do |subInfo|
       # find existing sub object for download
       sub = subs.find { |sub| sub.info["IDSubtitleFile"] == subInfo["idsubtitlefile"] }
-      subData = self.class.decode_and_unzip(subInfo["data"])
+      subData = self.class.decode_base64_and_unzip(subInfo["data"])
       yield sub, subData
     end
   end
@@ -98,34 +96,25 @@ class Client
     end
     
     # Calls method and raises if errors. Sets state to logged out if any errors.
-    # TODO: for some exceptions (seems to be EOF) @client.call will raise "broken pipe" for 
-    # subsequent calls, ie. the underlying IO-object seems to be broken
     def call(method, *args)
-      # convert NSObjects to Ruby equivalents before XMLRPC converting
-      args.map! { |arg| arg.is_a?(NSObject) ? arg.to_ruby : arg }
+      request = XMLRPCRequest.alloc.initWithURL(NSURL.URLWithString(HOST))
+      request.setMethod_withParameters(method, args)
+      response = XMLRPCConnection.sendSynchronousXMLRPCRequest(request)
       
-      begin
-        result = @client.call(method, *args)
-      rescue SocketError, IOError, RuntimeError, SystemCallError, XMLRPC::FaultException, Timeout::Error => e
-        # xmlrpc lib sometimes raises RuntimeError (HTTP 500 errors for example)
-        # and SystemCallError = Errno::*
+      unless self.class.response_ok?(response)
         @token = nil
-        raise ConnectionError, "#{e.message} (#{e.class})"
+        raise ConnectionError, "Unknown error"
       end
       
-      if self.class.result_error?(result)
-        @token = nil
-        raise ConnectionError, "Result status was '#{result['status']}'"
-      end
-      
-      result
+      response.object
     end
     
-    def self.result_error?(result)
-      result['status'] && !(200..299).include?(result['status'].to_i)
+    # Does a result exist and if so is there a status we should check?
+    def self.response_ok?(response)
+      response && response.object && (!response.object['status'] || (200..299) === response.object['status'].to_i)
     end
     
-    def self.decode_and_unzip(data)
-      Zlib::GzipReader.new(StringIO.new(XMLRPC::Base64.decode(data))).read
+    def self.decode_base64_and_unzip(data)
+      Zlib::GzipReader.new(StringIO.new(data.unpack("m")[0])).read
     end
 end

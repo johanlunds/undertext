@@ -18,6 +18,8 @@
 		020A3651104861CA00C76517 /* Subtitle.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A3645104861CA00C76517 /* Subtitle.rb */; };
 		020A3652104861CA00C76517 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A3646104861CA00C76517 /* rb_main.rb */; };
 		020A3653104861CA00C76517 /* ResultsOutlineView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A3648104861CA00C76517 /* ResultsOutlineView.rb */; };
+		02E046DD104867FD00C5C0EE /* XMLRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E046DC104867FD00C5C0EE /* XMLRPC.framework */; };
+		02E046E01048681600C5C0EE /* XMLRPC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E046DC104867FD00C5C0EE /* XMLRPC.framework */; };
 		26346C340F6A1C0C00CCAF71 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 26346C330F6A1C0C00CCAF71 /* dsa_pub.pem */; };
 		265F16210FA8715E009203C7 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 265F161F0FA8715E009203C7 /* Acknowledgements.rtf */; };
 		265F16220FA8715E009203C7 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 265F16200FA8715E009203C7 /* License.rtf */; };
@@ -93,6 +95,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				02E046E01048681600C5C0EE /* XMLRPC.framework in CopyFiles */,
 				265F16530FA87B0F009203C7 /* EMKeychain.framework in CopyFiles */,
 				267795950F8C1CFA00ADFA7E /* BWToolkitFramework.framework in CopyFiles */,
 				267795960F8C1CFA00ADFA7E /* Sparkle.framework in CopyFiles */,
@@ -113,6 +116,7 @@
 		020A3645104861CA00C76517 /* Subtitle.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Subtitle.rb; sourceTree = "<group>"; };
 		020A3646104861CA00C76517 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = Classes/rb_main.rb; sourceTree = "<group>"; };
 		020A3648104861CA00C76517 /* ResultsOutlineView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsOutlineView.rb; sourceTree = "<group>"; };
+		02E046DC104867FD00C5C0EE /* XMLRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XMLRPC.framework; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2613C14C0F6A0AF40057DB8A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */,
 				4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */,
 				265F16500FA87B07009203C7 /* EMKeychain.framework in Frameworks */,
+				02E046DD104867FD00C5C0EE /* XMLRPC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +254,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				02E046DC104867FD00C5C0EE /* XMLRPC.framework */,
 				265F164F0FA87B07009203C7 /* EMKeychain.framework */,
 				265771120F8AC0FD00C5921F /* BWToolkitFramework.framework */,
 				2613C14C0F6A0AF40057DB8A /* Sparkle.framework */,

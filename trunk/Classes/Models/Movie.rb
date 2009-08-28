@@ -33,8 +33,9 @@ class Movie < NSObject
     end
   end
   
+  # Argument must be NSArray, which it always is because method is called with result from XMLRPC.framework
   def subtitles=(subs)
-    @all_subtitles = subs.to_ns
+    @all_subtitles = subs
     subs.each { |sub| sub.movie = self }
   end
   
