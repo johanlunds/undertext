@@ -56,9 +56,7 @@ class AppController < NSObject
   end
   
   # logs in, adds languages and displays current connection status.
-  # todo: if changing to threaded api calls put those in "do_work"-block
-  # todo: call "search"
-  # todo: logout before logging in?
+  # todo: call "search" if needed
   ib_action :reconnect
   def reconnect(sender)
     status("Connecting...")
@@ -87,8 +85,6 @@ class AppController < NSObject
   end
   
   # for folders it searches recursively for movie files
-  # todo: this won't execute if connection error at startup
-  # todo: refactor adding of files/movies to outline
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
     folders.each do |folder|
