@@ -21,7 +21,7 @@
 		02E046DD104867FD00C5C0EE /* XMLRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E046DC104867FD00C5C0EE /* XMLRPC.framework */; };
 		02E046E01048681600C5C0EE /* XMLRPC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E046DC104867FD00C5C0EE /* XMLRPC.framework */; };
 		26346C340F6A1C0C00CCAF71 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 26346C330F6A1C0C00CCAF71 /* dsa_pub.pem */; };
-		265F16210FA8715E009203C7 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 265F161F0FA8715E009203C7 /* Acknowledgements.rtf */; };
+		265F16210FA8715E009203C7 /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 265F161F0FA8715E009203C7 /* Acknowledgments.rtf */; };
 		265F16220FA8715E009203C7 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 265F16200FA8715E009203C7 /* License.rtf */; };
 		265F16240FA87168009203C7 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 265F16230FA87168009203C7 /* Readme.rtf */; };
 		265F16500FA87B07009203C7 /* EMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 265F164F0FA87B07009203C7 /* EMKeychain.framework */; };
@@ -122,7 +122,7 @@
 		2613C14C0F6A0AF40057DB8A /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		26346C330F6A1C0C00CCAF71 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		265771120F8AC0FD00C5921F /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
-		265F161F0FA8715E009203C7 /* Acknowledgements.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgements.rtf; sourceTree = "<group>"; };
+		265F161F0FA8715E009203C7 /* Acknowledgments.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
 		265F16200FA8715E009203C7 /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		265F16230FA87168009203C7 /* Readme.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
 		265F164F0FA87B07009203C7 /* EMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EMKeychain.framework; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				4DDCA7110ACC9A6100E082CE /* Info.plist */,
-				265F161F0FA8715E009203C7 /* Acknowledgements.rtf */,
+				265F161F0FA8715E009203C7 /* Acknowledgments.rtf */,
 				265F16200FA8715E009203C7 /* License.rtf */,
 				265F16230FA87168009203C7 /* Readme.rtf */,
 				26EFE7930F31E8FA00B1B95F /* Rakefile */,
@@ -495,7 +495,7 @@
 				2680CDC20F6617A400274EFD /* zh.png in Resources */,
 				26346C340F6A1C0C00CCAF71 /* dsa_pub.pem in Resources */,
 				26EC9EF50F6B3DFC0045F973 /* unknown.png in Resources */,
-				265F16210FA8715E009203C7 /* Acknowledgements.rtf in Resources */,
+				265F16210FA8715E009203C7 /* Acknowledgments.rtf in Resources */,
 				265F16220FA8715E009203C7 /* License.rtf in Resources */,
 				265F16240FA87168009203C7 /* Readme.rtf in Resources */,
 				020A3649104861CA00C76517 /* AppController.rb in Resources */,
