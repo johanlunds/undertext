@@ -44,7 +44,7 @@
 				<string>m4v</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Video file</string>
+			<string>Video</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>

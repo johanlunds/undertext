@@ -108,8 +108,8 @@
 		26346C330F6A1C0C00CCAF71 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		265771120F8AC0FD00C5921F /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWToolkitFramework.framework; sourceTree = "<group>"; };
 		265E9E9A0F3B3E30009DF7F1 /* InfoWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = InfoWindowController.rb; sourceTree = "<group>"; };
-		265F161F0FA8715E009203C7 /* Acknowledgements.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgements.rtf; sourceTree = SOURCE_ROOT; };
-		265F16200FA8715E009203C7 /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = SOURCE_ROOT; };
+		265F161F0FA8715E009203C7 /* Acknowledgements.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgements.rtf; sourceTree = "<group>"; };
+		265F16200FA8715E009203C7 /* License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		265F16230FA87168009203C7 /* Readme.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
 		265F164B0FA87AFD009203C7 /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PreferencesWindowController.rb; sourceTree = "<group>"; };
 		265F164F0FA87B07009203C7 /* EMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EMKeychain.framework; sourceTree = "<group>"; };
@@ -311,6 +311,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				4DDCA7110ACC9A6100E082CE /* Info.plist */,
+				265F161F0FA8715E009203C7 /* Acknowledgements.rtf */,
+				265F16200FA8715E009203C7 /* License.rtf */,
 				265F16230FA87168009203C7 /* Readme.rtf */,
 				26EFE7930F31E8FA00B1B95F /* Rakefile */,
 			);
@@ -329,8 +331,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				265F161F0FA8715E009203C7 /* Acknowledgements.rtf */,
-				265F16200FA8715E009203C7 /* License.rtf */,
 				26346C330F6A1C0C00CCAF71 /* dsa_pub.pem */,
 				2680CD5E0F6617A400274EFD /* flags */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
