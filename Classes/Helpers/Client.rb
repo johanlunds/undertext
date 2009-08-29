@@ -25,13 +25,20 @@ class Client
     @token = nil
   end
   
+  def user
+    @username.empty? ? "anonymous" : @username
+  end
+  
   def logIn
     result = call('LogIn', @username, @password, '', self.class.userAgent)
     @token = result['token']
   end
   
   def serverInfo
-    call('ServerInfo')
+    info = call('ServerInfo')
+    info.delete("last_update_strings") # last_update_strings is unsuitable to show because it's a hash
+    info.delete("application") # application is confusing because of the key-name
+    info
   end
   
   # Adds subs to movie objects.

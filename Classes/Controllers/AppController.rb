@@ -63,11 +63,11 @@ class AppController < NSObject
     username, password = @prefController.authentication
     @client = Client.new(username, password)
     @client.logIn
+    @infoController.defaultInfo = @client.serverInfo
     add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
-    total = @client.serverInfo['subs_subtitle_files']
-    status("Connected to OpenSubtitles.org (#{total} subtitles)")
+    status("Connected to OpenSubtitles.org as #{@client.user}")
   rescue Client::ConnectionError => e
-    error_status("Error when connecting to server", "Please check your internet connection and/or www.opensubtitles.org before trying to reconnect.\nError message: #{e.message}")
+    error_status("Error when connecting to server")
   end
   
   ib_action :showMainWindow
@@ -120,7 +120,7 @@ class AppController < NSObject
       end
     end
   rescue Client::ConnectionError => e
-    error_status("Error when downloading", "Please check your internet connection and/or www.opensubtitles.org before trying again.\nError message: #{e.message}")
+    error_status("Error when downloading")
   end
 
   def search(movies)
@@ -130,7 +130,7 @@ class AppController < NSObject
       @resController.reloadData
     end
   rescue Client::ConnectionError => e
-    error_status("Error when searching", "Please check your internet connection and/or www.opensubtitles.org. A search will be automatically done next time you reconnect.\nError message: #{e.message}")
+    error_status("Error when searching")
   end
   
   # menu items opening websites use this
@@ -172,9 +172,9 @@ class AppController < NSObject
       @connStatus.setTextColor(NSColor.blackColor)
     end
     
-    def error_status(msg, longer_msg)
+    def error_status(msg)
       @connStatus.setStringValue(msg)
       @connStatus.setTextColor(NSColor.redColor)
-      NSRunAlertPanel(msg, longer_msg, nil, nil, nil)
+      NSRunAlertPanel(msg, "Please check your internet connection and www.opensubtitles.org before trying again.", nil, nil, nil)
     end
 end

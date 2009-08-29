@@ -13,11 +13,18 @@ class InfoWindowController < NSWindowController
   def init
     super_init
     @info = []
+    @defaultInfo = []
     self
   end
   
   def item=(item)
-    @info = item.nil? ? [] : item.info.to_a.sort
+    @info = item.nil? ? @defaultInfo : item.info.to_a.sort
+    @table.reloadData
+  end
+  
+  # will get shown when we have nothing else
+  def defaultInfo=(default)
+    @defaultInfo = @info = default.to_a.sort
     @table.reloadData
   end
   
