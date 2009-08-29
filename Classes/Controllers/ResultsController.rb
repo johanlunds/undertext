@@ -106,8 +106,12 @@ class ResultsController < NSObject
   end
   
   def outlineView_willDisplayCell_forTableColumn_item(outline, cell, tableColumn, item)
-    cell.setTitle(item.title) if tableColumn.identifier == "downloadState"
-    cell.setEnabled(!item.isExpandable || item.childrenCount > 0) # disable if movie without subs
+    if tableColumn.identifier == "downloadState"
+      cell.setTitle(item.title)
+      cell.setEnabled(item.isEnabled)
+    else
+      cell.setTextColor(item.isEnabled ? NSColor.controlTextColor : NSColor.disabledControlTextColor)
+    end
   end
   
   # setting checked state. movies does it for each of it's subtitles

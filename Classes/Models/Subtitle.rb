@@ -60,4 +60,8 @@ class Subtitle < NSObject
   def isExpandable
     false
   end
+  
+  def isEnabled
+    true
+  end
 end
