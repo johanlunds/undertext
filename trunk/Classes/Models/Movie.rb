@@ -96,6 +96,10 @@ class Movie < NSObject
     true
   end
   
+  def isEnabled
+    childrenCount > 0
+  end
+  
   private
 
     def compute_hash

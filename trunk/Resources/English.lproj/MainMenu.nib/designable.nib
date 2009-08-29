@@ -8,12 +8,12 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="103"/>
 			<integer value="570"/>
 			<integer value="600"/>
-			<integer value="548"/>
 			<integer value="535"/>
-			<integer value="367"/>
+			<integer value="548"/>
+			<integer value="378"/>
+			<integer value="103"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -719,7 +719,7 @@
 															<string key="NSImageName">NSSwitch</string>
 														</object>
 														<string key="NSAlternateContents"/>
-														<string key="NSKeyEquivalent"/>
+														<string key="NSKeyEquivalent"> </string>
 														<int key="NSPeriodicDelay">200</int>
 														<int key="NSPeriodicInterval">25</int>
 													</object>
@@ -2200,42 +2200,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: password</string>
-						<reference key="source" ref="78253651"/>
-						<reference key="destination" ref="29214403"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="78253651"/>
-							<reference key="NSDestination" ref="29214403"/>
-							<string key="NSLabel">value: password</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">password</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">745</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.username</string>
-						<reference key="source" ref="631438001"/>
-						<reference key="destination" ref="826154771"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="631438001"/>
-							<reference key="NSDestination" ref="826154771"/>
-							<string key="NSLabel">value: values.username</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.username</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSConditionallySetsEnabled</string>
-								<boolean value="YES" key="NS.object.0" id="5"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">750</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: values.authEnabled</string>
 						<reference key="source" ref="631438001"/>
 						<reference key="destination" ref="826154771"/>
@@ -2301,6 +2265,55 @@
 						<reference key="destination" ref="997526447"/>
 					</object>
 					<int key="connectionID">764</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: password</string>
+						<reference key="source" ref="78253651"/>
+						<reference key="destination" ref="29214403"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="78253651"/>
+							<reference key="NSDestination" ref="29214403"/>
+							<string key="NSLabel">value: password</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">password</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<boolean value="YES" key="NS.object.0" id="5"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">765</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.username</string>
+						<reference key="source" ref="631438001"/>
+						<reference key="destination" ref="826154771"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="631438001"/>
+							<reference key="NSDestination" ref="826154771"/>
+							<string key="NSLabel">value: values.username</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.username</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSConditionallySetsEnabled</string>
+									<string>NSContinuouslyUpdatesValue</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="5"/>
+									<reference ref="5"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">766</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3842,7 +3855,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">764</int>
+			<int key="maxID">766</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
