@@ -20,6 +20,7 @@ class Movie < NSObject
     @info = {}
     # need to be NSArray, see "ResultsController#sortData"
     @all_subtitles = [].to_ns
+    @unique_languages = 0
     @resController = resController
     self
   end
@@ -37,6 +38,7 @@ class Movie < NSObject
   def subtitles=(subs)
     @all_subtitles = subs
     subs.each { |sub| sub.movie = self }
+    @unique_languages = subs.to_ruby.map { |sub| sub.language }.uniq.size # to_ruby because of RubyCocoa bug
   end
   
   def download=(value)
@@ -71,7 +73,7 @@ class Movie < NSObject
   end
   
   def otherInfo
-    ""
+    "#{@unique_languages} languages"
   end
   
   def downloadCount

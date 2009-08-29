@@ -8,12 +8,12 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="548"/>
-			<integer value="368"/>
-			<integer value="567"/>
-			<integer value="535"/>
-			<integer value="81"/>
+			<integer value="103"/>
+			<integer value="570"/>
 			<integer value="600"/>
+			<integer value="548"/>
+			<integer value="535"/>
+			<integer value="367"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -595,7 +595,7 @@
 								</object>
 								<object class="NSMenuItem" id="201330727">
 									<reference key="NSMenu" ref="374024848"/>
-									<string key="NSTitle">Undertext Homepage</string>
+									<string key="NSTitle">Undertext Website</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="211601423"/>
@@ -612,7 +612,7 @@
 								</object>
 								<object class="NSMenuItem" id="727179257">
 									<reference key="NSMenu" ref="374024848"/>
-									<string key="NSTitle">Acknowledgements</string>
+									<string key="NSTitle">Acknowledgments</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="211601423"/>
@@ -1259,7 +1259,7 @@
 					</object>
 					<object class="NSMenuItem" id="763684641">
 						<reference key="NSMenu" ref="549501043"/>
-						<string key="NSTitle">Show Search in Browser</string>
+						<string key="NSTitle">Show Result in Browser</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="211601423"/>
@@ -3592,7 +3592,7 @@
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{311, 633}, {219, 93}}</string>
+					<string>{{311, 633}, {199, 93}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{596, 852}, {216, 23}}</string>
@@ -3685,8 +3685,8 @@
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{27, 222}, {610, 490}}</string>
-					<string>{{27, 222}, {610, 490}}</string>
+					<string>{{21, 109}, {610, 490}}</string>
+					<string>{{21, 109}, {610, 490}}</string>
 					<reference ref="9"/>
 					<string>{{517, 575}, {480, 270}}</string>
 					<reference ref="5"/>
@@ -3735,8 +3735,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{348, 284}, {289, 264}}</string>
-					<string>{{348, 284}, {289, 264}}</string>
+					<string>{{307, 284}, {289, 264}}</string>
+					<string>{{307, 284}, {289, 264}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<string>{213, 107}</string>
@@ -3855,6 +3855,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>downloadSelected:</string>
+							<string>open:</string>
 							<string>openFile:</string>
 							<string>openURL:</string>
 							<string>reconnect:</string>
@@ -3863,6 +3864,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3898,7 +3900,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Source/AppController.rb</string>
+						<string key="minorKey">Classes/Controllers/AppController.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3910,7 +3912,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Source/InfoWindowController.rb</string>
+						<string key="minorKey">Classes/Controllers/InfoWindowController.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3918,7 +3920,7 @@
 					<string key="superclassName">NSWindowController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Source/PreferencesWindowController.rb</string>
+						<string key="minorKey">Classes/Controllers/PreferencesWindowController.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3966,7 +3968,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Source/ResultsController.rb</string>
+						<string key="minorKey">Classes/Controllers/ResultsController.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3978,7 +3980,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Source/ResultsOutlineView.rb</string>
+						<string key="minorKey">Classes/Views/ResultsOutlineView.rb</string>
 					</object>
 				</object>
 			</object>
