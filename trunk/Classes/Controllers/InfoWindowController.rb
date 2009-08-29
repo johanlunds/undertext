@@ -18,13 +18,13 @@ class InfoWindowController < NSWindowController
   end
   
   def item=(item)
-    @info = item.nil? ? @defaultInfo : item.info.to_a.sort
+    @info = item.nil? ? @defaultInfo : self.class.convertAndPrettify(item.info)
     @table.reloadData
   end
   
   # will get shown when we have nothing else
   def defaultInfo=(default)
-    @defaultInfo = @info = default.to_a.sort
+    @defaultInfo = @info = self.class.convertAndPrettify(default)
     @table.reloadData
   end
   
@@ -35,4 +35,20 @@ class InfoWindowController < NSWindowController
   def tableView_objectValueForTableColumn_row(table, tableColumn, row)
     @info[row].send(tableColumn.identifier)
   end
+  
+  private
+  
+    # normalize camelcase, remove underscores, then titleize.
+    # code partly taken from ActiveSupport::Inflector
+    def self.convertAndPrettify(hash)
+      # to_ruby because of RubyCocoa bug
+      hash.to_ruby.to_a.sort.map do |key, value|
+        prettyKey = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1 \2').
+          gsub(/([a-z\d])([A-Z])/, '\1 \2').
+          gsub('_', ' ').
+          gsub(/\b([a-z])/) { $1.capitalize }
+          
+        [prettyKey, value]
+      end
+    end
 end
