@@ -20,9 +20,13 @@ class Subtitle < NSObject
     self
   end
   
+  def filename
+    filenameWithLanguage(false)
+  end
+  
   # todo: if already downloaded remember filename and return it
   # Calculate filename for sub using movie's filename
-  def filename(add_language = false)
+  def filenameWithLanguage(add_language)
     path = @movie.filename.chomp(File.extname(@movie.filename))
     path += ".#{@language.iso6392}" if add_language
     path += ".#{@info["SubFormat"]}"
