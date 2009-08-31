@@ -115,7 +115,7 @@ class AppController < NSObject
   def downloadSelected(sender)
     do_work do
       @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-        filename = sub.filename(@addLanguage.state == NSOnState)
+        filename = sub.filenameWithLanguage(@addLanguage.state == NSOnState)
         File.open(filename, 'w') { |f| f.write(subData) }
       end
     end
