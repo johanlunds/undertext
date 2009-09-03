@@ -29,4 +29,13 @@ class Language < NSObject
   def <=>(other_sub)
     name <=> other_sub.name
   end
+  
+  def eql?(other_sub)
+    name == other_sub.name
+  end
+  
+  # must also define hash if defining eql?
+  def hash
+    @name.to_ruby.hash # to_ruby because NSString#hash doesn't work as expected
+  end
 end
