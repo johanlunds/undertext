@@ -13,6 +13,7 @@ class Movie < NSObject
   attr_accessor :info
   attr_reader :filename, :all_subtitles
 
+  # TODO: remove resController
   def initWithFile(filename, resController)
     init
     @filename = filename
@@ -73,7 +74,7 @@ class Movie < NSObject
   end
   
   def otherInfo
-    "#{@unique_languages} languages"
+    "#{@unique_languages} language#{"s" if @unique_languages != 1}"
   end
   
   def downloadCount

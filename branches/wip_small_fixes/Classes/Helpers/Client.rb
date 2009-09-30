@@ -15,6 +15,10 @@ class Client
   # For any connectivity problems concerning XMLRPC.
   class ConnectionError < StandardError
   end
+  
+  # For OSDB result errors which is extracted from status in result
+  class ResultError < ConnectionError
+  end
 
   HOST = "http://www.opensubtitles.org/xml-rpc"
   
@@ -23,6 +27,7 @@ class Client
     @username = username
     @password = password
     @token = nil
+    logIn
   end
   
   def user
@@ -32,6 +37,10 @@ class Client
   def logIn
     result = call('LogIn', @username, @password, '', self.class.userAgent)
     @token = result['token']
+  end
+  
+  def logOut
+    # only if authenticated, else an error will be in result's status
   end
   
   def serverInfo
@@ -108,17 +117,26 @@ class Client
       request.setMethod_withParameters(method, args)
       response = XMLRPCConnection.sendSynchronousXMLRPCRequest(request)
       
+      unless self.class.response_exists?(response)
+        @token = nil
+        raise ConnectionError, "Unknown error" # TODO: Set message based on called method (prettify!)
+      end
+      
       unless self.class.response_ok?(response)
         @token = nil
-        raise ConnectionError, "Unknown error"
+        raise ResultError, response.object['status']
       end
       
       response.object
     end
     
     # Does a result exist and if so is there a status we should check?
+    def self.response_exists?(response)
+      response && response.object
+    end
+    
     def self.response_ok?(response)
-      response && response.object && (!response.object['status'] || (200..299) === response.object['status'].to_i)
+      !response.object['status'] || (200..299) === response.object['status'].to_i
     end
     
     def self.decode_base64_and_unzip(data)

@@ -20,6 +20,8 @@ class ResultsController < NSObject
     self
   end
   
+  # TODO: loop over movie-objects and call languageFilter=
+  #       this means speedup AND better design (movies don't have to have resController)
   ib_action :languageSelected
   def languageSelected(sender)
     @language = sender.selectedItem.representedObject
@@ -121,6 +123,7 @@ class ResultsController < NSObject
   end
   
   # Update info window with selected item (or nil)
+  # TODO: fix for sortdescriptors change (I think this bug exists)
   def outlineViewSelectionDidChange(notification)
     @infoController.item = @outline.selectedItem
   end

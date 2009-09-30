@@ -41,9 +41,9 @@ class InfoWindowController < NSWindowController
     # normalize camelcase, remove underscores, then titleize.
     # code partly taken from ActiveSupport::Inflector
     def self.convertAndPrettify(hash)
-      # to_ruby because of RubyCocoa bug
-      hash.to_ruby.to_a.sort.map do |key, value|
-        prettyKey = key.gsub(/([A-Z]+)([A-Z][a-z])/, '\1 \2').
+      hash.to_a.sort.map do |key, value|
+        # to_ruby because of RubyCocoa bug
+        prettyKey = key.to_ruby.gsub(/([A-Z]+)([A-Z][a-z])/, '\1 \2').
           gsub(/([a-z\d])([A-Z])/, '\1 \2').
           gsub('_', ' ').
           gsub(/\b([a-z])/) { $1.capitalize }

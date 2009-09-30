@@ -12,12 +12,13 @@ class AppController < NSObject
   EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgments.rtf']
-  DEFAULTS = { 'authEnabled' => false, 'username' => '' }
+  DEFAULTS = { 'authEnabled' => false, 'username' => '', 'addLanguageToFile' => false }
   NON_LANGUAGE_ITEMS = 2
 
   ib_outlets :resController, :infoController, :prefController
-  ib_outlets :mainWindow, :connStatus, :workingStatus, :languages, :addLanguage
+  ib_outlets :mainWindow, :connStatus, :workingStatus, :languages
   
+  # TODO: open recent in app menu
   def init
     super_init
     @client = nil
@@ -61,13 +62,13 @@ class AppController < NSObject
   def reconnect(sender)
     status("Connecting...")
     username, password = @prefController.authentication
-    @client = Client.new(username, password)
-    @client.logIn
-    @infoController.defaultInfo = @client.serverInfo
-    add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
+    clientWork do
+      @client.logOut if @client
+      @client = Client.new(username, password)
+      @infoController.defaultInfo = @client.serverInfo
+      add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
+    end
     status("Connected to OpenSubtitles.org as #{@client.user}")
-  rescue Client::ConnectionError => e
-    error_status("Error when connecting to server")
   end
   
   ib_action :showMainWindow
@@ -113,24 +114,20 @@ class AppController < NSObject
   # todo: handle if file already exists (suffix with number or ask)
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    do_work do
+    clientWork do
       @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-        filename = sub.filenameWithLanguage(@addLanguage.state == NSOnState)
+        filename = sub.filenameWithLanguage(NSUserDefaults.standardUserDefaults.boolForKey('addLanguageToFile'))
         File.open(filename, 'w') { |f| f.write(subData) }
       end
     end
-  rescue Client::ConnectionError => e
-    error_status("Error when downloading")
   end
 
   def search(movies)
-    do_work do
+    clientWork do
       @client.searchSubtitles(movies)
       @client.movieDetails(movies)
       @resController.reloadData
     end
-  rescue Client::ConnectionError => e
-    error_status("Error when searching")
   end
   
   # menu items opening websites use this
@@ -157,11 +154,15 @@ class AppController < NSObject
       @languages.setEnabled(true)
     end
   
-    # do "the work" in a supplied block
-    def do_work
+    # TODO: describe method
+    def clientWork
       @workingStatus.setHidden(false)
       @workingStatus.startAnimation(self)
       yield
+    rescue Client::ResultError => e
+      error_status(e.message) # TODO: special case if log in credentials wrong
+    rescue Client::ConnectionError => e
+      error_status(e.message)
     ensure
       @workingStatus.stopAnimation(self)
       @workingStatus.setHidden(true)
@@ -172,6 +173,7 @@ class AppController < NSObject
       @connStatus.setTextColor(NSColor.blackColor)
     end
     
+    # TODO: Check english language for errors and correct them
     def error_status(msg)
       @connStatus.setStringValue(msg)
       @connStatus.setTextColor(NSColor.redColor)
