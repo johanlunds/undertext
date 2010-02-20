@@ -16,7 +16,7 @@ class Client
   class ConnectionError < StandardError
   end
 
-  HOST = "http://www.opensubtitles.org/xml-rpc"
+  HOST = "http://api.opensubtitles.org/xml-rpc"
   
   # empty username and password becomes anonymous login
   def initialize(username, password)
