@@ -20,6 +20,22 @@ class ResultsController < NSObject
     self
   end
   
+  def awakeFromNib
+    @outline.registerForDraggedTypes([NSFilenamesPboardType])
+  end
+  
+  def outlineView_validateDrop_proposedItem_proposedChildIndex(outline, info, item, index)
+    files = info.draggingPasteboard.propertyListForType(NSFilenamesPboardType)
+    # todo: return NSDragOperationNone if files doesn't contain movie files or folders
+    @outline.setDropItem_dropChildIndex(nil, NSOutlineViewDropOnItemIndex)
+    NSDragOperationGeneric
+  end
+  
+  def outlineView_acceptDrop_item_childIndex_(outline, info, item, index)
+    files = info.draggingPasteboard.propertyListForType(NSFilenamesPboardType)
+    true
+  end
+  
   ib_action :languageSelected
   def languageSelected(sender)
     @language = sender.selectedItem.representedObject
