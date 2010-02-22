@@ -113,7 +113,9 @@ class Client
         raise ConnectionError, "Unknown error"
       end
       
-      response.object
+      # If not calling to_ruby it gets a bit tricky figuring out where in the
+      # code there's NSObjects and regular Ruby objects.
+      response.object.to_ruby
     end
     
     # Does a result exist and if so is there a status we should check?

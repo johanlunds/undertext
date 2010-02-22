@@ -28,7 +28,7 @@ class PreferencesWindowController < NSWindowController
   # returns username, password as array
   def authentication
     defaults = NSUserDefaults.standardUserDefaults
-    if defaults['authEnabled']
+    if defaults['authEnabled'].boolValue
       [defaults['username'], password]
     else
       ['', '']
