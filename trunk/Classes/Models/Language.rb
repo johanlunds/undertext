@@ -30,12 +30,14 @@ class Language < NSObject
     name <=> other_sub.name
   end
   
+  # eql? and hash is defined because two Language-objects with same @name
+  # should be the same object (equal). This makes calling uniq on an array work.
+  
   def eql?(other_sub)
     name == other_sub.name
   end
   
-  # must also define hash if defining eql?
   def hash
-    @name.to_ruby.hash # to_ruby because NSString#hash doesn't work as expected
+    @name.hash
   end
 end

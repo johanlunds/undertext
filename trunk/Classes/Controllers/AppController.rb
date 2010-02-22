@@ -12,11 +12,11 @@ class AppController < NSObject
   EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgments.rtf']
-  DEFAULTS = { 'authEnabled' => false, 'username' => '' }
+  DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns }
   NON_LANGUAGE_ITEMS = 2
 
   ib_outlets :resController, :infoController, :prefController
-  ib_outlets :mainWindow, :connStatus, :workingStatus, :languages, :addLanguage
+  ib_outlets :mainWindow, :connStatus, :workingStatus, :languages
   
   def init
     super_init
@@ -115,8 +115,7 @@ class AppController < NSObject
   def downloadSelected(sender)
     do_work do
       @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-        filename = sub.filenameWithLanguage(@addLanguage.state == NSOnState)
-        File.open(filename, 'w') { |f| f.write(subData) }
+        File.open(sub.filename, 'w') { |f| f.write(subData) }
       end
     end
   rescue Client::ConnectionError => e

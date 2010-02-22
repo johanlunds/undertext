@@ -18,8 +18,7 @@ class Movie < NSObject
     @filename = filename
     @hash = nil
     @info = {}
-    # need to be NSArray, see "ResultsController#sortData"
-    @all_subtitles = [].to_ns
+    @all_subtitles = [].to_ns # need to be NSArray, see "ResultsController#sortData"
     @unique_languages = 0
     @resController = resController
     self
@@ -34,11 +33,10 @@ class Movie < NSObject
     end
   end
   
-  # Argument must be NSArray, which it always is because method is called with result from XMLRPC.framework
   def subtitles=(subs)
-    @all_subtitles = subs
+    @all_subtitles = subs.to_ns # need to be NSArray, see "ResultsController#sortData"
     subs.each { |sub| sub.movie = self }
-    @unique_languages = subs.to_ruby.map { |sub| sub.language }.uniq.size # to_ruby because of RubyCocoa bug
+    @unique_languages = subs.map { |sub| sub.language }.uniq.size
   end
   
   def download=(value)
