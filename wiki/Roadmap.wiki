@@ -1,0 +1,32 @@
+#summary Ideas and planned features for future versions.
+
+= Ideas and planned features =
+
+To anyone who's interested I have set this page up to give an idea of what I want and plan to do with Undertext. This is sort of a brainstorming page. Any items here might also get added to [http://code.google.com/p/undertext/issues/list the list of issues]. Comments and suggestions on this page are welcome.
+
+== Version 1.1 ==
+
+=== Planned: ===
+
+_Todo._
+
+=== Done: ===
+
+ * Bug: Selecting a language in the dropdown before a search wouldn't filter correctly
+ * Bug: The app would crash (silently) if a connection error would occur during startup, search or download. Now a dialog will get shown and a reconnect menu item is in the application menu.
+ * Existing entries in the result table will be kept when doing multiple searches
+ * Added sorting functionality to result table.
+ * Added a right click menu for the result table with some useful actions.
+ * Now the small info window will, except for subtitle info, also display info for video files and the !OpenSubtitles.org server and website.
+ * Will appear to start faster because windows get shown earlier
+ * Bug: Couldn't close and then reopen windows
+ * Add a preference window with settings for !OpenSubtitles.org accounts
+ * Bug: Progress indicator wouldn't always hide after a download
+ * Switched XMLRPC library to one written in Objective-C
+ * Update to new API URL.
+ * Always suffix subtitle file names with language code.
+ * Undertext will appear in the list when using "Open With" in Finder.
+
+== Future releases ==
+
+_Todo._
