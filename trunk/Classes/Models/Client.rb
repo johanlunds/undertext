@@ -126,4 +126,7 @@ class Client
     def self.decode_base64_and_unzip(data)
       Zlib::GzipReader.new(StringIO.new(data.unpack("m")[0])).read
     end
+    
+    # Encoding and zipping data for uploading:
+    # [Zlib::Deflate.deflate(data)].pack("m")
 end
