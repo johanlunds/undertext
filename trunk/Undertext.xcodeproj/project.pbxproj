@@ -11,7 +11,6 @@
 		020A364A104861CA00C76517 /* InfoWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A363C104861CA00C76517 /* InfoWindowController.rb */; };
 		020A364B104861CA00C76517 /* PreferencesWindowController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A363D104861CA00C76517 /* PreferencesWindowController.rb */; };
 		020A364C104861CA00C76517 /* ResultsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A363E104861CA00C76517 /* ResultsController.rb */; };
-		020A364D104861CA00C76517 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A3640104861CA00C76517 /* Client.rb */; };
 		020A364E104861CA00C76517 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 020A3641104861CA00C76517 /* main.m */; };
 		020A364F104861CA00C76517 /* Language.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A3643104861CA00C76517 /* Language.rb */; };
 		020A3650104861CA00C76517 /* Movie.rb in Resources */ = {isa = PBXBuildFile; fileRef = 020A3644104861CA00C76517 /* Movie.rb */; };
@@ -82,6 +81,7 @@
 		2680CDC00F6617A400274EFD /* uk.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD8E0F6617A400274EFD /* uk.png */; };
 		2680CDC10F6617A400274EFD /* vi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD8F0F6617A400274EFD /* vi.png */; };
 		2680CDC20F6617A400274EFD /* zh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD900F6617A400274EFD /* zh.png */; };
+		26859425113B0F0000C446F4 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26859424113B0F0000C446F4 /* Client.rb */; };
 		26EC9EF50F6B3DFC0045F973 /* unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 26EC9EF40F6B3DFC0045F973 /* unknown.png */; };
 		26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7930F31E8FA00B1B95F /* Rakefile */; };
 		4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -111,7 +111,6 @@
 		020A363C104861CA00C76517 /* InfoWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = InfoWindowController.rb; sourceTree = "<group>"; };
 		020A363D104861CA00C76517 /* PreferencesWindowController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PreferencesWindowController.rb; sourceTree = "<group>"; };
 		020A363E104861CA00C76517 /* ResultsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ResultsController.rb; sourceTree = "<group>"; };
-		020A3640104861CA00C76517 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
 		020A3641104861CA00C76517 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Classes/main.m; sourceTree = "<group>"; };
 		020A3643104861CA00C76517 /* Language.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Language.rb; sourceTree = "<group>"; };
 		020A3644104861CA00C76517 /* Movie.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Movie.rb; sourceTree = "<group>"; };
@@ -179,6 +178,7 @@
 		2680CD8E0F6617A400274EFD /* uk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uk.png; sourceTree = "<group>"; };
 		2680CD8F0F6617A400274EFD /* vi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vi.png; sourceTree = "<group>"; };
 		2680CD900F6617A400274EFD /* zh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zh.png; sourceTree = "<group>"; };
+		26859424113B0F0000C446F4 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
 		26EC9EF40F6B3DFC0045F973 /* unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unknown.png; sourceTree = "<group>"; };
 		26EFE7930F31E8FA00B1B95F /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -209,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				020A363A104861CA00C76517 /* Controllers */,
-				020A363F104861CA00C76517 /* Helpers */,
 				020A3642104861CA00C76517 /* Models */,
 				020A3647104861CA00C76517 /* Views */,
 			);
@@ -227,17 +226,10 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		020A363F104861CA00C76517 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				020A3640104861CA00C76517 /* Client.rb */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		020A3642104861CA00C76517 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				26859424113B0F0000C446F4 /* Client.rb */,
 				020A3643104861CA00C76517 /* Language.rb */,
 				020A3644104861CA00C76517 /* Movie.rb */,
 				020A3645104861CA00C76517 /* Subtitle.rb */,
@@ -504,12 +496,12 @@
 				020A364A104861CA00C76517 /* InfoWindowController.rb in Resources */,
 				020A364B104861CA00C76517 /* PreferencesWindowController.rb in Resources */,
 				020A364C104861CA00C76517 /* ResultsController.rb in Resources */,
-				020A364D104861CA00C76517 /* Client.rb in Resources */,
 				020A364F104861CA00C76517 /* Language.rb in Resources */,
 				020A3650104861CA00C76517 /* Movie.rb in Resources */,
 				020A3651104861CA00C76517 /* Subtitle.rb in Resources */,
 				020A3652104861CA00C76517 /* rb_main.rb in Resources */,
 				020A3653104861CA00C76517 /* ResultsOutlineView.rb in Resources */,
+				26859425113B0F0000C446F4 /* Client.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
