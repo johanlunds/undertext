@@ -8,12 +8,12 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="600"/>
-			<integer value="570"/>
-			<integer value="535"/>
 			<integer value="548"/>
-			<integer value="103"/>
+			<integer value="600"/>
 			<integer value="368"/>
+			<integer value="570"/>
+			<integer value="103"/>
+			<integer value="535"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1599,7 +1599,7 @@
 							<object class="NSTextFieldCell" key="NSTitleCell">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">0</int>
-								<string key="NSContents">OpenSubtitles.org Authentication</string>
+								<string key="NSContents">OpenSubtitles.org Account</string>
 								<reference key="NSSupport" ref="26"/>
 								<reference key="NSBackgroundColor" ref="20576978"/>
 								<object class="NSColor" key="NSTextColor">
