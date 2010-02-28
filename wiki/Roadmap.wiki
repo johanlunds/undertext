@@ -6,7 +6,12 @@ To anyone who's interested I have set this page up to give an idea of what I wan
 
 === Planned: ===
 
-_Todo._
+ * don't overwrite existing files in #downloadSelected. why: user might loose important files
+ * better error messages
+
+ * change look of appcast release notes
+ * add to software catalogs. list: http://grandperspectiv.sourceforge.net/. why: promote!
+ * screencast to introduce to new users and promote
 
 === Done: ===
 
@@ -25,6 +30,50 @@ _Todo._
  * Always suffix subtitle file names with language code.
  * Undertext will appear in the list when using "Open With" in Finder.
 
-== Future releases ==
+== Future releases and ideas ==
 
-_Todo._
+*These are ordered by importance, size, work done, impact, severity, how they're related and other properties. Will perhaps add some notes or headlines about this later.*
+
+ * use NSEventLoop for XMLRPC calling. use XMLRPC lib's delegate methods. why: no UI locking. opens up possibility for better error feedback
+ * better error handling and feedback when OSDB returns error-result, result["status"]
+
+ * automatic background search for "watched" folders. depends on feature below this one. why: see ticket on Google Code
+ * new setting: automatic download toggle. it automatically chooses "best" subtitle and downloads directly. see SolEol. why: it's faster for the user
+ * new setting: definition of "best" sub (rating, dls, etc)
+
+ * RAR-support for movie hashing. why: some people watch movies without unrar-ing them first, for example in VLC and XBMC
+
+ * begin upload functionality for subtitles
+
+ * expand all items in outline view as default. perhaps add NSTableView#sizeLastColumnToFit. why: easier to scroll and filter than to expand all items one by one
+ * drag & drop to outline view. why: more ways to add movies to outline view
+ * language column in outline view should include flag. why: easier for the eye to scan
+ * find already downloaded subs and set enabled = false. subhash is md5 of contents, create SubtitleOffline. why: easier to choose subtitle and see which one you currently got
+ * app icon. http://www.flickr.com/photos/herminutomo/1282517815/in/set-72157601782768947/
+ * i18n. translate app into different languages. provide swedish as an example for others. automatically detect and choose language
+ * quicklook (look in Transmission for how to). why: good for previewing downloaded subtitles
+ * save user defaults: language dropdown and perhaps sort descs
+ * log out before quitting program
+ * new setting: select available languages in dropdown. perhaps add special item in dropdown for only selected items, like Subdownloader. why: a user is probably always interested in only the same 1-3 languages
+ * in dropdown, show only languages that are in search result. why: gives faster overview of what the search result contains and removes unnecessary languages
+ * interact with subs, like rating and reporting bad sub (unsynced). other features using the different XMLRPC methods. why: user can help others if he/she detects a bad sub
+
+ * bug: error during open files means a search for those files won't ever get done because search isn't called in reconnect
+ * weird behavior: selection when sorting should be updated to select correct ones or alternatively removed
+ * bug: info window won't be updated when sorting in outline. note: probably fixed same time as one above
+ * login session (should) expire after 15 mins. call "NoOperation" to prevent. why: some people will keep the app open for a long time. leads to crashes? verify!
+ * bug: not logging out before reconnecting will return "200 OK" and same token even if new password or new username is wrong
+ * bug: sometimes table won't get sorted (using sort descriptors) correctly when a connection error occurs. reproduce and verify!
+ * handle errors for file IO. For example check "File.readable?". why: in rare cases file IO fails
+ * error handling when app crashes. don't quit silently! use Limechat error reporter? why: very confusing when it just quits without any indication to why
+ * weird behavior: with multiple rows selected in outline open/reveal etc in context menu will only do the action for one
+ * weird behavior: perhaps change bevior of check all, check only selected etc together with language filtering. investigate what's weird!
+ * weird behavior: small quirks because of changed behavior for right click in outline view
+ * new setting: Sparkle update settings. look at other apps for example Transmission
+ * refactoring in general. perhaps extract SearchController from AppController
+
+=== Other: ===
+
+ * testing
+ * macruby
+ * nicer preference window (like in Apple Interface Guidelines with icons, tabs etc)
