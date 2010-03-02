@@ -13,7 +13,6 @@ class AppController < NSObject
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgments.rtf']
   DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns }
-  NON_LANGUAGE_ITEMS = 2
 
   ib_outlets :resController, :infoController, :prefController
   ib_outlets :mainWindow, :connStatus, :workingStatus, :languages
@@ -55,21 +54,6 @@ class AppController < NSObject
     end
   end
   
-  # logs in, adds languages and displays current connection status.
-  # todo: call "search" if needed
-  ib_action :reconnect
-  def reconnect(sender)
-    status("Connecting...")
-    username, password = @prefController.authentication
-    @client = Client.new(username, password)
-    @client.logIn
-    @infoController.defaultInfo = @client.serverInfo
-    add_languages(@client.languages) if @languages.numberOfItems == NON_LANGUAGE_ITEMS
-    status("Connected to OpenSubtitles.org as #{@client.user}")
-  rescue Client::ConnectionError => e
-    error_status("Error when connecting to server")
-  end
-  
   ib_action :showMainWindow
   def showMainWindow(sender)
     @mainWindow.makeKeyAndOrderFront(nil)
@@ -84,15 +68,25 @@ class AppController < NSObject
     end
   end
   
-  # for folders it searches recursively for movie files
+  # menu items opening websites use this
+  ib_action :openURL
+  def openURL(sender)
+    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(URLS[sender.tag]))
+  end
+  
+  # Show license and acknowledgements
+  ib_action :openFile
+  def openFile(sender)
+    NSWorkspace.sharedWorkspace.openFile(NSBundle.mainBundle.resourcePath + "/" + FILES[sender.tag])
+  end
+  
+  # it searches folders recursively for movie files
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
-    folders.each do |folder|
-      files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}")
-    end
+    folders.each { |folder| files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}") }
     movies = files.map { |file| Movie.alloc.initWithFile(file, @resController) }
     @resController.add_movies(movies)
-    search(movies) # populate outline with search results
+    search(movies)
   end
   
   # Can choose directory and/or multiple files (movies)
@@ -109,8 +103,28 @@ class AppController < NSObject
   def openPanelDidEnd_returnCode_contextInfo(sender, result, context)
     application_openFiles(nil, sender.filenames) if result == NSOKButton
   end
+  
+  # logs in, adds languages and displays current connection status.
+  # todo: call "search" if needed
+  ib_action :reconnect
+  def reconnect(sender)
+    @client = Client.new(*@prefController.credentials)
+    finished = do_work do
+      @client.logIn
+      @infoController.defaultInfo = @client.serverInfo
+      add_languages(@client.languages) unless @languages.isEnabled
+    end
+    status("Connected to OpenSubtitles.org as #{@client.user}.") if finished
+  end
 
-  # todo: handle if file already exists (suffix with number or ask)
+  def search(movies)
+    do_work do
+      @client.searchSubtitles(movies)
+      @client.movieDetails(movies)
+    end
+    @resController.reloadData
+  end
+
   ib_action :downloadSelected  
   def downloadSelected(sender)
     do_work do
@@ -118,8 +132,6 @@ class AppController < NSObject
       @downloaded_subs = @resController.downloads
       writeSubtitleContents
     end
-  rescue Client::ConnectionError => e
-    error_status("Error when downloading")
   end
   
   # Will write all subtitles in @downloaded_subs to disk and ask if the
@@ -145,28 +157,6 @@ class AppController < NSObject
     File.open(sub.filename, 'w') { |f| f.write(sub.contents) } if result == NSAlertDefaultReturn
     writeSubtitleContents
   end
-
-  def search(movies)
-    do_work do
-      @client.searchSubtitles(movies)
-      @client.movieDetails(movies)
-      @resController.reloadData
-    end
-  rescue Client::ConnectionError => e
-    error_status("Error when searching")
-  end
-  
-  # menu items opening websites use this
-  ib_action :openURL
-  def openURL(sender)
-    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(URLS[sender.tag]))
-  end
-  
-  # Show license and acknowledgements
-  ib_action :openFile
-  def openFile(sender)
-    NSWorkspace.sharedWorkspace.openFile(NSBundle.mainBundle.resourcePath + "/" + FILES[sender.tag])
-  end
   
   private
 
@@ -180,14 +170,23 @@ class AppController < NSObject
       @languages.setEnabled(true)
     end
   
-    # do "the work" in a supplied block
+    # Will show progress indicator during execution of passed block.
+    # Catches exceptions and if so updates status and returns false.
     def do_work
       @workingStatus.setHidden(false)
       @workingStatus.startAnimation(self)
-      yield
-    ensure
-      @workingStatus.stopAnimation(self)
-      @workingStatus.setHidden(true)
+
+      begin
+        yield
+      rescue Client::ConnectionError => e
+        error_status(e.message)
+        return false
+      ensure
+        @workingStatus.stopAnimation(self)
+        @workingStatus.setHidden(true)
+      end
+      
+      true
     end
     
     def status(msg)
@@ -196,8 +195,8 @@ class AppController < NSObject
     end
     
     def error_status(msg)
-      @connStatus.setStringValue(msg)
+      @connStatus.setStringValue("Server communication error")
       @connStatus.setTextColor(NSColor.redColor)
-      NSRunAlertPanel(msg, "Please check your internet connection and www.opensubtitles.org before trying again.", nil, nil, nil)
+      NSRunAlertPanel("An error occured while communicating with the server.", msg, nil, nil, nil)
     end
 end
