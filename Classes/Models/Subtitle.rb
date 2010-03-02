@@ -8,7 +8,7 @@
 
 class Subtitle < NSObject
 
-  attr_accessor :movie, :download
+  attr_accessor :movie, :download, :contents
   attr_reader :info, :language
   
   def initWithInfo(info)
@@ -16,6 +16,7 @@ class Subtitle < NSObject
     @info = info
     @download = false
     @movie = nil
+    @contents = nil
     @language = Language.alloc.initWithInfo(info)
     self
   end

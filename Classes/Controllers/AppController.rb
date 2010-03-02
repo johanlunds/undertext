@@ -114,12 +114,36 @@ class AppController < NSObject
   ib_action :downloadSelected  
   def downloadSelected(sender)
     do_work do
-      @client.downloadSubtitles(@resController.downloads) do |sub, subData|
-        File.open(sub.filename, 'w') { |f| f.write(subData) }
-      end
+      @client.downloadSubtitles(@resController.downloads)
+      @downloaded_subs = @resController.downloads
+      writeSubtitleContents
     end
   rescue Client::ConnectionError => e
     error_status("Error when downloading")
+  end
+  
+  # Will write all subtitles in @downloaded_subs to disk and ask if the
+  # file already exists.
+  def writeSubtitleContents
+    return unless sub = @downloaded_subs.pop
+    
+    if File.exists?(sub.filename)
+      NSBeginCriticalAlertSheet(
+        "The file \"#{File.basename(sub.filename)}\" already exists. Do you want to replace it?",
+        "Replace", "Don't Replace", nil, @mainWindow, self, nil, 'overwriteSheetDidDismiss:returnCode:contextInfo:', sub,
+        "If replaced the current contents will be lost. The folder path is \"#{File.dirname(sub.filename)}\"."
+      )
+    else
+      File.open(sub.filename, 'w') { |f| f.write(sub.contents) }
+      writeSubtitleContents
+    end
+  end
+  
+  def overwriteSheetDidDismiss_returnCode_contextInfo(sender, result, context)
+    # context is ObjcPtr and argument is an "Objective-C type encoding"
+    sub = context.cast_as("@")
+    File.open(sub.filename, 'w') { |f| f.write(sub.contents) } if result == NSAlertDefaultReturn
+    writeSubtitleContents
   end
 
   def search(movies)

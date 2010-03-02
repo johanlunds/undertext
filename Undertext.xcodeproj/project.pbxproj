@@ -82,6 +82,7 @@
 		2680CDC10F6617A400274EFD /* vi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD8F0F6617A400274EFD /* vi.png */; };
 		2680CDC20F6617A400274EFD /* zh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD900F6617A400274EFD /* zh.png */; };
 		26859425113B0F0000C446F4 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26859424113B0F0000C446F4 /* Client.rb */; };
+		26859475113B40FA00C446F4 /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 26859474113B40FA00C446F4 /* Changelog.rtf */; };
 		26EC9EF50F6B3DFC0045F973 /* unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 26EC9EF40F6B3DFC0045F973 /* unknown.png */; };
 		26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7930F31E8FA00B1B95F /* Rakefile */; };
 		4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -179,6 +180,7 @@
 		2680CD8F0F6617A400274EFD /* vi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vi.png; sourceTree = "<group>"; };
 		2680CD900F6617A400274EFD /* zh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zh.png; sourceTree = "<group>"; };
 		26859424113B0F0000C446F4 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
+		26859474113B40FA00C446F4 /* Changelog.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
 		26EC9EF40F6B3DFC0045F973 /* unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unknown.png; sourceTree = "<group>"; };
 		26EFE7930F31E8FA00B1B95F /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				4DDCA7110ACC9A6100E082CE /* Info.plist */,
 				265F161F0FA8715E009203C7 /* Acknowledgments.rtf */,
+				26859474113B40FA00C446F4 /* Changelog.rtf */,
 				265F16200FA8715E009203C7 /* License.rtf */,
 				265F16230FA87168009203C7 /* Readme.rtf */,
 				26EFE7930F31E8FA00B1B95F /* Rakefile */,
@@ -502,6 +505,7 @@
 				020A3652104861CA00C76517 /* rb_main.rb in Resources */,
 				020A3653104861CA00C76517 /* ResultsOutlineView.rb in Resources */,
 				26859425113B0F0000C446F4 /* Client.rb in Resources */,
+				26859475113B40FA00C446F4 /* Changelog.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
