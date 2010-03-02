@@ -62,8 +62,8 @@ class Client
     end
   end
   
-  # takes a block for doing whatever with downloaded data for each sub
-  # if "subs" is empty the XMLRPC result will have status = 408
+  # Downloaded data can be accessed by calling Subtitle#contents
+  # if subs-argument is empty the XMLRPC result will have status = 408
   def downloadSubtitles(subs)
     loginNeeded!
     subIds = subs.map { |sub| sub.info["IDSubtitleFile"] }
@@ -72,8 +72,7 @@ class Client
     result['data'].each do |subInfo|
       # find existing sub object for download
       sub = subs.find { |sub| sub.info["IDSubtitleFile"] == subInfo["idsubtitlefile"] }
-      subData = self.class.decode_base64_and_unzip(subInfo["data"])
-      yield sub, subData
+      sub.contents = self.class.decode_base64_and_unzip(subInfo["data"])
     end
   end
   
