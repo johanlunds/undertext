@@ -1,4 +1,5 @@
 #summary Ideas and planned features for future versions.
+#labels Featured,Phase-Requirements
 
 To anyone who's interested I have set this page up to give an idea of what I want and plan to do with Undertext. This is sort of a brainstorming page. Any items here might also get added to [http://code.google.com/p/undertext/issues/list the list of issues]. Comments and suggestions on this page are welcome.
 
