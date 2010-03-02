@@ -107,9 +107,18 @@ class Client
       request.setMethod_withParameters(method, args)
       response = XMLRPCConnection.sendSynchronousXMLRPCRequest(request)
       
-      unless self.class.response_ok?(response)
+      if self.class.xmlrpc_error?(response)
         @token = nil
-        raise ConnectionError, "Unknown error"
+        raise ConnectionError,
+          "There was no, or a malformed, response from the server. " +
+          "This usually occurs when there's no internet connection or the server is busy.\n\n" +
+          "You can try opening http://www.opensubtitles.org in a browser to check if it's available."
+      elsif self.class.error_status?(response)
+        @token = nil
+        raise ConnectionError,
+          "The returned response from the server had the error status \"#{response.object['status']}\". " + 
+          "This could be because of faulty input (for example wrong password) or perhaps a bug in Undertext.\n\n" + 
+          "Please report any suspected bugs on Undertext's website."
       end
       
       # If not calling to_ruby it gets a bit tricky figuring out where in the
@@ -117,9 +126,13 @@ class Client
       response.object.to_ruby
     end
     
-    # Does a result exist and if so is there a status we should check?
-    def self.response_ok?(response)
-      response && response.object && (!response.object['status'] || (200..299) === response.object['status'].to_i)
+    def self.xmlrpc_error?(response)
+      !response || !response.object
+    end
+    
+    # No status is an OK status
+    def self.error_status?(response)
+      response.object['status'] && !(200..299).include?(response.object['status'].to_i)
     end
     
     def self.decode_base64_and_unzip(data)
