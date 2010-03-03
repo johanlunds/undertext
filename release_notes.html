@@ -8,11 +8,15 @@
   <style type="text/css" media="screen">
   	body {
 			font: 100%/1.3 Helvetica, Arial, sans-serif;
-			color: #333;
+			color: #222;
 		}
 		
 		h1 {
-			border-bottom: 2px solid #ECE364;
+			background: #222;
+			padding: 0.2em;
+			margin-left: -0.2em;
+			margin-right: -0.2em;
+			color: white;
 		}
 		
 		ul {
@@ -21,15 +25,38 @@
 		}
 		
 		.release {
-			background-color: #FAFAFA;
-			padding: 0.3em 0.5em;
+			margin: 0.5em;
+			padding: 0.5em;
 		}
 	</style>
 </head>
 <body>
+	
+	<div class="release" id="version-1-1">
+		<h1>Version 1.1 (Mar 3, 2010)</h1>
+		<p>It has been almost a year since the first release - wow! This version fixes a crash, some other bugs and contains a few new features. Overall it's a nicer experience though <abbr title="In My Humble Opinion">IMHO</abbr>. The development has been on and off, but I definitely have no lack of ideas for Undertext. <a href="http://code.google.com/p/undertext/wiki/Roadmap">Go see the roadmap wiki-page on the website</a> for a list. <em><strong>Please note:</strong></em> The older version will stop working because the OpenSubtitles.org API server is changing it's URL.</p>
+		<h2>Changes in this version</h2>
+		<ul>
+			<li><strong>Bug:</strong> The app would crash (silently) if a connection error would occur during startup, search or download. Now a dialog will get shown and a reconnect menu item is in the application menu.</li>
+			<li><strong>Bug:</strong> Selecting a language in the dropdown before a search wouldn't filter correctly</li>
+			<li>Existing entries in the result table will be kept when doing multiple searches</li>
+			<li>Added sorting functionality to result table.</li>
+			<li>Added a right click menu for the result table with some useful actions.</li>
+			<li>Now the small info window will, except for subtitle info, also display info for video files and the OpenSubtitles.org server and website.</li>
+			<li>Will appear to start faster because windows get shown earlier</li>
+			<li><strong>Bug:</strong> Couldn't close and then reopen windows</li>
+			<li>Add a preference window with settings for OpenSubtitles.org accounts</li>
+			<li><strong>Bug:</strong> Progress indicator wouldn't always hide after a download</li>
+			<li>Switched XMLRPC library to one written in Objective-C</li>
+			<li>Update to new API URL.</li>
+			<li>Always suffix subtitle file names with language code.</li>
+			<li>Undertext will appear in the list when using "Open With" in Finder.</li>
+			<li>Ask before overwriting an existing subtitle file.</li>
+		</ul>
+	</div>
 
 <div class="release" id="version-1-0">
-	<h1>Version 1.0</h1>
+	<h1>Version 1.0 (Mar 13, 2009)</h1>
 	<p>This is the first release of <strong>Undertext</strong>. The application isn't done and I'm planning to do more releases. <em><strong>Please note:</strong></em> It doesn't have any error handling yet so if, for example, no internet connection is present or OpenSubtitles.org's servers have a problem the app will crash and burn :)</p>
 	<h2>New features</h2>
 	<ul>
