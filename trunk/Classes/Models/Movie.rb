@@ -11,7 +11,7 @@ class Movie < NSObject
   CHUNK_SIZE = 64 * 1024 # 64 kbytes, used in compute_hash
 
   attr_accessor :info
-  attr_reader :filename, :all_subtitles, :filtered_subtitles
+  attr_reader :filename, :filtered_subtitles
 
   def initWithFile(filename)
     init
@@ -19,7 +19,7 @@ class Movie < NSObject
     @hash = nil
     @info = {}
     @langFilter = nil
-    # @all_subtitles need to be NSArray, see "ResultsController#sortData"
+    # These have to be NSArray, see "ResultsController#sortData"
     @filtered_subtitles = @all_subtitles = [].to_ns
     @unique_languages = 0
     self

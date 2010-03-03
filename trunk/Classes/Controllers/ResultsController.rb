@@ -147,7 +147,7 @@ class ResultsController < NSObject
     
     # arrays need to be NSArray (because they have method "sortUsingDescriptors")
     def sortData
-      @movies.each { |movie| movie.all_subtitles.sortUsingDescriptors(@outline.sortDescriptors) }
+      @movies.each { |movie| movie.filtered_subtitles.sortUsingDescriptors(@outline.sortDescriptors) }
       @movies.sortUsingDescriptors(@outline.sortDescriptors)
     end
 end
