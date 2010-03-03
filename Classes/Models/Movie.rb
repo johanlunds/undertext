@@ -18,24 +18,24 @@ class Movie < NSObject
     @filename = filename
     @hash = nil
     @info = {}
+    @langFilter = nil
     # @all_subtitles need to be NSArray, see "ResultsController#sortData"
     @filtered_subtitles = @all_subtitles = [].to_ns
     @unique_languages = 0
     self
   end
   
-  def languageFilter=(lang)
-    if lang
-      @filtered_subtitles = @all_subtitles.select { |sub| sub.language == lang }
-    else
-      @filtered_subtitles = @all_subtitles
-    end
+  # Should be nil to show all
+  def languageFilter=(value)
+    @langFilter = value
+    filter
   end
   
   def all_subtitles=(subs)
     @all_subtitles = subs.to_ns # need to be NSArray, see "ResultsController#sortData"
     subs.each { |sub| sub.movie = self }
     @unique_languages = subs.map { |sub| sub.language }.uniq.size
+    filter
   end
   
   def download=(value)
@@ -105,6 +105,15 @@ class Movie < NSObject
   end
   
   private
+  
+    # Needs to be called if @all_subtitles or @langFilter changes
+    def filter
+      if @langFilter
+        @filtered_subtitles = @all_subtitles.select { |sub| sub.language == @langFilter }
+      else
+        @filtered_subtitles = @all_subtitles
+      end
+    end
 
     def compute_hash
       filesize = File.size(@filename)
