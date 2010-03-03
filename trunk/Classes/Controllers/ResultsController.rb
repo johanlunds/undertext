@@ -11,18 +11,17 @@ class ResultsController < NSObject
   CHECK_TAG = 1
   
   ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
-  attr_reader :movies, :language
+  attr_reader :movies
   
   def init
     super_init
     @movies = [].to_ns # need to be NSArray, see "sortData"
-    @language = nil
     self
   end
   
   ib_action :languageSelected
   def languageSelected(sender)
-    @language = sender.selectedItem.representedObject
+    @movies.each { |movie| movie.languageFilter = sender.selectedItem.representedObject }
     reloadData
   end
   
@@ -80,7 +79,7 @@ class ResultsController < NSObject
   # subs to download
   def downloads
     @movies.inject([]) do |downloads, movie|
-      downloads + movie.subtitles.select { |sub| sub.download }
+      downloads + movie.filtered_subtitles.select { |sub| sub.download }
     end
   end
   
@@ -140,7 +139,7 @@ class ResultsController < NSObject
     def updateCounts
       sel_count = downloads.size
       sub_count = @movies.inject(0) do |sub_count, movie|
-        sub_count + movie.subtitles.size
+        sub_count + movie.filtered_subtitles.size
       end
       @downloadSelected.setEnabled(sel_count != 0)
       @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
