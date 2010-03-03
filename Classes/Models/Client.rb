@@ -57,7 +57,7 @@ class Client
       subs = result['data'].map { |subInfo| Subtitle.alloc.initWithInfo(subInfo) }
       # match subs with movies and then add
       movies.each do |movie|
-        movie.subtitles = subs.select { |sub| sub.info["MovieHash"] == movie.osdb_hash }
+        movie.all_subtitles = subs.select { |sub| sub.info["MovieHash"] == movie.osdb_hash }
       end
     end
   end

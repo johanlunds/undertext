@@ -84,7 +84,7 @@ class AppController < NSObject
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
     folders.each { |folder| files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}") }
-    movies = files.map { |file| Movie.alloc.initWithFile(file, @resController) }
+    movies = files.map { |file| Movie.alloc.initWithFile(file) }
     @resController.add_movies(movies)
     search(movies)
   end
@@ -109,7 +109,7 @@ class AppController < NSObject
   ib_action :reconnect
   def reconnect(sender)
     @client = Client.new(*@prefController.credentials)
-    finished = do_work do
+    finished = client_working do
       @client.logIn
       @infoController.defaultInfo = @client.serverInfo
       add_languages(@client.languages) unless @languages.isEnabled
@@ -118,7 +118,7 @@ class AppController < NSObject
   end
 
   def search(movies)
-    do_work do
+    client_working do
       @client.searchSubtitles(movies)
       @client.movieDetails(movies)
     end
@@ -127,7 +127,7 @@ class AppController < NSObject
 
   ib_action :downloadSelected  
   def downloadSelected(sender)
-    do_work do
+    client_working do
       @client.downloadSubtitles(@resController.downloads)
       @downloaded_subs = @resController.downloads
       writeSubtitleContents
@@ -172,7 +172,7 @@ class AppController < NSObject
   
     # Will show progress indicator during execution of passed block.
     # Catches exceptions and if so updates status and returns false.
-    def do_work
+    def client_working
       @workingStatus.setHidden(false)
       @workingStatus.startAnimation(self)
 
