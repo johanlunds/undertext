@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Undertext's Changelog</title>
+    <title>Undertext's Appcast</title>
     <link>http://undertext.googlecode.com/svn/appcast.xml</link>
-    <description>Most recent changes with links to updates.</description>
+    <description>Most recent releases with links to updates.</description>
     <language>en</language>
     <item>
       <title>Version 1.0</title>
@@ -12,10 +12,16 @@
       <enclosure url="http://undertext.googlecode.com/files/Undertext-1.0.dmg" sparkle:version="1.0.69" sparkle:shortVersionString="1.0" length="817609" type="application/octet-stream" sparkle:dsaSignature="MCsCFD7nM5gt/i8TBv1vKeSZYsU0Yc9RAhMpYKPmoacmJ8JiEkhWFbau1tJl" />
     </item>
     <item>
-      <title>Version 1.1 (4 bugs fixed; 11 new features)</title>
+      <title>Version 1.1</title>
       <sparkle:releaseNotesLink>http://undertext.googlecode.com/svn/release_notes.html</sparkle:releaseNotesLink>
       <pubDate>Wed, 03 Mar 2010 01:58:12 +0100</pubDate>
       <enclosure url="http://undertext.googlecode.com/files/Undertext-1.1.dmg" sparkle:version="1.1.156" sparkle:shortVersionString="1.1" length="1742074" type="application/octet-stream" sparkle:dsaSignature="MC0CFFgCGYDK6ZwFkJgTL0Q/HYF0/FRlAhUApwZ2/aN4THmNIJPmvIJiKB5H0sw=" />
+    </item>
+	<item>
+      <title>Version 1.2</title>
+      <sparkle:releaseNotesLink>http://undertext.googlecode.com/svn/release_notes.html</sparkle:releaseNotesLink>
+      <pubDate>Thu, 04 Mar 2010 10:38:54 +0100</pubDate>
+      <enclosure url="http://undertext.googlecode.com/files/Undertext-1.2.dmg" sparkle:version="1.2.163" sparkle:shortVersionString="1.2" length="1719559" type="application/octet-stream" sparkle:dsaSignature="MCwCFCVyV4ji5xHWj6WOJA5GLe5ZHd3+AhQ9CikJCr3HZzVAwEBa5+10dK+GoA==" />
     </item>
     <!--
     <item>
