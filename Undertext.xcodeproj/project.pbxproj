@@ -83,9 +83,9 @@
 		2680CDC20F6617A400274EFD /* zh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD900F6617A400274EFD /* zh.png */; };
 		26859425113B0F0000C446F4 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26859424113B0F0000C446F4 /* Client.rb */; };
 		26859475113B40FA00C446F4 /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 26859474113B40FA00C446F4 /* Changelog.rtf */; };
+		26892259113FAF3A000BCC0D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26892257113FAF3A000BCC0D /* MainMenu.xib */; };
 		26EC9EF50F6B3DFC0045F973 /* unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 26EC9EF40F6B3DFC0045F973 /* unknown.png */; };
 		26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = 26EFE7930F31E8FA00B1B95F /* Rakefile */; };
-		4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -181,9 +181,9 @@
 		2680CD900F6617A400274EFD /* zh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zh.png; sourceTree = "<group>"; };
 		26859424113B0F0000C446F4 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
 		26859474113B40FA00C446F4 /* Changelog.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
+		26892258113FAF3A000BCC0D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		26EC9EF40F6B3DFC0045F973 /* unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unknown.png; sourceTree = "<group>"; };
 		26EFE7930F31E8FA00B1B95F /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -367,7 +367,7 @@
 			children = (
 				26346C330F6A1C0C00CCAF71 /* dsa_pub.pem */,
 				2680CD5E0F6617A400274EFD /* flags */,
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				26892257113FAF3A000BCC0D /* MainMenu.xib */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
 			path = Resources;
@@ -437,7 +437,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DDCA7060ACC9A6100E082CE /* MainMenu.nib in Resources */,
 				4DDCA7070ACC9A6100E082CE /* InfoPlist.strings in Resources */,
 				26EFE7960F31E8FA00B1B95F /* Rakefile in Resources */,
 				2680CD910F6617A400274EFD /* ar.png in Resources */,
@@ -506,6 +505,7 @@
 				020A3653104861CA00C76517 /* ResultsOutlineView.rb in Resources */,
 				26859425113B0F0000C446F4 /* Client.rb in Resources */,
 				26859475113B40FA00C446F4 /* Changelog.rtf in Resources */,
+				26892259113FAF3A000BCC0D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,12 +531,13 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+		26892257113FAF3A000BCC0D /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
+				26892258113FAF3A000BCC0D /* English */,
 			);
-			name = MainMenu.nib;
+			name = MainMenu.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
