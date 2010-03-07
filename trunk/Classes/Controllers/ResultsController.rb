@@ -41,26 +41,36 @@ class ResultsController < NSObject
   
   ib_action :openFile
   def openFile(sender)
-    path = @outline.selectedItem.filename
-    NSWorkspace.sharedWorkspace.openFile(path)
+    @outline.selectedItems.each do |item|
+      if File.exists?(item.filename)
+        NSWorkspace.sharedWorkspace.openFile(item.filename)
+      end
+    end
   end
   
   ib_action :revealFile
   def revealFile(sender)
-    path = @outline.selectedItem.filename
-    NSWorkspace.sharedWorkspace.selectFile_inFileViewerRootedAtPath(path, nil)
+    @outline.selectedItems.each do |item|
+      if File.exists?(item.filename)
+        NSWorkspace.sharedWorkspace.selectFile_inFileViewerRootedAtPath(item.filename, nil)
+      end
+    end
   end
   
   ib_action :openURL
   def openURL(sender)
-    url = @outline.selectedItem.url
-    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
+    @outline.selectedItems.each do |item|
+      NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(item.url))
+    end
   end
   
   ib_action :openIMDB
   def openIMDB(sender)
-    url = @outline.selectedItem.imdb_url
-    NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(url))
+    @outline.selectedItems.each do |item|
+      if item.is_a?(Movie) && item.imdb_url
+        NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(item.imdb_url))
+      end
+    end
   end
   
   def validateMenuItem(item)
@@ -68,9 +78,9 @@ class ResultsController < NSObject
     
     case item.action
     when 'openFile:', 'revealFile:'
-      File.exists?(@outline.selectedItem.filename)
+      @outline.selectedItems.any? { |item| File.exists?(item.filename) }
     when 'openIMDB:'
-      !@outline.selectedItem.imdb_url.nil?
+      @outline.selectedItems.any? { |item| item.is_a?(Movie) && item.imdb_url }
     else
       true
     end
