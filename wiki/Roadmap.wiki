@@ -3,6 +3,19 @@
 
 To anyone who's interested I have set this page up to give an idea of what I want and plan to do with Undertext. This is sort of a brainstorming page. Any items here might also get added to [http://code.google.com/p/undertext/issues/list the list of issues]. Comments and suggestions on this page are welcome.
 
+== Next release ==
+
+=== Done ===
+
+ * weird behavior: selection when sorting should be updated to select correct ones or alternatively removed
+ * bug: info window won't be updated when sorting in outline. note: probably fixed same time as one above
+ * weird behavior: with multiple rows selected in outline open/reveal etc in context menu will only do the action for one
+ * expand all items in outline view as default. why: easier to scroll and filter than to expand all items one by one. perhaps add NSTableView#sizeLastColumnToFit (done in r170).
+
+=== Wanted ===
+
+*TODO*
+
 == Future releases and ideas ==
 
 *These are ordered by importance, size, work done, impact, severity, how they're related and other properties. Will perhaps add some better explanation about this later.*
@@ -18,7 +31,6 @@ To anyone who's interested I have set this page up to give an idea of what I wan
 
  * begin upload functionality for subtitles
 
- * expand all items in outline view as default. perhaps add NSTableView#sizeLastColumnToFit. why: easier to scroll and filter than to expand all items one by one
  * drag & drop to outline view. why: more ways to add movies to outline view
  * language column in outline view should include flag. why: easier for the eye to scan
  * find already downloaded subs and set enabled = false. subhash is md5 of contents, create SubtitleOffline. why: easier to choose subtitle and see which one you currently got
@@ -34,14 +46,11 @@ To anyone who's interested I have set this page up to give an idea of what I wan
  * "open recent" functionality in app menu
 
  * bug: error during open files means a search for those files won't ever get done because search isn't called in reconnect
- * weird behavior: selection when sorting should be updated to select correct ones or alternatively removed
- * bug: info window won't be updated when sorting in outline. note: probably fixed same time as one above
  * login session (should) expire after 15 mins. call "NoOperation" to prevent. why: some people will keep the app open for a long time. leads to crashes? verify!
  * bug: not logging out before reconnecting will return "200 OK" and same token even if new password or new username is wrong
  * bug: sometimes table won't get sorted (using sort descriptors) correctly when a connection error occurs. reproduce and verify!
  * handle errors for file IO. For example check "File.readable?". why: in rare cases file IO fails
  * error handling when app crashes. don't quit silently! use Limechat error reporter? why: very confusing when it just quits without any indication to why
- * weird behavior: with multiple rows selected in outline open/reveal etc in context menu will only do the action for one
  * weird behavior: perhaps change bevior of check all, check only selected etc together with language filtering. investigate what's weird!
  * weird behavior: small quirks because of changed behavior for right click in outline view
  * new setting: Sparkle update settings. look at other apps for example Transmission
