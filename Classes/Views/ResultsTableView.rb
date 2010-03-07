@@ -31,4 +31,10 @@ class ResultsTableView < NSOutlineView
   def selectedItems
     selectedRowIndexes.to_a.map { |row| itemAtRow(row) }
   end
+  
+  def selectItems(items)
+    indexes = NSMutableIndexSet.indexSet
+    items.each { |item| indexes.addIndex(rowForItem(item)) }
+    selectRowIndexes_byExtendingSelection(indexes, false)
+  end
 end

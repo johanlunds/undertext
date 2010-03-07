@@ -136,8 +136,11 @@ class ResultsTableController < NSObject
     @detailsController.item = @outline.selectedItem
   end
   
+  # keeps the currently selected items by selecting them at the new row indexes
   def outlineView_sortDescriptorsDidChange(outline, oldDescriptors)
+    selected = @outline.selectedItems
     reloadData
+    @outline.selectItems(selected)
   end
   
   def reloadData
