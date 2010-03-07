@@ -8,12 +8,12 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="368"/>
-			<integer value="567"/>
 			<integer value="548"/>
-			<integer value="600"/>
 			<integer value="29"/>
+			<integer value="567"/>
 			<integer value="534"/>
+			<integer value="373"/>
+			<integer value="600"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -892,6 +892,7 @@
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
 											<bool key="NSAllowsTypeSelect">YES</bool>
+											<bool key="NSOutlineViewAutoresizesOutlineColumnKey">NO</bool>
 										</object>
 									</object>
 									<string key="NSFrame">{{1, 17}, {573, 329}}</string>
