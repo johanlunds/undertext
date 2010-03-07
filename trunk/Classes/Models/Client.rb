@@ -35,10 +35,10 @@ class Client
   end
   
   def serverInfo
-    info = call('ServerInfo')
-    info.delete("last_update_strings") # last_update_strings is unsuitable to show because it's a hash
-    info.delete("application") # application is confusing because of the key-name
-    info
+    result = call('ServerInfo')
+    result.delete("last_update_strings") # last_update_strings is unsuitable to show because it's a hash
+    result.delete("application") # application is confusing because of the key-name
+    result
   end
   
   # Adds subs to movie objects.

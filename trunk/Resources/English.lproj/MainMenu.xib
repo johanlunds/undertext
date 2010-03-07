@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
-		<int key="IBDocument.SystemTarget">1030</int>
+		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">9L31a</string>
 		<string key="IBDocument.InterfaceBuilderVersion">677</string>
 		<string key="IBDocument.AppKitVersion">949.54</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="535"/>
-			<integer value="368"/>
-			<integer value="548"/>
+			<integer value="534"/>
+			<integer value="567"/>
 			<integer value="29"/>
-			<integer value="570"/>
+			<integer value="555"/>
 			<integer value="600"/>
+			<integer value="368"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -449,8 +449,8 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="1039076790">
 									<reference key="NSMenu" ref="466310130"/>
-									<string key="NSTitle">Show Info</string>
-									<string key="NSKeyEquiv">i</string>
+									<string key="NSTitle">Show Details</string>
+									<string key="NSKeyEquiv">d</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="211601423"/>
@@ -1111,7 +1111,7 @@
 				<string key="NSClassName">AppController</string>
 			</object>
 			<object class="NSCustomObject" id="842794368">
-				<string key="NSClassName">ResultsController</string>
+				<string key="NSClassName">ResultsTableController</string>
 			</object>
 			<object class="NSMenu" id="971790173">
 				<string key="NSTitle">Subtitle Menu</string>
@@ -1171,7 +1171,7 @@
 					</object>
 					<object class="NSMenuItem" id="859396633">
 						<reference key="NSMenu" ref="971790173"/>
-						<string key="NSTitle">Show Info in Browser</string>
+						<string key="NSTitle">Show Details in Browser</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="211601423"/>
@@ -1235,17 +1235,17 @@
 						<reference key="NSOnImage" ref="211601423"/>
 						<reference key="NSMixedImage" ref="1070604555"/>
 					</object>
-					<object class="NSMenuItem" id="763684641">
+					<object class="NSMenuItem" id="527355204">
 						<reference key="NSMenu" ref="549501043"/>
-						<string key="NSTitle">Show Result in Browser</string>
+						<string key="NSTitle">Show IMDB Page in Browser</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="211601423"/>
 						<reference key="NSMixedImage" ref="1070604555"/>
 					</object>
-					<object class="NSMenuItem" id="527355204">
+					<object class="NSMenuItem" id="763684641">
 						<reference key="NSMenu" ref="549501043"/>
-						<string key="NSTitle">Show IMDB Page in Browser</string>
+						<string key="NSTitle">Show Search Result in Browser</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="211601423"/>
@@ -1258,7 +1258,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{893, 378}, {289, 264}}</string>
 				<int key="NSWTFlags">-1535639552</int>
-				<string key="NSWindowTitle">Info</string>
+				<string key="NSWindowTitle">Details</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -1361,7 +1361,7 @@
 											<reference key="NSGridColor" ref="243394601"/>
 											<double key="NSRowHeight">1.500000e+01</double>
 											<int key="NSTvFlags">-675282944</int>
-											<string key="NSAutosaveName">infoTable</string>
+											<string key="NSAutosaveName">detailsTable</string>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -1415,10 +1415,10 @@
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMinSize">{213, 126}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
-				<string key="NSFrameAutosaveName">infoWindow</string>
+				<string key="NSFrameAutosaveName">detailsWindow</string>
 			</object>
 			<object class="NSCustomObject" id="435798733">
-				<string key="NSClassName">InfoWindowController</string>
+				<string key="NSClassName">DetailsWindowController</string>
 			</object>
 			<object class="NSCustomObject" id="943244091">
 				<string key="NSClassName">SUUpdater</string>
@@ -1842,14 +1842,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">infoController</string>
-						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="435798733"/>
-					</object>
-					<int key="connectionID">506</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">languages</string>
 						<reference key="source" ref="817593554"/>
 						<reference key="destination" ref="226980165"/>
@@ -2066,35 +2058,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">openURL:</string>
-						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="763684641"/>
-					</object>
-					<int key="connectionID">586</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openIMDB:</string>
-						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="527355204"/>
-					</object>
-					<int key="connectionID">587</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">showMainWindow:</string>
 						<reference key="source" ref="817593554"/>
 						<reference key="destination" ref="282696139"/>
 					</object>
 					<int key="connectionID">592</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">toggleInfoWindow:</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="1039076790"/>
-					</object>
-					<int key="connectionID">593</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2119,14 +2087,6 @@
 						<reference key="destination" ref="755942539"/>
 					</object>
 					<int key="connectionID">596</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">infoController</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="435798733"/>
-					</object>
-					<int key="connectionID">597</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2284,6 +2244,46 @@
 						</object>
 					</object>
 					<int key="connectionID">766</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">detailsController</string>
+						<reference key="source" ref="817593554"/>
+						<reference key="destination" ref="435798733"/>
+					</object>
+					<int key="connectionID">768</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">detailsController</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="435798733"/>
+					</object>
+					<int key="connectionID">769</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleDetailsWindow:</string>
+						<reference key="source" ref="817593554"/>
+						<reference key="destination" ref="1039076790"/>
+					</object>
+					<int key="connectionID">771</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openIMDB:</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="527355204"/>
+					</object>
+					<int key="connectionID">772</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openURL:</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="763684641"/>
+					</object>
+					<int key="connectionID">773</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3094,13 +3094,13 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="932553033"/>
-							<reference ref="527355204"/>
 							<reference ref="763684641"/>
 							<reference ref="421429282"/>
 							<reference ref="871607572"/>
 							<reference ref="805461338"/>
 							<reference ref="360846615"/>
 							<reference ref="58131633"/>
+							<reference ref="527355204"/>
 						</object>
 						<reference key="parent" ref="1049"/>
 					</object>
@@ -3646,13 +3646,13 @@
 					<string>{74, 862}</string>
 					<string>{{11, 977}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{190, 653}, {234, 73}}</string>
+					<string>{{190, 653}, {236, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{21, 109}, {630, 490}}</string>
-					<string>{{21, 109}, {630, 490}}</string>
+					<string>{{32, 111}, {630, 490}}</string>
+					<string>{{32, 111}, {630, 490}}</string>
 					<reference ref="9"/>
 					<string>{{517, 575}, {480, 270}}</string>
 					<reference ref="5"/>
@@ -3661,7 +3661,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>ResultsOutlineView</string>
+					<string>ResultsTableView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3699,8 +3699,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{307, 284}, {289, 264}}</string>
-					<string>{{307, 284}, {289, 264}}</string>
+					<string>{{463, 232}, {289, 264}}</string>
+					<string>{{463, 232}, {289, 264}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<string>{213, 107}</string>
@@ -3713,7 +3713,7 @@
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{71, 406}, {197, 133}}</string>
+					<string>{{71, 406}, {217, 133}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3724,7 +3724,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{309, 411}, {242, 153}}</string>
+					<string>{{309, 411}, {262, 153}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3806,7 +3806,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">767</int>
+			<int key="maxID">773</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3825,7 +3825,7 @@
 							<string>openURL:</string>
 							<string>reconnect:</string>
 							<string>showMainWindow:</string>
-							<string>toggleInfoWindow:</string>
+							<string>toggleDetailsWindow:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3844,7 +3844,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>connStatus</string>
-							<string>infoController</string>
+							<string>detailsController</string>
 							<string>languages</string>
 							<string>mainWindow</string>
 							<string>prefController</string>
@@ -3868,7 +3868,7 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">InfoWindowController</string>
+					<string key="className">DetailsWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">table</string>
@@ -3876,7 +3876,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Controllers/InfoWindowController.rb</string>
+						<string key="minorKey">Classes/Controllers/DetailsWindowController.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3888,7 +3888,7 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">ResultsController</string>
+					<string key="className">ResultsTableController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3917,8 +3917,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>detailsController</string>
 							<string>downloadSelected</string>
-							<string>infoController</string>
 							<string>outline</string>
 							<string>selectedCount</string>
 						</object>
@@ -3932,11 +3932,11 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Controllers/ResultsController.rb</string>
+						<string key="minorKey">Classes/Controllers/ResultsTableController.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">ResultsOutlineView</string>
+					<string key="className">ResultsTableView</string>
 					<string key="superclassName">NSOutlineView</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">movieMenu</string>
@@ -3944,7 +3944,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Views/ResultsOutlineView.rb</string>
+						<string key="minorKey">Classes/Views/ResultsTableView.rb</string>
 					</object>
 				</object>
 			</object>

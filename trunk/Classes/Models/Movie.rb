@@ -19,7 +19,7 @@ class Movie < NSObject
     @hash = nil
     @info = {}
     @langFilter = nil
-    # These have to be NSArray, see "ResultsController#sortData"
+    # These have to be NSArray, see "ResultsTableController#sortData"
     @filtered_subtitles = @all_subtitles = [].to_ns
     @unique_languages = 0
     self
@@ -32,7 +32,7 @@ class Movie < NSObject
   end
   
   def all_subtitles=(subs)
-    @all_subtitles = subs.to_ns # need to be NSArray, see "ResultsController#sortData"
+    @all_subtitles = subs.to_ns # need to be NSArray, see "ResultsTableController#sortData"
     subs.each { |sub| sub.movie = self }
     @unique_languages = subs.map { |sub| sub.language }.uniq.size
     filter
