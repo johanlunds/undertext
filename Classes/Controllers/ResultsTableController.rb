@@ -96,8 +96,9 @@ class ResultsTableController < NSObject
   end
   
   def add_movies(movies)
-    @movies += movies
+    @movies.concat(movies)
     reloadData
+    movies.each { |movie| @outline.expandItem(movie) } # expand new items by default
   end
   
   def outlineView_child_ofItem(outline, index, item)
