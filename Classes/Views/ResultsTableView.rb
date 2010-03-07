@@ -1,12 +1,12 @@
 #
-#  ResultsOutlineView.rb
+#  ResultsTableView.rb
 #  Undertext
 #
 #  Created by Johan Lundström on 2009-04-08.
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class ResultsOutlineView < NSOutlineView
+class ResultsTableView < NSOutlineView
 
   ib_outlets :movieMenu
   

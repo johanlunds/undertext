@@ -14,7 +14,7 @@ class AppController < NSObject
   FILES = ['License.rtf', 'Acknowledgments.rtf']
   DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns }
 
-  ib_outlets :resController, :infoController, :prefController
+  ib_outlets :resController, :detailsController, :prefController
   ib_outlets :mainWindow, :connStatus, :workingStatus, :languages
   
   def init
@@ -46,8 +46,8 @@ class AppController < NSObject
   # Automatically called. Returns boolean for menu item's enabled state.
   def validateMenuItem(item)
     case item.action
-    when 'toggleInfoWindow:'
-      item.setTitle(@infoController.window.isVisible ? "Hide Info" : "Show Info")
+    when 'toggleDetailsWindow:'
+      item.setTitle(@detailsController.window.isVisible ? "Hide Details" : "Show Details")
       true
     else
       true
@@ -59,12 +59,12 @@ class AppController < NSObject
     @mainWindow.makeKeyAndOrderFront(nil)
   end
   
-  ib_action :toggleInfoWindow
-  def toggleInfoWindow(sender)
-    if @infoController.window.isVisible
-      @infoController.close
+  ib_action :toggleDetailsWindow
+  def toggleDetailsWindow(sender)
+    if @detailsController.window.isVisible
+      @detailsController.close
     else
-      @infoController.showWindow(nil)
+      @detailsController.showWindow(nil)
     end
   end
   
@@ -111,7 +111,7 @@ class AppController < NSObject
     @client = Client.new(*@prefController.credentials)
     finished = client_working do
       @client.logIn
-      @infoController.defaultInfo = @client.serverInfo
+      @detailsController.defaultInfo = @client.serverInfo
       add_languages(@client.languages) unless @languages.isEnabled
     end
     status("Connected to OpenSubtitles.org as #{@client.user}.") if finished

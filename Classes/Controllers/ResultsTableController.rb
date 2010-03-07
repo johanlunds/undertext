@@ -1,16 +1,16 @@
 #
-#  ResultsController.rb
+#  ResultsTableController.rb
 #  Undertext
 #
 #  Created by Johan Lundström on 2009-01-29.
 #  Copyright (c) 2009 Johan Lundström.
 #
 
-class ResultsController < NSObject
+class ResultsTableController < NSObject
   
   CHECK_TAG = 1
   
-  ib_outlets :outline, :infoController, :selectedCount, :downloadSelected
+  ib_outlets :outline, :detailsController, :selectedCount, :downloadSelected
   attr_reader :movies
   
   def init
@@ -129,9 +129,9 @@ class ResultsController < NSObject
     reloadData
   end
   
-  # Update info window with selected item (or nil)
+  # Update details window with selected item (or nil)
   def outlineViewSelectionDidChange(notification)
-    @infoController.item = @outline.selectedItem
+    @detailsController.item = @outline.selectedItem
   end
   
   def outlineView_sortDescriptorsDidChange(outline, oldDescriptors)
