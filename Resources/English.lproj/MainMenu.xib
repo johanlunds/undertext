@@ -8,12 +8,12 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="534"/>
-			<integer value="567"/>
-			<integer value="29"/>
-			<integer value="555"/>
-			<integer value="600"/>
 			<integer value="368"/>
+			<integer value="567"/>
+			<integer value="548"/>
+			<integer value="600"/>
+			<integer value="29"/>
+			<integer value="534"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1237,7 +1237,7 @@
 					</object>
 					<object class="NSMenuItem" id="527355204">
 						<reference key="NSMenu" ref="549501043"/>
-						<string key="NSTitle">Show IMDB Page in Browser</string>
+						<string key="NSTitle">Show Details in Browser</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="211601423"/>
@@ -1993,14 +1993,6 @@
 					<int key="connectionID">564</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openURL:</string>
-						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="859396633"/>
-					</object>
-					<int key="connectionID">565</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">menu</string>
 						<reference key="source" ref="755942539"/>
@@ -2271,19 +2263,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">openIMDB:</string>
+						<string key="label">openDetailsURL:</string>
 						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="527355204"/>
+						<reference key="destination" ref="859396633"/>
 					</object>
-					<int key="connectionID">772</int>
+					<int key="connectionID">774</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">openURL:</string>
+						<string key="label">openSearchURL:</string>
 						<reference key="source" ref="842794368"/>
 						<reference key="destination" ref="763684641"/>
 					</object>
-					<int key="connectionID">773</int>
+					<int key="connectionID">776</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openDetailsURL:</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="527355204"/>
+					</object>
+					<int key="connectionID">777</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3806,7 +3806,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">773</int>
+			<int key="maxID">777</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3897,9 +3897,9 @@
 							<string>checkSelected:</string>
 							<string>languageSelected:</string>
 							<string>onlyCheckSelected:</string>
+							<string>openDetailsURL:</string>
 							<string>openFile:</string>
-							<string>openIMDB:</string>
-							<string>openURL:</string>
+							<string>openSearchURL:</string>
 							<string>revealFile:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">

@@ -57,18 +57,20 @@ class ResultsTableController < NSObject
     end
   end
   
-  ib_action :openURL
-  def openURL(sender)
+  ib_action :openDetailsURL
+  def openDetailsURL(sender)
     @outline.selectedItems.each do |item|
-      NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(item.url))
+      if item.url
+        NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(item.url))
+      end
     end
   end
   
-  ib_action :openIMDB
-  def openIMDB(sender)
+  ib_action :openSearchURL
+  def openSearchURL(sender)
     @outline.selectedItems.each do |item|
-      if item.is_a?(Movie) && item.imdb_url
-        NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(item.imdb_url))
+      if item.is_a?(Movie)
+        NSWorkspace.sharedWorkspace.openURL(NSURL.URLWithString(item.search_url))
       end
     end
   end
@@ -79,8 +81,8 @@ class ResultsTableController < NSObject
     case item.action
     when 'openFile:', 'revealFile:'
       @outline.selectedItems.any? { |item| File.exists?(item.filename) }
-    when 'openIMDB:'
-      @outline.selectedItems.any? { |item| item.is_a?(Movie) && item.imdb_url }
+    when 'openDetailsURL:'
+      @outline.selectedItems.any? { |item| item.url }
     else
       true
     end
