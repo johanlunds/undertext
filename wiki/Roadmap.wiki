@@ -11,6 +11,8 @@ To anyone who's interested I have set this page up to give an idea of what I wan
  * bug: info window won't be updated when sorting in outline. note: probably fixed same time as one above
  * weird behavior: with multiple rows selected in outline open/reveal etc in context menu will only do the action for one
  * expand all items in outline view as default. why: easier to scroll and filter than to expand all items one by one. perhaps add NSTableView#sizeLastColumnToFit (done in r170).
+ * drag & drop to outline view. why: more ways to add movies to outline view
+ * language column in outline view should include flag. why: easier for the eye to scan
 
 === Wanted ===
 
@@ -31,8 +33,6 @@ To anyone who's interested I have set this page up to give an idea of what I wan
 
  * begin upload functionality for subtitles
 
- * drag & drop to outline view. why: more ways to add movies to outline view
- * language column in outline view should include flag. why: easier for the eye to scan
  * find already downloaded subs and set enabled = false. subhash is md5 of contents, create SubtitleOffline. why: easier to choose subtitle and see which one you currently got
  * app icon. http://www.flickr.com/photos/herminutomo/1282517815/in/set-72157601782768947/
  * add "Don't show this again" to overwrite-dialog (NSAlert#suppressionButton)
