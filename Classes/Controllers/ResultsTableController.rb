@@ -10,13 +10,35 @@ class ResultsTableController < NSObject
   
   CHECK_TAG = 1
   
-  ib_outlets :outline, :detailsController, :selectedCount, :downloadSelected
+  ib_outlets :appController, :detailsController
+  ib_outlets :outline, :selectedCount, :downloadSelected
   attr_reader :movies
   
   def init
     super_init
     @movies = [].to_ns # need to be NSArray, see "sortData"
     self
+  end
+  
+  def awakeFromNib
+    @outline.registerForDraggedTypes([NSFilenamesPboardType])
+  end
+  
+  # accept drops of movie files and folders ONLY
+  def outlineView_validateDrop_proposedItem_proposedChildIndex(outline, info, item, index)
+    files = info.draggingPasteboard.propertyListForType(NSFilenamesPboardType)
+    if self.class.contains_non_movie_files? files
+      NSDragOperationNone
+    else
+      @outline.setDropItem_dropChildIndex(nil, NSOutlineViewDropOnItemIndex) # retarget to root node
+      NSDragOperationGeneric
+    end
+  end
+  
+  def outlineView_acceptDrop_item_childIndex(outline, info, item, index)
+    files = info.draggingPasteboard.propertyListForType(NSFilenamesPboardType)
+    @appController.application_openFiles(nil, files)
+    true # drop operation was successful
   end
   
   ib_action :languageSelected
@@ -168,5 +190,11 @@ class ResultsTableController < NSObject
     def sortData
       @movies.each { |movie| movie.filtered_subtitles.sortUsingDescriptors(@outline.sortDescriptors) }
       @movies.sortUsingDescriptors(@outline.sortDescriptors)
+    end
+    
+    def self.contains_non_movie_files?(files)
+      files.any? do |file|
+        File.file?(file) && !AppController::MOVIE_EXTS.include?(File.extname(file).sub(".", ""))
+      end
     end
 end
