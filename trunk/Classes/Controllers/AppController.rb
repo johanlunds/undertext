@@ -9,7 +9,7 @@
 class AppController < NSObject
   
   # Used if looking by UTI is too cumbersome
-  EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
+  MOVIE_EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgments.rtf']
   DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns }
@@ -83,7 +83,7 @@ class AppController < NSObject
   # it searches folders recursively for movie files
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
-    folders.each { |folder| files += Dir.glob(folder + "/**/*.{#{EXTS.join(',')}}") }
+    folders.each { |folder| files += Dir.glob(folder + "/**/*.{#{MOVIE_EXTS.join(',')}}") }
     movies = files.map { |file| Movie.alloc.initWithFile(file) }
     @resController.add_movies(movies)
     search(movies)
