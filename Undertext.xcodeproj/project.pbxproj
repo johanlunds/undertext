@@ -81,6 +81,7 @@
 		2680CDC00F6617A400274EFD /* uk.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD8E0F6617A400274EFD /* uk.png */; };
 		2680CDC10F6617A400274EFD /* vi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD8F0F6617A400274EFD /* vi.png */; };
 		2680CDC20F6617A400274EFD /* zh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2680CD900F6617A400274EFD /* zh.png */; };
+		2684919A11453422009DBFF6 /* LanguageCell.rb in Resources */ = {isa = PBXBuildFile; fileRef = 2684919911453422009DBFF6 /* LanguageCell.rb */; };
 		26859425113B0F0000C446F4 /* Client.rb in Resources */ = {isa = PBXBuildFile; fileRef = 26859424113B0F0000C446F4 /* Client.rb */; };
 		26859475113B40FA00C446F4 /* Changelog.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 26859474113B40FA00C446F4 /* Changelog.rtf */; };
 		26892259113FAF3A000BCC0D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26892257113FAF3A000BCC0D /* MainMenu.xib */; };
@@ -179,6 +180,7 @@
 		2680CD8E0F6617A400274EFD /* uk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uk.png; sourceTree = "<group>"; };
 		2680CD8F0F6617A400274EFD /* vi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vi.png; sourceTree = "<group>"; };
 		2680CD900F6617A400274EFD /* zh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zh.png; sourceTree = "<group>"; };
+		2684919911453422009DBFF6 /* LanguageCell.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = LanguageCell.rb; sourceTree = "<group>"; };
 		26859424113B0F0000C446F4 /* Client.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Client.rb; sourceTree = "<group>"; };
 		26859474113B40FA00C446F4 /* Changelog.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Changelog.rtf; sourceTree = "<group>"; };
 		26892258113FAF3A000BCC0D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				264867141143E904000526DB /* ResultsTableView.rb */,
+				2684919911453422009DBFF6 /* LanguageCell.rb */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				264867151143E904000526DB /* ResultsTableView.rb in Resources */,
 				264867181143E90D000526DB /* DetailsWindowController.rb in Resources */,
 				264867191143E90D000526DB /* ResultsTableController.rb in Resources */,
+				2684919A11453422009DBFF6 /* LanguageCell.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
