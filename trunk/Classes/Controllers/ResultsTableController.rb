@@ -118,9 +118,12 @@ class ResultsTableController < NSObject
   end
   
   def outlineView_willDisplayCell_forTableColumn_item(outline, cell, tableColumn, item)
-    if tableColumn.identifier == "downloadState"
+    case tableColumn.identifier
+    when "downloadState"
       cell.setTitle(item.title)
       cell.setEnabled(item.isEnabled)
+    when "otherInfo"
+      cell.setImage(item.is_a?(Subtitle) ? item.language.image : nil)
     else
       cell.setTextColor(item.isEnabled ? NSColor.controlTextColor : NSColor.disabledControlTextColor)
     end
