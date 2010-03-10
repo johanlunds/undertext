@@ -55,6 +55,7 @@ To anyone who's interested I have set this page up to give an idea of what I wan
  * weird behavior: small quirks because of changed behavior for right click in outline view
  * new setting: Sparkle update settings. look at other apps for example Transmission
  * refactoring in general. perhaps extract SearchController from AppController
+ * copy whole directory structures into app bundle and fix require calls.
 
 === Other: ===
 
