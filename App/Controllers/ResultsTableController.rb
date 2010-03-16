@@ -143,9 +143,12 @@ class ResultsTableController < NSObject
     case tableColumn.identifier
     when "downloadState"
       cell.setTitle(item.title)
-      cell.setEnabled(item.isEnabled)
     when "otherInfo"
       cell.setImage(item.is_a?(Subtitle) ? item.language.image : nil)
+    end
+    
+    if tableColumn.identifier == "downloadState"
+      cell.setEnabled(item.isEnabled)
     else
       cell.setTextColor(item.isEnabled ? NSColor.controlTextColor : NSColor.disabledControlTextColor)
     end
