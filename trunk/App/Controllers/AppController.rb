@@ -15,7 +15,7 @@ class AppController < NSObject
   DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns }
 
   ib_outlets :resController, :detailsController, :prefController
-  ib_outlets :mainWindow, :connStatus, :workingStatus, :languages
+  ib_outlets :mainWindow, :connStatus, :workingIndicator, :languageMenu
   
   def init
     super_init
@@ -25,7 +25,7 @@ class AppController < NSObject
   end
   
   def awakeFromNib
-    @workingStatus.setUsesThreadedAnimation(true) # todo: remove if changing to threaded api-calls
+    @workingIndicator.setUsesThreadedAnimation(true) # todo: remove if changing to threaded api-calls
     @mainWindow.makeKeyAndOrderFront(nil)
     @mainWindow.setExcludedFromWindowsMenu(true)
   end
@@ -112,7 +112,7 @@ class AppController < NSObject
     finished = client_working do
       @client.logIn
       @detailsController.defaultInfo = @client.serverInfo
-      add_languages(@client.languages) unless @languages.isEnabled
+      add_languages(@client.languages) unless @languageMenu.isEnabled
     end
     status("Connected to OpenSubtitles.org as #{@client.user}") if finished
   end
@@ -125,8 +125,8 @@ class AppController < NSObject
     @resController.reloadData
   end
 
-  ib_action :downloadSelected  
-  def downloadSelected(sender)
+  ib_action :downloadSubtitles  
+  def downloadSubtitles(sender)
     client_working do
       @client.downloadSubtitles(@resController.downloads)
       @downloaded_subs = @resController.downloads
@@ -165,15 +165,15 @@ class AppController < NSObject
         item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(lang.name, nil, "")
         item.setRepresentedObject(lang)
         item.setImage(lang.image)
-        @languages.menu.addItem(item)
+        @languageMenu.menu.addItem(item)
       end
-      @languages.setEnabled(true)
+      @languageMenu.setEnabled(true)
     end
   
     # Will animate progress indicator during execution of passed block.
     # Catches exceptions and if so updates status and returns false.
     def client_working
-      @workingStatus.startAnimation(self)
+      @workingIndicator.startAnimation(self)
 
       begin
         yield
@@ -181,7 +181,7 @@ class AppController < NSObject
         error_status(e.message)
         return false
       ensure
-        @workingStatus.stopAnimation(self)
+        @workingIndicator.stopAnimation(self)
       end
       
       true

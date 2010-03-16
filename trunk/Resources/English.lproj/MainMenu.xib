@@ -8,12 +8,12 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="29"/>
+			<integer value="548"/>
 			<integer value="567"/>
+			<integer value="368"/>
+			<integer value="29"/>
 			<integer value="534"/>
 			<integer value="600"/>
-			<integer value="368"/>
-			<integer value="548"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1795,14 +1795,6 @@
 					<int key="connectionID">391</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">downloadSelected:</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="209910441"/>
-					</object>
-					<int key="connectionID">400</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="755942539"/>
@@ -1836,43 +1828,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">languages</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="226980165"/>
-					</object>
-					<int key="connectionID">507</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">selectedCount</string>
-						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="444732239"/>
-					</object>
-					<int key="connectionID">509</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">downloadSelected</string>
-						<reference key="source" ref="842794368"/>
-						<reference key="destination" ref="209910441"/>
-					</object>
-					<int key="connectionID">510</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">resController</string>
 						<reference key="source" ref="817593554"/>
 						<reference key="destination" ref="842794368"/>
 					</object>
 					<int key="connectionID">512</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">workingStatus</string>
-						<reference key="source" ref="817593554"/>
-						<reference key="destination" ref="489358219"/>
-					</object>
-					<int key="connectionID">513</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2286,6 +2246,46 @@
 						<reference key="destination" ref="817593554"/>
 					</object>
 					<int key="connectionID">778</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">downloadButton</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="209910441"/>
+					</object>
+					<int key="connectionID">779</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tableCounts</string>
+						<reference key="source" ref="842794368"/>
+						<reference key="destination" ref="444732239"/>
+					</object>
+					<int key="connectionID">780</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">downloadSubtitles:</string>
+						<reference key="source" ref="817593554"/>
+						<reference key="destination" ref="209910441"/>
+					</object>
+					<int key="connectionID">781</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">workingIndicator</string>
+						<reference key="source" ref="817593554"/>
+						<reference key="destination" ref="489358219"/>
+					</object>
+					<int key="connectionID">782</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">languageMenu</string>
+						<reference key="source" ref="817593554"/>
+						<reference key="destination" ref="226980165"/>
+					</object>
+					<int key="connectionID">783</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3810,7 +3810,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">778</int>
+			<int key="maxID">783</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3823,7 +3823,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>client_working:</string>
-							<string>downloadSelected:</string>
+							<string>downloadSubtitles:</string>
 							<string>open:</string>
 							<string>openFile:</string>
 							<string>openURL:</string>
@@ -3849,11 +3849,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>connStatus</string>
 							<string>detailsController</string>
-							<string>languages</string>
+							<string>languageMenu</string>
 							<string>mainWindow</string>
 							<string>prefController</string>
 							<string>resController</string>
-							<string>workingStatus</string>
+							<string>workingIndicator</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3931,9 +3931,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>appController</string>
 							<string>detailsController</string>
-							<string>downloadSelected</string>
+							<string>downloadButton</string>
 							<string>outline</string>
-							<string>selectedCount</string>
+							<string>tableCounts</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
