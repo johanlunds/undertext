@@ -9,11 +9,11 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="548"/>
-			<integer value="567"/>
 			<integer value="368"/>
+			<integer value="567"/>
+			<integer value="600"/>
 			<integer value="29"/>
 			<integer value="534"/>
-			<integer value="600"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -653,7 +653,7 @@
 										<object class="NSOutlineView" id="755942539">
 											<reference key="NSNextResponder" ref="285172643"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrameSize">{573, 329}</string>
+											<string key="NSFrameSize">{573, 344}</string>
 											<reference key="NSSuperview" ref="285172643"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTableHeaderView" key="NSHeaderView" id="149172227">
@@ -733,7 +733,7 @@
 													</object>
 												</object>
 												<object class="NSTableColumn" id="544877719">
-													<string key="NSIdentifier">otherInfo</string>
+													<string key="NSIdentifier">languageName</string>
 													<double key="NSWidth">1.600000e+02</double>
 													<double key="NSMinWidth">5.000000e+01</double>
 													<double key="NSMaxWidth">1.000000e+03</double>
@@ -771,7 +771,7 @@
 													<bool key="NSIsResizeable">YES</bool>
 													<reference key="NSTableView" ref="755942539"/>
 													<object class="NSSortDescriptor" key="NSSortDescriptorPrototype">
-														<string key="NSKey">otherInfo</string>
+														<string key="NSKey">languageName</string>
 														<bool key="NSAscending">YES</bool>
 														<string key="NSSelector">localizedCaseInsensitiveCompare:</string>
 													</object>
@@ -895,7 +895,7 @@
 											<bool key="NSOutlineViewAutoresizesOutlineColumnKey">NO</bool>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 17}, {573, 329}}</string>
+									<string key="NSFrame">{{1, 17}, {573, 344}}</string>
 									<reference key="NSSuperview" ref="958426152"/>
 									<reference key="NSNextKeyView" ref="755942539"/>
 									<reference key="NSDocView" ref="755942539"/>
@@ -905,7 +905,7 @@
 								<object class="NSScroller" id="437994655">
 									<reference key="NSNextResponder" ref="958426152"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{574, 17}, {15, 329}}</string>
+									<string key="NSFrame">{{574, 17}, {15, 344}}</string>
 									<reference key="NSSuperview" ref="958426152"/>
 									<reference key="NSTarget" ref="958426152"/>
 									<string key="NSAction">_doScroller:</string>
@@ -914,7 +914,7 @@
 								<object class="NSScroller" id="36326058">
 									<reference key="NSNextResponder" ref="958426152"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{1, 346}, {573, 15}}</string>
+									<string key="NSFrame">{{-100, -100}, {573, 15}}</string>
 									<reference key="NSSuperview" ref="958426152"/>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="958426152"/>
@@ -940,7 +940,7 @@
 							<string key="NSFrame">{{20, 60}, {590, 362}}</string>
 							<reference key="NSSuperview" ref="414427165"/>
 							<reference key="NSNextKeyView" ref="285172643"/>
-							<int key="NSsFlags">50</int>
+							<int key="NSsFlags">18</int>
 							<reference key="NSVScroller" ref="437994655"/>
 							<reference key="NSHScroller" ref="36326058"/>
 							<reference key="NSContentView" ref="285172643"/>
@@ -1011,7 +1011,7 @@
 								<int key="NSCellFlags2">138544128</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="26"/>
-								<string key="NSPlaceholderString">0/0 selected</string>
+								<string key="NSPlaceholderString">0 checked of 0 total</string>
 								<reference key="NSControlView" ref="444732239"/>
 								<reference key="NSBackgroundColor" ref="981475599"/>
 								<reference key="NSTextColor" ref="140275942"/>

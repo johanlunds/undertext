@@ -17,7 +17,7 @@ class ResultsTableView < NSOutlineView
     row = rowAtPoint(convertPoint_fromView(event.locationInWindow, nil))
     selectRowIndexes_byExtendingSelection(NSIndexSet.indexSetWithIndex(row), isRowSelected(row)) if row >= 0
     
-    if itemAtRow(row).is_a? Movie
+    if itemAtRow(row).kind_of? Movie
       @movieMenu
     else
       menu
