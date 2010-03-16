@@ -114,7 +114,7 @@ class AppController < NSObject
       @detailsController.defaultInfo = @client.serverInfo
       add_languages(@client.languages) unless @languages.isEnabled
     end
-    status("Connected to OpenSubtitles.org as #{@client.user}.") if finished
+    status("Connected to OpenSubtitles.org as #{@client.user}") if finished
   end
 
   def search(movies)
@@ -170,10 +170,9 @@ class AppController < NSObject
       @languages.setEnabled(true)
     end
   
-    # Will show progress indicator during execution of passed block.
+    # Will animate progress indicator during execution of passed block.
     # Catches exceptions and if so updates status and returns false.
     def client_working
-      @workingStatus.setHidden(false)
       @workingStatus.startAnimation(self)
 
       begin
@@ -183,7 +182,6 @@ class AppController < NSObject
         return false
       ensure
         @workingStatus.stopAnimation(self)
-        @workingStatus.setHidden(true)
       end
       
       true
