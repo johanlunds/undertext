@@ -11,7 +11,7 @@ class ResultsTableController < NSObject
   CHECK_TAG = 1
   
   ib_outlets :appController, :detailsController
-  ib_outlets :outline, :selectedCount, :downloadSelected
+  ib_outlets :outline, :tableCounts, :downloadButton
   attr_reader :movies
   
   def init
@@ -181,12 +181,12 @@ class ResultsTableController < NSObject
   private
   
     def updateCounts
-      sel_count = downloads.size
-      sub_count = @movies.inject(0) do |sub_count, movie|
-        sub_count + movie.filtered_subtitles.size
+      checked = downloads.size
+      filtered = @movies.inject(0) do |filtered, movie|
+        filtered + movie.filtered_subtitles.size
       end
-      @downloadSelected.setEnabled(sel_count != 0)
-      @selectedCount.setStringValue("#{sel_count}/#{sub_count} selected")
+      @downloadButton.setEnabled(checked != 0)
+      @tableCounts.setStringValue("#{checked}/#{filtered} checked")
     end
     
     # arrays need to be NSArray (because they have method "sortUsingDescriptors")
