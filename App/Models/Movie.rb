@@ -69,7 +69,7 @@ class Movie < NSObject
     File.basename(@filename)
   end
   
-  def otherInfo
+  def languageName
     case @unique_languages
     when 0
       "No languages"

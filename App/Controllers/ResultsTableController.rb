@@ -143,7 +143,7 @@ class ResultsTableController < NSObject
     case tableColumn.identifier
     when "downloadState"
       cell.setTitle(item.title)
-    when "otherInfo"
+    when "languageName"
       cell.setImage(item.is_a?(Subtitle) ? item.language.image : nil)
     end
     
@@ -186,7 +186,7 @@ class ResultsTableController < NSObject
         filtered + movie.filtered_subtitles.size
       end
       @downloadButton.setEnabled(checked != 0)
-      @tableCounts.setStringValue("#{checked}/#{filtered} checked")
+      @tableCounts.setStringValue("#{checked} checked of #{filtered} total")
     end
     
     # arrays need to be NSArray (because they have method "sortUsingDescriptors")

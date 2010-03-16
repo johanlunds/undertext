@@ -39,7 +39,7 @@ class Subtitle < NSObject
     @info["SubFileName"]
   end
   
-  def otherInfo
+  def languageName
     @language.name
   end
   
