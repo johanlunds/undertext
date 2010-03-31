@@ -8,7 +8,6 @@
 
 class AppController < NSObject
   
-  # Used if looking by UTI is too cumbersome
   MOVIE_EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgments.rtf']
@@ -95,7 +94,7 @@ class AppController < NSObject
     open.setAllowsMultipleSelection(true)
     open.setCanChooseDirectories(true)
     open.beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
-      nil, nil, ["public.movie"], @mainWindow, self,
+      nil, nil, MOVIE_EXTS, @mainWindow, self,
       'openPanelDidEnd:returnCode:contextInfo:', nil
     )
   end
