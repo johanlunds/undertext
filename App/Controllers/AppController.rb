@@ -83,7 +83,7 @@ class AppController < NSObject
   def application_openFiles(sender, paths)
     files, folders = paths.partition { |path| File.file? path }
     folders.each { |folder| files += Dir.glob(folder + "/**/*.{#{MOVIE_EXTS.join(',')}}") }
-    movies = files.map { |file| Movie.alloc.initWithFile(file) }
+    movies = files.map { |file| Movie.alloc.initWithPath_langFilter(file, @languageMenu.selectedItem.representedObject) }
     @resController.add_movies(movies)
     search(movies)
   end

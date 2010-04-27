@@ -13,12 +13,13 @@ class Movie < NSObject
   attr_accessor :info
   attr_reader :filename, :filtered_subtitles
 
-  def initWithFile(filename)
+  def initWithPath_langFilter(filename, langFilter)
     init
     @filename = filename
     @hash = nil
     @info = {}
-    @langFilter = nil
+    # the sub-arrays are empty so we don't need to call #filter yet
+    @langFilter = langFilter
     # These have to be NSArray, see "ResultsTableController#sortData"
     @filtered_subtitles = @all_subtitles = [].to_ns
     @unique_languages = 0
