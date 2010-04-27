@@ -26,18 +26,19 @@ class Language < NSObject
     NSImage.imageNamed(@iso6391 + ".png") || NSImage.imageNamed(NO_FLAG_IMAGE)
   end
   
+  # Here are some compare methods for use with arrays (sort, uniq). Do sorts by
+  # display name but do stricter checks when comparing equality (==, eql?, hash).
+  # eql? and hash should always be defined together (see Object#hash doc).
+  
   def <=>(other_sub)
-    name <=> other_sub.name
+    eql?(other_sub) ? 0 : name <=> other_sub.name
   end
   
-  # eql? and hash is defined because two Language-objects with same @name
-  # should be the same object (equal). This makes calling uniq on an array work.
-  
   def eql?(other_sub)
-    name == other_sub.name
+    iso6392 == other_sub.iso6392
   end
   
   def hash
-    @name.hash
+    @iso6392.hash
   end
 end
