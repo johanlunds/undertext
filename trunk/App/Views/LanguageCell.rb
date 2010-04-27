@@ -32,7 +32,7 @@ class LanguageCell < NSTextFieldCell
   def drawInteriorWithFrame_inView(frame, controlView)
     if @imageCell.image
       imageFrame = NSRect.new
-	  # last arg, 0 = NSMinXEdge. NSMinXEdge isn't available to 64-bit apps
+      # last arg, 0 = NSMinXEdge. NSMinXEdge isn't available to 64-bit apps
       NSDivideRect(frame, imageFrame, frame, @imageCell.image.size.width + PADDING, 0)
       @imageCell.drawWithFrame_inView(imageFrame, controlView)
     end
