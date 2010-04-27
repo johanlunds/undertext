@@ -11,7 +11,7 @@ class AppController < NSObject
   MOVIE_EXTS = %w(avi mpg mpeg wmv asf divx mov m2p moov omf qt rm dv 3ivx mkv ogm mp4 m4v)
   URLS = ['http://www.opensubtitles.org', 'http://www.opensubtitles.org/upload', 'http://code.google.com/p/undertext']
   FILES = ['License.rtf', 'Acknowledgments.rtf']
-  DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns }
+  DEFAULTS = { 'authEnabled' => false.to_ns, 'username' => ''.to_ns, 'addLanguageCode' => true.to_ns }
 
   ib_outlets :resController, :detailsController, :prefController
   ib_outlets :mainWindow, :connStatus, :workingIndicator, :languageMenu
