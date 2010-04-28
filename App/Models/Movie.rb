@@ -8,8 +8,6 @@
 
 class Movie < NSObject
 
-  CHUNK_SIZE = 64 * 1024 # 64 kbytes, used in compute_hash
-
   attr_accessor :info
   attr_reader :filename, :filtered_subtitles
 
@@ -116,26 +114,31 @@ class Movie < NSObject
       end
     end
 
+    # String#unpack in Ruby 1.8 only unpacks little-endian long long ints as
+    # opposed to Python's struct.unpack() that can do native, little and big.
+    # To workaround this we check endianness and, if needed, reverse packed
+    # data before calling #unpack. BIG_ENDIAN is true on PPC, false on Intel.
+    BIG_ENDIAN = [1].pack("s") == [1].pack("n")
+    
+    CHUNK_SIZE = 64 * 1024 # 64 kbytes
+
+    # Start with filesize as hash. Then for both beginning and end of file:
+    # read 64 kbytes and divide into 64 bit pieces. Sum with hash.
+    # Make sure the hash is kept to 64 bits during the whole process.
     def compute_hash
       filesize = File.size(@filename)
-      hash = filesize
-
-      # Read 64 kbytes, divide up into 64 bits and add each
-      # to hash. Do for beginning and end of file.
-      File.open(@filename, 'rb') do |f|    
-        # Q = unsigned long long = 64 bit
-        f.read(CHUNK_SIZE).unpack("Q*").each do |n|
-          hash = hash + n & 0xffffffffffffffff # to remain as 64 bit number
-        end
-
+      File.open(@filename, 'rb') do |f|
+        first = f.read(CHUNK_SIZE)
         f.seek([0, filesize - CHUNK_SIZE].max, IO::SEEK_SET)
-
-        # And again for the end of the file
-        f.read(CHUNK_SIZE).unpack("Q*").each do |n|
-          hash = hash + n & 0xffffffffffffffff
+        second = f.read(CHUNK_SIZE)
+        hash = [first, second].inject(filesize) do |hash, part|
+          part.reverse! if BIG_ENDIAN
+          part.unpack("Q*").inject(hash) do |hash, n|
+            hash + n & 0xffffffffffffffff
+          end
         end
+        
+        "%016x" % hash
       end
-      
-      "%016x" % hash
     end
 end
