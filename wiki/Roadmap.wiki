@@ -13,10 +13,10 @@ To anyone who's interested I have set this page up to give an idea of what I wan
  * expand all items in outline view as default. why: easier to scroll and filter than to expand all items one by one. perhaps add NSTableView#sizeLastColumnToFit (done in r170).
  * drag & drop to outline view. why: more ways to add movies to outline view
  * language column in outline view should include flag. why: easier for the eye to scan
-
-=== Wanted ===
-
-*TODO*
+ * bug: in certain cases some movie types, like mkv for example, wasn't selectable in the open dialog
+ * bug: language filtering wasn't applied to new searches
+ * bug: selecting "Portuguese-BR" in language drop-down didn't work as it should
+ * bug: the movie-hashes generated on PPC-machines where faulty so no search results where found
 
 == Future releases and ideas ==
 
