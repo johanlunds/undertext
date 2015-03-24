@@ -22,14 +22,15 @@ When you open movie files and folders with Undertext it will launch to search fo
 
 ### Screencast
 
-<iframe width="720" height="540" src="http://www.youtube.com/embed/piyKJ6tM51c"></iframe>
+[![Youtube video](/Other/youtube.png?raw=true)](https://www.youtube.com/watch?v=piyKJ6tM51c)
 
 
 ### Screenshots
 
-![screenshot](http://undertext.googlecode.com/svn/site/step1.png) ![screenshot](http://undertext.googlecode.com/svn/site/step2.png)
-
-![screenshot](http://undertext.googlecode.com/svn/site/step3.png) ![screenshot](http://undertext.googlecode.com/svn/site/step4.png)
+![screenshot](/Other/step1.png?raw=true)
+![screenshot](/Other/step2.png?raw=true)
+![screenshot](/Other/step3.png?raw=true)
+![screenshot](/Other/step4.png?raw=true)
 
 ## Bugs, Feature Requests and Feedback
 
@@ -48,4 +49,6 @@ New issue: http://code.google.com/p/undertext/issues/entry
 
 Copyright (c) 2009 Johan Lundström. Released as open source under the BSD license, see License.rtf and Acknowledgments.rtf for details.
 
-![icon](http://undertext.googlecode.com/svn/site/mac.gif) ![icon](http://undertext.googlecode.com/svn/site/sparkle.gif) ![icon](http://undertext.googlecode.com/svn/site/osdb.gif)
+![icon](/Other/mac.gif?raw=true)
+![icon](/Other/sparkle.gif?raw=true)
+![icon](/Other/osdb.gif?raw=true)
